@@ -1,1 +1,2 @@
-# vereteno-frontend
+npm install
+npm run dev
