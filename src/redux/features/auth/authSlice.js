@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "@/shared/utils/axios";
-import { getFromLocalStorage } from "@/shared/utils/getFromLocalStorage";
+import axios from "@/utils/axios";
+import { getFromLocalStorage } from "@/utils/getFromLocalStorage";
 
 const initialState = {
   user: null,

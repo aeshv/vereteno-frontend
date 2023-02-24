@@ -46,7 +46,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  background-color: #f5f8ff;
+  background-color: #e8e8e8;
   transition: background-color 200ms;
 
   &.ReactModal__Body--open {
@@ -134,20 +134,20 @@ input {
   margin: 0 auto;
 }
 
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/Inter-VariableFont_slnt,wght.ttf");
-}
+// @font-face {
+//   font-family: "Inter";
+//   src: url("/fonts/Inter-VariableFont_slnt,wght.ttf");
+// }
 
-@font-face {
-  font-family: "Bebas Neue";
-  src: url("/fonts/BebasNeueRegular.woff2");
-}
+// @font-face {
+//   font-family: "Bebas Neue";
+//   src: url("/fonts/BebasNeueRegular.woff2");
+// }
 
-@font-face {
-  font-family: "Roboto";
-  src: url("/fonts/Roboto-Regular.woff2");
-}
+// @font-face {
+//   font-family: "Roboto";
+//   src: url("/fonts/Roboto-Regular.woff2");
+// }
 
 // @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 // @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
@@ -156,3 +156,16 @@ input {
   flex-grow: 2;
 }
 
+a:visited {
+  color: inherit;
+}
+
+a.unpublished:visited {
+  color: inherit;
+}
+
+.content {
+  max-width: 1440px;
+  margin: 0 auto;
+
+}

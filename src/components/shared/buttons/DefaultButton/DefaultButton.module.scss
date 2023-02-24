@@ -1,0 +1,25 @@
+@import "src/styles/variables.scss";
+
+.DefaultButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 25px;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 23px;
+  text-align: center;
+  color: $accentMainColor;
+  transition: all 0.2s ease;
+  border: 1.3px solid $accentMainColor;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background: $accentMainColor;
+    color: white;
+  }
+}
