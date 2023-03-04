@@ -1,0 +1,467 @@
+.footer {
+  max-width: 1214px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+
+  &_bg {
+    &_transparent {
+      padding: 30px 1.77vw;
+      background: transparent;
+    }
+
+    &_white {
+      padding: 30px 1.77vw;
+      background: #f5f8ff;
+    }
+
+    &_blue {
+      padding: 70px 1.77vw;
+      background: #5477d8;
+    }
+  }
+
+  &__container {
+    // padding: 40px 30px;
+    // height: 300px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: white;
+    box-sizing: content-box;
+  }
+
+  &__side {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    padding: 30px;
+
+    &_left {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    &_right {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+  }
+}
+
+.wrapper {
+  &_left {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.image_wrapper {
+  min-width: 80px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-right: 20px;
+}
+
+.title {
+  /* Main */
+
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 135%;
+  /* or 22px */
+
+  color: #2b3a65;
+}
+
+.info {
+  &_list {
+  }
+
+  &_item {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 135%;
+    color: #717171;
+
+    & + & {
+      margin-top: 10px;
+    }
+  }
+}
+
+.adress {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 135%;
+  /* or 22px */
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  color: #2b3a65;
+}
+
+.left_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  // justify-content: center;
+  // height: 100%;
+  width: 100%;
+}
+
+.right_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  background: #f5f8ff;
+  border-radius: 8px;
+}
+
+.link_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 148px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px;
+
+  &:hover {
+    background: #eaf1ff;
+    border: 1px solid #5477d8;
+    border-radius: 8px;
+
+    & .link_card_title {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 135%;
+      text-align: center;
+      color: #2b3a65;
+    }
+  }
+
+  & + & {
+  }
+
+  &_image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 7px;
+  }
+
+  &_title {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 135%;
+    text-align: center;
+    color: #6d7ba4;
+    transition: all 0.2s;
+  }
+}
+
+.phone {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // padding: 40px;
+
+  &_image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 48.17px;
+    height: 48.05px;
+  }
+
+  &_title {
+    font-family: "Roboto";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 135%;
+    color: #6d7ba4;
+    margin-top: 5px;
+  }
+
+  &_number {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 135%;
+    color: #2b3a65;
+    margin-top: 10px;
+
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+  }
+}
+
+.social {
+  &_list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  &_icon {
+    width: 60px;
+    height: 60px;
+    background: #ffffff;
+    border: 1px solid #edeff5;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+
+      img {
+        transition: all 0.2s;
+        zoom: 1.1;
+      }
+    }
+
+    & + & {
+      margin-left: 40px;
+    }
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .footer {
+    // padding: 0 10px;
+    &__container {
+      height: auto;
+      // padding: 10px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    &__side {
+      width: 100%;
+
+      & + & {
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .phone {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f5f8ff;
+    padding: 16px 0;
+  }
+
+  .mobile {
+    &_wrapper {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    &_header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 40px;
+
+      &_logo {
+        width: auto;
+        height: auto;
+        margin-bottom: 20px;
+      }
+
+      &_title {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 135%;
+        text-align: center;
+        color: #2b3a65;
+      }
+    }
+
+    &_body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &_phone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 30px;
+
+      &_icon {
+        width: 29px;
+        height: 29px;
+      }
+
+      &_title {
+        display: block;
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 135%;
+        color: #6d7ba4;
+      }
+
+      &_number {
+        display: block;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 135%;
+        color: #2b3a65;
+      }
+    }
+
+    &_social {
+      &_list {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      &_icon {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+
+        & + & {
+          margin-left: 10px;
+        }
+      }
+    }
+
+    &_ext {
+      &_list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 40px;
+      }
+
+      &_item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &_image {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+
+        & + & {
+          margin-top: 30px;
+        }
+      }
+
+      &_title {
+        margin-bottom: 10px;
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 135%;
+        text-align: center;
+        color: #6d7ba4;
+      }
+    }
+
+    &_legal {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+    }
+  }
+}

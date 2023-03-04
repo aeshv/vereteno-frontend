@@ -3,6 +3,7 @@ import { store } from "@/redux/store";
 import { Provider } from "react-redux";
 import PageLayout from "@/components/shared/layouts/page/PageLayout";
 import Header from "@/components/features/header/Header";
+import Footer from "@/components/features/footer/Footer";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -12,6 +13,7 @@ export default function App({ Component, pageProps }) {
         <div className="content">
           <Component {...pageProps} />
         </div>
+        <Footer/>
       </PageLayout>
     </Provider>
   );
