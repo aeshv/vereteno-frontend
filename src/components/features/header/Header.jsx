@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Header.module.scss";
 import Link from "next/link";
 import DefaultButton from "@/components/shared/buttons/DefaultButton/DefaultButton";
+import Icon from "@/components/shared/icon/Icon";
+import UserIcon from "@/assets/icons/user";
 
 const Header = () => {
   return (
@@ -28,6 +30,9 @@ const Header = () => {
           <DefaultButton>Каталог</DefaultButton>
           <div className="search">SEARCH</div>
           <div className="cart">cart</div>
+          <Link href='/auth'>
+            <Icon icon={<UserIcon />} />
+          </Link>
         </div>
       </header>
     </>

@@ -1,25 +1,32 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "@/utils/axios";
-import { getFromLocalStorage } from "@/utils/getFromLocalStorage";
+import { getCookie } from "cookies-next";
 
-const initialState = {
-  user: null,
-  token: null,
-  isLoading: false,
-  status: null,
-};
+const initialState = getCookie("token")
+  ? {
+      user: null,
+      token: null,
+      isLoading: false,
+      status: null,
+    }
+  : {
+      user: null,
+      token: getCookie("token"),
+      isLoading: false,
+      status: null,
+    };
 
 export const registerUser = createAsyncThunk(
   "register",
   async ({ name, password, email }) => {
     try {
-      const { data } = await axios.post("/auth/register", {
+      const { data } = await axios.post("/auth/reg", {
         name,
         password,
         email,
       });
       if (data.authorization.token) {
-        localStorage.setItem("token", data.authorization.token);
+        setCookie("token", data.authorization.token);
       }
       return data;
     } catch (error) {
@@ -38,7 +45,7 @@ export const loginUser = createAsyncThunk(
       });
 
       if (data.authorization.token) {
-        localStorage.setItem("token", data.authorization.token);
+        setCookie("token", data.authorization.token);
       }
       return data;
     } catch (error) {
@@ -75,14 +82,15 @@ export const authSlice = createSlice({
     },
     [registerUser.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.status = action.payload.message;
-      state.user = action.payload.user;
+      state.status = action.payload?.message;
+      state.user = action.payload?.user;
       state.token = action.payload.authorization?.token;
     },
     [registerUser.rejectWithValue]: (state, action) => {
       state.status = action.payload.message;
       state.isLoading = false;
     },
+
     // Login user
     [loginUser.pending]: (state) => {
       state.isLoading = true;
@@ -119,4 +127,5 @@ export const authSlice = createSlice({
 export const checkIsAuth = (state) => Boolean(state.auth.token);
 
 export const { logout } = authSlice.actions;
+
 export default authSlice.reducer;
