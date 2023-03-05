@@ -2,19 +2,24 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "@/utils/axios";
 import { getCookie } from "cookies-next";
 
-const initialState = getCookie("token")
-  ? {
-      user: null,
-      token: null,
-      isLoading: false,
-      status: null,
-    }
-  : {
-      user: null,
-      token: getCookie("token"),
-      isLoading: false,
-      status: null,
-    };
+const initialState =
+  // ? {
+  {
+    user: null,
+    token: null,
+    isLoading: false,
+    status: null,
+    another: null,
+    another2: null,
+  };
+// : {
+//     user: null,
+//     token: getCookie("token"),
+//     isLoading: false,
+//     status: null,
+//     another: null,
+//     another2: null,
+//   };
 
 export const registerUser = createAsyncThunk(
   "register",
@@ -26,6 +31,7 @@ export const registerUser = createAsyncThunk(
         email,
       });
       if (data.authorization.token) {
+        console.log(data);
         setCookie("token", data.authorization.token);
       }
       return data;
@@ -53,7 +59,21 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
-
+const result = {
+  message: "User created successfully",
+  user: {
+    name: "kklkl@kklkl.ru",
+    email: "kklkl@kklkl.ru",
+    updated_at: "2023-03-05T17:47:37.000000Z",
+    created_at: "2023-03-05T17:47:37.000000Z",
+    id: 6,
+  },
+  authorization: {
+    token:
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vdmVyZXRlbm8vYXBpL2F1dGgvcmVnIiwiaWF0IjoxNjc4MDM4NDU4LCJleHAiOjE2NzgwNDIwNTgsIm5iZiI6MTY3ODAzODQ1OCwianRpIjoic1EzaXBjMGJONnpRTHp5aiIsInN1YiI6IjYiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.HIjXsDJQ56OXEurxtRCtWi8UqtThrPKdbcEbLr9IPwI",
+    type: "bearer",
+  },
+};
 // export const getMe = createAsyncThunk("getMe", async ({ token }) => {
 //   try {
 //     const { data } = await axios.get("/user");
@@ -81,10 +101,12 @@ export const authSlice = createSlice({
       state.status = null;
     },
     [registerUser.fulfilled]: (state, action) => {
-      state.isLoading = false;
+      state.isLoading = "LOADED";
       state.status = action.payload?.message;
       state.user = action.payload?.user;
-      state.token = action.payload.authorization?.token;
+      state.token = action.payload?.authorization?.token;
+      state.another = action;
+      state.another2 = action.payload;
     },
     [registerUser.rejectWithValue]: (state, action) => {
       state.status = action.payload.message;
@@ -106,6 +128,7 @@ export const authSlice = createSlice({
       state.status = action.payload.message;
       state.isLoading = false;
     },
+
     // // Проверка авторизации
     // [getMe.pending]: (state) => {
     //   state.isLoading = true;

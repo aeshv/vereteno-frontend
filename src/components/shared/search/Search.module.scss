@@ -1,0 +1,50 @@
+.container {
+  width: 100%;
+  border: 1.5px solid #6f73ee;
+  border-radius: 5px;
+  border-top-right-radius: 9px;
+  border-bottom-right-radius: 9px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  position: relative;
+  transition: all 0.2s;
+  background: transparent;
+
+  &:hover {
+    background: rgba($color: #b5b7db, $alpha: 0.2);
+  }
+}
+
+.searchinput {
+  padding: 10px 20px;
+  width: 100%;
+
+  & input {
+    width: 100%;
+    border: none;
+    background: transparent;
+  }
+}
+
+.submit {
+  width: 35px;
+  height: 100%;
+  background: #6f73ee;
+  outline: 1.5px solid #6f73ee;
+  border-radius: 0px 5px 5px 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: all 0.2s;
+}
+
+.submit:hover {
+    opacity: 75%;
+}

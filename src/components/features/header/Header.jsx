@@ -4,6 +4,7 @@ import Link from "next/link";
 import DefaultButton from "@/components/shared/buttons/DefaultButton/DefaultButton";
 import Icon from "@/components/shared/icon/Icon";
 import UserIcon from "@/assets/icons/user";
+import Search from "@/components/shared/search/Search";
 
 const Header = () => {
   return (
@@ -28,7 +29,7 @@ const Header = () => {
             <div className="logo">LOGO</div>
           </Link>
           <DefaultButton>Каталог</DefaultButton>
-          <div className="search">SEARCH</div>
+          <Search/>
           <div className="cart">cart</div>
           <Link href='/auth'>
             <Icon icon={<UserIcon />} />

@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { checkIsAuth } from "@/redux/features/auth/authSlice";
 import Header from "@/components/features/header/Header";
 import Card from "@/components/shared/card/Card";
+import Search from "@/components/shared/search/Search";
 
 export default function Home() {
   const isAuth = useSelector(checkIsAuth);
@@ -20,6 +21,7 @@ export default function Home() {
       </Head>
       <main>
         <h1 className="class">asdas</h1>
+        <Search/>
         <Card/>
       </main>
     </>
