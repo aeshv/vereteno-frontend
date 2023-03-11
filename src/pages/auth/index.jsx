@@ -16,6 +16,14 @@ const RegisterPage = () => {
     }
   };
 
+  const handleSubmitLogin = (data) => {
+    try {
+      dispatch(loginUser(data))
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
     <div className={styles.container}>
@@ -98,7 +106,7 @@ const RegisterPage = () => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          dispatch(loginUser(values))
+          handleSubmitLogin(values)
           setSubmitting(false);
         }}
       >

@@ -21,7 +21,6 @@ export default function Home() {
       </Head>
       <main>
         <h1 className="class">asdas</h1>
-        <Search/>
         <Card/>
       </main>
     </>
