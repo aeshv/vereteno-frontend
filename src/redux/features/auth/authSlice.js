@@ -1,25 +1,20 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "@/utils/axios";
+import axios from "@/api";
 import { getCookie, setCookie } from "cookies-next";
 
-const initialState =
-  // ? {
-  {
-    user: null,
-    token: null,
-    isLoading: false,
-    status: null,
-    another: null,
-    another2: [],
-  };
-// : {
-//     user: null,
-//     token: getCookie("token"),
-//     isLoading: false,
-//     status: null,
-//     another: null,
-//     another2: null,
-//   };
+const initialState = getCookie("token")
+  ? {
+      user: null,
+      token: null,
+      isLoading: false,
+      status: null,
+    }
+  : {
+      user: null,
+      token: getCookie("token"),
+      isLoading: false,
+      status: null,
+    };
 
 export const registerUser = createAsyncThunk(
   "auth/register",
@@ -126,21 +121,21 @@ export const authSlice = createSlice({
       state.isLoading = false;
     },
 
-  //   // // Проверка авторизации
-  //   // [getMe.pending]: (state) => {
-  //   //   state.isLoading = true;
-  //   //   state.status = null;
-  //   // },
-  //   // [getMe.fulfilled]: (state, action) => {
-  //   //   state.isLoading = false;
-  //   //   state.status = null;
-  //   //   state.user = action.payload?.user;
-  //   //   state.token = action.payload?.authorization.token;
-  //   // },
-  //   // [getMe.rejectWithValue]: (state, action) => {
-  //   //   state.status = action.payload.message;
-  //   //   state.isLoading = false;
-  //   // },
+    //   // // Проверка авторизации
+    //   // [getMe.pending]: (state) => {
+    //   //   state.isLoading = true;
+    //   //   state.status = null;
+    //   // },
+    //   // [getMe.fulfilled]: (state, action) => {
+    //   //   state.isLoading = false;
+    //   //   state.status = null;
+    //   //   state.user = action.payload?.user;
+    //   //   state.token = action.payload?.authorization.token;
+    //   // },
+    //   // [getMe.rejectWithValue]: (state, action) => {
+    //   //   state.status = action.payload.message;
+    //   //   state.isLoading = false;
+    //   // },
   },
 });
 

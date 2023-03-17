@@ -1,6 +1,5 @@
 import { Formik } from "formik";
 import React from "react";
-import { registerUserAction } from "../../redux/features/auth/action-creators";
 import { useDispatch } from "react-redux";
 import { loginUser, registerUser } from "@/redux/features/auth/authSlice";
 import styles from './auth.module.scss'

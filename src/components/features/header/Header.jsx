@@ -3,8 +3,9 @@ import styles from "./Header.module.scss";
 import Link from "next/link";
 import DefaultButton from "@/components/shared/buttons/DefaultButton/DefaultButton";
 import Icon from "@/components/shared/icon/Icon";
-import UserIcon from "@/assets/icons/user";
 import Search from "@/components/shared/search/Search";
+import { IconLogin, IconShoppingCart } from '@tabler/icons-react';
+import { ActionIcon } from "@mantine/core";
 
 const Header = () => {
   return (
@@ -20,7 +21,7 @@ const Header = () => {
           </div>
 
           <div className={styles.contact__call}>
-            <Link href={"tel:+799999999999"}>+799999999999</Link>
+            <Link href={"tel:+799999999999"}>8 (846) 202-60-82</Link>
           </div>
         </div>
 
@@ -30,9 +31,11 @@ const Header = () => {
           </Link>
           <DefaultButton>Каталог</DefaultButton>
           <Search/>
-          <div className="cart">cart</div>
+          <Link href='/cart'>
+            <Icon icon={<IconShoppingCart stroke="black"/>} />
+          </Link>
           <Link href='/auth'>
-            <Icon icon={<UserIcon />} />
+          <Icon icon={<IconLogin stroke="black"/>} />
           </Link>
         </div>
       </header>
