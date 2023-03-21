@@ -9,6 +9,7 @@ import ContentContainer from "@/components/shared/ContentContainer/ContentContai
 import { Grid } from "@mantine/core";
 import api, { productApi } from "@/api";
 import { products } from "@/utils/tempHatsList";
+import CatalogMenu from "@/components/shared/catalogMenu/CatalogMenu";
 
 export default function Home() {
   const isAuth = useSelector(checkIsAuth);
@@ -27,6 +28,7 @@ export default function Home() {
       </Head>
       <main>
         <h1 className="class">Главная</h1>
+        <CatalogMenu/>
         {/* <ContentContainer> */}
         <Grid grow gutter="xl">
           {products.map((product) => (
