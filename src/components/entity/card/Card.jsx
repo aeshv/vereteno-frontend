@@ -6,12 +6,11 @@ import Label from "../../shared/label/Label";
 import ColorDot from "../../shared/ColorDot/ColorDot";
 import CardGallery from "./CardGallery/CardGallery";
 
-
 const Card = (props) => {
   return (
     <div className={styles.card}>
       <div className={styles.gallery}>
-        <CardGallery images={[noimage, noimage, noimage, noimage]}/>
+        <CardGallery images={props.images} />
       </div>
 
       <div className={styles.content}>
@@ -21,11 +20,21 @@ const Card = (props) => {
         <div className={styles.row}>
           <span className={styles.price}>{props?.description}</span>
         </div>
+        {props.colors.length && (
+          <>
+            <div className={styles.row}>
+              <span className={styles.colors}>
+                {props.colors.map(({color}) => (
+                  <>
+                    <ColorDot color={color} />
+                  </>
+                ))}
+              </span>
+            </div>
+          </>
+        )}
         <div className={styles.row}>
-          <span className={styles.colors}>
-            <ColorDot color={'cyan'}/>
-            <ColorDot color={'red'}/>
-          </span>
+          <span className={styles.price}>{props.price}руб.</span>
         </div>
       </div>
     </div>
@@ -33,10 +42,6 @@ const Card = (props) => {
 };
 
 export default Card;
-
-
-
-
 
 {
   /* <div className={styles.labels}>
@@ -47,5 +52,4 @@ export default Card;
 }
 
 {
-  
 }

@@ -7,11 +7,13 @@ import Card from "@/components/entity/card/Card";
 import Search from "@/components/shared/search/Search";
 import ContentContainer from "@/components/shared/ContentContainer/ContentContainer";
 import { Grid } from "@mantine/core";
-import api, {productApi} from "@/api";
+import api, { productApi } from "@/api";
+import { products } from "@/utils/tempHatsList";
 
-export default function Home({ products }) {
+export default function Home() {
   const isAuth = useSelector(checkIsAuth);
-  console.log(products);
+
+
   return (
     <>
       <Head>
@@ -27,9 +29,9 @@ export default function Home({ products }) {
         <h1 className="class">Главная</h1>
         {/* <ContentContainer> */}
         <Grid grow gutter="xl">
-          {products.products.map((product) => (
+          {products.map((product) => (
             <Grid.Col key={product.id} span={4}>
-              <Card {...product}/>
+              <Card {...product} />
             </Grid.Col>
           ))}
         </Grid>
@@ -39,13 +41,13 @@ export default function Home({ products }) {
   );
 }
 
-export async function getServerSideProps() {
-  const products = await productApi.getProducts().then(({ data }) => {
-    return data;
-  });
-  return {
-    props: {
-      products,
-    },
-  };
-}
+// export async function getServerSideProps() {
+//   const products = await productApi.getProducts().then(({ data }) => {
+//     return data;
+//   });
+//   return {
+//     props: {
+//       products,
+//     },
+//   };
+// }
