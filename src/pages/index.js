@@ -9,7 +9,8 @@ import ContentContainer from "@/components/shared/ContentContainer/ContentContai
 import { Grid } from "@mantine/core";
 import api, { productApi } from "@/api";
 import { products } from "@/utils/tempHatsList";
-import CatalogMenu from "@/components/shared/catalogMenu/CatalogMenu";
+import CatalogMenu from "@/components/features/catalogMenu/CatalogMenu";
+import { CarouselBanner } from "@/components/entity/carousel/CarouselBanner";
 
 export default function Home() {
   const isAuth = useSelector(checkIsAuth);
@@ -28,9 +29,10 @@ export default function Home() {
       </Head>
       <main>
         <h1 className="class">Главная</h1>
-        <CatalogMenu/>
+        {/* <CatalogMenu/> */}
         {/* <ContentContainer> */}
-        <Grid grow gutter="xl">
+        <CarouselBanner/>
+        <Grid gutter="xl">
           {products.map((product) => (
             <Grid.Col key={product.id} span={4}>
               <Card {...product} />

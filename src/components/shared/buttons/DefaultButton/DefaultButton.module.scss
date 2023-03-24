@@ -1,4 +1,4 @@
-@import "src/styles/variables.scss";
+@import "/src/styles/variables.scss";
 
 .DefaultButton {
   display: flex;
@@ -17,6 +17,7 @@
   border: 1.3px solid $accentMainColor;
   border-radius: 5px;
   cursor: pointer;
+  background: white;
 
   &:hover {
     background: $accentMainColor;

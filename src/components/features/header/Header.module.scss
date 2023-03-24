@@ -1,4 +1,4 @@
-@import "src/styles/variables.scss";
+@import "/src/styles/variables.scss";
 
 .container {
   width: 100%;
@@ -49,4 +49,8 @@
     width: 100%;
     max-width: 1214px;
     padding: 11px 0;
+}
+
+.catalog {
+  position: relative;
 }

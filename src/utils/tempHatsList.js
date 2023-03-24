@@ -116,4 +116,25 @@ export const products = [
     discount_price: 2500,
     available: false,
   },
+  {
+    title: "Федора с трехцветной лентой",
+    description: "Федора с лентой",
+    colors: [
+      { id: 1, color: "red" },
+      { id: 2, color: "cyan" },
+    ],
+    images: [
+      {
+        id: 1,
+        src: "https://goggles.su/image/cache/catalog/image/cache/catalog/hats/fedora/img_20201002_143437-400x400.webp",
+      },
+      {
+        id: 2,
+        src: "https://goggles.su/image/cache/catalog/image/cache/catalog/hats/fedora/img_20201002_143447-400x400.webp",
+      },
+    ],
+    price: 4500,
+    discount_price: null,
+    available: true,
+  },
 ];

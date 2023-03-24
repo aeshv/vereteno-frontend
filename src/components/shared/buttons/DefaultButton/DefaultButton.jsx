@@ -7,7 +7,7 @@ const DefaultButton = ({ children, onClick = () => {} }) => {
       className={styles.DefaultButton}
       onClick={(e) => {
         e.preventDefault;
-        onClick;
+        onClick?.();
       }}
     >
       {children}

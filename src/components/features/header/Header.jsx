@@ -4,10 +4,12 @@ import Link from "next/link";
 import DefaultButton from "@/components/shared/buttons/DefaultButton/DefaultButton";
 import Icon from "@/components/shared/icon/Icon";
 import Search from "@/components/shared/search/Search";
-import { IconLogin, IconShoppingCart } from '@tabler/icons-react';
+import { IconLogin, IconShoppingCart } from "@tabler/icons-react";
 import { ActionIcon } from "@mantine/core";
+import CatalogMenu from "@/components/features/catalogMenu/CatalogMenu";
 
 const Header = () => {
+  
   return (
     <>
       <header className={styles.container}>
@@ -21,7 +23,7 @@ const Header = () => {
           </div>
 
           <div className={styles.contact__call}>
-            <Link href={"tel:+799999999999"}>8 (846) 202-60-82</Link>
+            <Link href={"tel:+79094351234"}>+7 (909) 435-12-34</Link>
           </div>
         </div>
 
@@ -29,13 +31,16 @@ const Header = () => {
           <Link href="/">
             <div className="logo">LOGO</div>
           </Link>
-          <DefaultButton>Каталог</DefaultButton>
-          <Search/>
-          <Link href='/cart'>
-            <Icon icon={<IconShoppingCart stroke="black"/>} />
+          <div className={styles.catalog}>
+
+            <CatalogMenu/>
+          </div>
+          <Search />
+          <Link href="/cart">
+            <Icon icon={<IconShoppingCart stroke="black" />} />
           </Link>
-          <Link href='/auth'>
-          <Icon icon={<IconLogin stroke="black"/>} />
+          <Link href="/auth">
+            <Icon icon={<IconLogin stroke="black" />} />
           </Link>
         </div>
       </header>

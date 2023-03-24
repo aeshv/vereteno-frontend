@@ -22,7 +22,7 @@ const CardGallery = ({ images }) => {
                   alt="Изображение"
                   fill
                   style={{
-                    objectFit: "cover",
+                    objectFit: "contain",
                     // filter: `brightness(${100 - 10 * index}%)`,
                   }}
                 />
@@ -48,7 +48,7 @@ const CardGallery = ({ images }) => {
           <div className={styles.pointers}>
             {images.map((item, index) => (
               <div
-                className={styles.pointer}
+                className={`${styles.pointer} ${index === activeSlide && styles.pointer__active}`}
                 key={index}
                 onClick={() => setActiveSlide(index)}
               />
