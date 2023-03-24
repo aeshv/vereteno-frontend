@@ -11,6 +11,7 @@
   position: relative;
   transition: all 0.2s;
   background: transparent;
+  align-self: stretch;
 
   &:hover {
     background: rgba($color: #b5b7db, $alpha: 0.2);

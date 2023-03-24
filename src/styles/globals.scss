@@ -152,35 +152,28 @@ a.unpublished:visited {
 
 @font-face {
   font-family: "Jost";
-  src: url("./Jost-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: "thin";
+  src: url("./Jost-Thin.woff2") format("woff2");
+  font-weight: 100;
 }
-
 @font-face {
   font-family: "Jost";
   src: url("./Jost-Light.woff2") format("woff2");
   font-weight: 300;
-  font-style: "light";
-}
-
-@font-face {
-  font-family: "Jost";
-  src: url("./Jost-Medium.woff2") format("woff2");
-  font-weight: 400;
-  font-style: "regular";
 }
 
 @font-face {
   font-family: "Jost";
   src: url("./Jost-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Jost";
+  src: url("./Jost-Medium.woff2") format("woff2");
   font-weight: 500;
-  font-style: "medium";
 }
 
 @font-face {
   font-family: "Jost";
-  src: url("./Jost-Thin.woff2") format("woff2");
-  font-weight: 100;
-  font-style: "bold";
+  src: url("./Jost-Bold.woff2") format("woff2");
+  font-weight: 600;
 }

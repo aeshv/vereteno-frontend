@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Card.module.scss";
 import Image from "next/image";
-import noimage from "../../../../public/noimage.png";
 import Label from "../../shared/label/Label";
 import ColorDot from "../../shared/ColorDot/ColorDot";
 import CardGallery from "./CardGallery/CardGallery";

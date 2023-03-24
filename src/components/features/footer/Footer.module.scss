@@ -81,29 +81,22 @@
 }
 
 .title {
-  /* Main */
-
-  font-family: "Roboto";
+  font-family: "Jost";
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 135%;
-  /* or 22px */
-
-  color: #2b3a65;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  color: #282739;
 }
 
 .info {
-  &_list {
-  }
-
   &_item {
-    font-family: "Roboto";
+    font-family: "Jost";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 135%;
-    color: #717171;
+    font-size: 14px;
+    line-height: 20px;
+    color: #5d6c7b;
 
     & + & {
       margin-top: 10px;
@@ -112,12 +105,12 @@
 }
 
 .adress {
-  font-family: "Roboto";
+  font-family: "Jost";
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 135%;
-  /* or 22px */
+  font-size: 14px;
+  line-height: 18px;
+  color: #282739;
   cursor: pointer;
   transition: all 0.2s;
 
@@ -160,6 +153,12 @@
   border: 1px solid transparent;
   border-radius: 8px;
   padding: 8px;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 17px;
+  color: #282739;
 
   &:hover {
     background: #eaf1ff;
@@ -167,17 +166,17 @@
     border-radius: 8px;
 
     & .link_card_title {
-      font-family: "Roboto";
+      font-family: "Jost";
       font-style: normal;
       font-weight: 400;
-      font-size: 16px;
-      line-height: 135%;
-      text-align: center;
-      color: #2b3a65;
+      font-size: 12px;
+      line-height: 17px;
+      color: #1e1c33;
     }
   }
 
   & + & {
+    margin-top: 5px;
   }
 
   &_image {
@@ -191,13 +190,14 @@
   }
 
   &_title {
-    font-family: "Roboto";
+    font-family: "Jost";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 135%;
+    font-size: 12px;
+    line-height: 17px;
+    color: #282739;
     text-align: center;
-    color: #6d7ba4;
+
     transition: all 0.2s;
   }
 }
@@ -220,22 +220,22 @@
   }
 
   &_title {
-    font-family: "Roboto";
+    font-family: "Jost";
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 135%;
-    color: #6d7ba4;
+    font-size: 12px;
+    line-height: 17px;
+    color: #5d6c7b;
     margin-top: 5px;
   }
 
   &_number {
-    font-family: "Inter";
+    font-family: "Jost";
     font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 135%;
-    color: #2b3a65;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+    color: #282739;
     margin-top: 10px;
 
     cursor: pointer;

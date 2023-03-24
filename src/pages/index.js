@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>VERETENO HATS</title>
+        <title>Веретено, магазин головных уборов</title>
         <meta
           name="description"
           content="Купить шапки, шляпы, восьмиклинки быстро и просто"
