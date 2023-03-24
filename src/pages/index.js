@@ -11,6 +11,7 @@ import api, { productApi } from "@/api";
 import { products } from "@/utils/tempHatsList";
 import CatalogMenu from "@/components/features/catalogMenu/CatalogMenu";
 import { CarouselBanner } from "@/components/entity/carousel/CarouselBanner";
+import { FaqWithBg } from "@/components/entity/faq/FaqWithBg";
 
 export default function Home() {
   const isAuth = useSelector(checkIsAuth);
@@ -27,10 +28,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <h1 className="class">Главная</h1>
-        {/* <CatalogMenu/> */}
-        {/* <ContentContainer> */}
+      <main style={{display: 'flex', flexDirection: 'column', gap: '2rem', paddingBottom: '4rem'}}>
         <CarouselBanner/>
         <Grid gutter="xl">
           {products.map((product) => (
@@ -39,7 +37,7 @@ export default function Home() {
             </Grid.Col>
           ))}
         </Grid>
-        {/* </ContentContainer> */}
+        <FaqWithBg/>
       </main>
     </>
   );
