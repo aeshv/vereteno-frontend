@@ -1,0 +1,52 @@
+.container {
+  display: grid;
+  grid-template-columns: 8fr 4fr;
+  gap: 2rem;
+  transition: all 0.2s ease;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.title {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 25px;
+  line-height: 36px;
+  text-transform: uppercase;
+  color: #282739;
+}
+
+.description {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #282739;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  width: 100%;
+}
+
+.tag {
+  background: #f4f7fb;
+  border-radius: 5px;
+  padding: 14px 20px;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #5d6c7b;
+  cursor: default;
+}

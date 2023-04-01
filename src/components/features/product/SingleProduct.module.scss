@@ -3,11 +3,13 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  transition: all 0.3s;
 }
 
 .container {
   background: #f0f1f5;
   border-radius: 10px;
+  transition: all 0.3s;
 }
 
 .image {
@@ -17,4 +19,42 @@
   background: #f0f1f5;
   border-radius: 10px;
   overflow: hidden;
+}
+
+.tabs {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.tab_header {
+  display: flex;
+  width: 100%;
+}
+
+.tab_item {
+  cursor: pointer;
+  padding: 10px 10px 20px;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+  text-align: center;
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #5d6c7b;
+  border-bottom: 2px solid transparent;
+
+
+  &__selected {
+    color: #6f73ee;
+    background-color: #f4f4f4;
+    border-bottom: 2px solid #6F73EE;
+  }
+}
+
+.tab_content {
+  padding: 10px;
 }
