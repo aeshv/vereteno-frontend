@@ -3,7 +3,8 @@ import ProductInfo from "@/components/features/product/ProductInfo";
 import ProductOrder from "@/components/features/product/ProductOrder";
 import { Paper } from "@mantine/core";
 import React from "react";
-import styles from './SingleProduct.module.scss'
+import styles from "./SingleProduct.module.scss";
+import BuyingWith from "@/components/features/product/blocks/BuyingWith/BuyingWith";
 
 const SingleProduct = () => {
   return (
@@ -17,6 +18,8 @@ const SingleProduct = () => {
           </div>
           <div className={styles.additional}>
             <ProductInfo />
+            <BuyingWith title={"С этим товаром покупают"} />
+            <BuyingWith title={"Похожие товары"} />
           </div>
         </div>
       </div>

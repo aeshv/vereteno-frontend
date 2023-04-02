@@ -4,10 +4,11 @@ import Image from "next/image";
 import Label from "../../shared/label/Label";
 import ColorDot from "../../shared/ColorDot/ColorDot";
 import CardGallery from "./CardGallery/CardGallery";
+import Link from "next/link";
 
 const Card = (props) => {
   return (
-    <div className={styles.card}>
+    <Link className={styles.card} href={props?.href}>
       <div className={styles.gallery}>
         <CardGallery images={props.images} />
       </div>
@@ -36,7 +37,7 @@ const Card = (props) => {
           <span className={styles.price}>{props.price}руб.</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

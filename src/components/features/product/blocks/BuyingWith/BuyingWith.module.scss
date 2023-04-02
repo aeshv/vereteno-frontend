@@ -1,0 +1,61 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 100px 0;
+
+  &+& {
+    padding-top: 0;
+  }
+}
+
+.title {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 35px;
+  line-height: 51px;
+  text-transform: uppercase;
+  color: #282739;
+  margin-bottom: 30px;
+}
+
+.list {
+  display: flex;
+  padding-bottom: 1rem;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  align-items: stretch;
+  overflow-x: scroll;
+  scrollbar-color: #5d6c7b;
+  gap: 2rem;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: #6f73ee;
+    }
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #f0f1f5;
+    border-radius: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #94b6d6;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: #6f73ee;
+      height: 5px;
+    }
+  }
+}
+
+.scrollable {
+  max-width: 255px;
+  // pointer-events: none;
+}

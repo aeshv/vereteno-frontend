@@ -1,0 +1,59 @@
+.container {
+  background: #f4f7fb;
+  border-radius: 10px;
+  padding: 40px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.text {
+  max-width: 258px;
+  z-index: 2;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    font-family: "Jost";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 36px;
+    text-transform: uppercase;
+    color: #282739;
+    margin-bottom: 10px;
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 32px;
+    font-family: "Jost";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 23px;
+    color: #282739;
+  }
+}
+
+.imageSection {
+    z-index: 1;
+  position: absolute;
+  top: 50%;
+  right: -120px;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .circle {
+    transform: translateY(-50%);
+
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    background: #6f73ee;
+  }
+}

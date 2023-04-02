@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./SingleProduct.module.scss";
-import ProductSectionAbout from "./ProductSectionAbout";
-import ProductSectionGuarantee from "./ProductSectionGuarantee";
-import ProductSectionSpecs from "./ProductSectionSpecs";
-import ProductSectionPayment from "./ProductSectionPayment";
+import ProductSectionAbout from "./sections/about/ProductSectionAbout";
+import ProductSectionGuarantee from "./sections/guarantee/ProductSectionGuarantee";
+import ProductSectionSpecs from "./sections/specs/ProductSectionSpecs";
+import ProductSectionPayment from "./sections/payment/ProductSectionPayment";
 
 const ProductInfo = () => {
   const tabs = [

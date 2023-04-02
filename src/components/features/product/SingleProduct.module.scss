@@ -23,8 +23,9 @@
 
 .tabs {
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1.5px solid #6f73ee;
   border-radius: 4px;
+  overflow: hidden;
 }
 
 .tab_header {
@@ -56,5 +57,5 @@
 }
 
 .tab_content {
-  padding: 10px;
+  padding: 16px 2rem;
 }

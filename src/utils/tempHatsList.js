@@ -1,5 +1,6 @@
 export const products = [
   {
+   id: 1,
     title: "Blixen Edition",
     description: "Шляпа с маленькими полями",
     colors: [
@@ -22,6 +23,7 @@ export const products = [
     available: true,
   },
   {
+   id: 2,
     title: "Шляпа Indiana Jones Hats Promotional Fedora",
     description: "Водостойкая и износостойкая",
     colors: [
@@ -44,6 +46,7 @@ export const products = [
     available: true,
   },
   {
+   id: 3,
     title: "Nova Fedora",
     description: "Шляпа темно-серая с низкой тульей",
     colors: [
@@ -74,6 +77,7 @@ export const products = [
     available: true,
   },
   {
+   id: 4,
     title: "Федора с двухцветной лентой",
     description: "Федора с лентой",
     colors: [
@@ -95,6 +99,7 @@ export const products = [
     available: true,
   },
   {
+   id: 5,
     title: "Blixen Edition",
     description: "Шляпа с маленькими полями",
     colors: [
@@ -117,6 +122,7 @@ export const products = [
     available: false,
   },
   {
+   id: 6,
     title: "Федора с трехцветной лентой",
     description: "Федора с лентой",
     colors: [

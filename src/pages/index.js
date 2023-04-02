@@ -32,8 +32,8 @@ export default function Home() {
         <CarouselBanner/>
         <Grid gutter="xl">
           {products.map((product) => (
-            <Grid.Col key={product.id} span={4}>
-              <Card {...product} />
+            <Grid.Col key={product.id} span={3}>
+              <Card {...product} href={`/products/${product.id}`} />
             </Grid.Col>
           ))}
         </Grid>

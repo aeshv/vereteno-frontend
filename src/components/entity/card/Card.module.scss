@@ -1,15 +1,21 @@
 .card {
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
   border: solid 2px transparent;
   border-radius: 8px;
   overflow: hidden;
   transition: border 0.2s ease-in;
-
+  height: 100%;
+  min-width: 255px;
   &:hover {
     border: 2px solid #EAEBED;
   }
+}
+
+.gallery {
+  flex-grow: 1;
 }
 
 .content {
