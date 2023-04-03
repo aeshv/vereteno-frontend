@@ -1,14 +1,14 @@
 import React from "react";
 import styles from "./RatingBlock.module.scss";
 import Image from "next/image";
-import noimage from "@/assets/noimage.png";
+import yandex from "@/assets/yandex.svg";
 import { IconStarFilled } from "@tabler/icons-react";
 
 const RatingBlock = () => {
   return (
     <div className={styles.container}>
       <div className={styles.icon}>
-        <Image src={noimage} alt="Рейтинг Сайта" />
+        <Image src={yandex} alt="Рейтинг Сайта" />
       </div>
       <div className={styles.textblock}>
         <h2 className={styles.title}>Яндекс отзывы</h2>
