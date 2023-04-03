@@ -1,6 +1,7 @@
 import React from "react";
 import SmallFeatureBlock from "../SmallFeatureBlock/SmallFeatureBlock";
 import styles from "./MainPageFeaturesContainer.module.scss";
+import RatingBlock from "../../RatingBlock/RatingBlock";
 
 const MainPageFeaturesContainer = () => {
   const data = [
@@ -25,6 +26,7 @@ const MainPageFeaturesContainer = () => {
             <SmallFeatureBlock {...item} position={index} />
           </>
         ))}
+        <RatingBlock />
       </div>
     </>
   );

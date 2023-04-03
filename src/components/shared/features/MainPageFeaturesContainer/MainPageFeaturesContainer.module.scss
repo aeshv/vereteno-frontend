@@ -1,28 +1,24 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr;
-  gap: 8px;
+  padding: 16px 12px;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  grid-template-areas: "label0  label1  label2  label3";
+
+  gap: 2rem;
   height: 100%;
 
   & .item-0 {
-    background-color: #77b56f;
-    grid-row: 1 / 4;
-    grid-column: 11 / 13;
+    grid-area: label0;
   }
   & .item-1 {
-    background-color: #55b695;
-    grid-row: 1 / 4;
-    grid-column: 1 / 3;
+    grid-area: label1;
   }
   & .item-2 {
-    background-color: #577597;
-    grid-row: 1 / 4;
-    grid-column: 4 / 6;
+    grid-area: label2;
   }
   & .item-3 {
-    background-color: #de5d65;
-    grid-row: 1 / 4;
-    grid-column: 7 / 9;
+    grid-area: label3;
   }
 }

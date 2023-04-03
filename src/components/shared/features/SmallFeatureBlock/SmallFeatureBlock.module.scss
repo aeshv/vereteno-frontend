@@ -19,7 +19,19 @@
     font-size: 16px;
     line-height: 23px;
     color: #282739;
+    word-break: keep-all;
   }
 
-  
+  &.item-0 {
+    grid-area: label0;
+  }
+  &.item-1 {
+    grid-area: label1;
+  }
+  &.item-2 {
+    grid-area: label2;
+  }
+  &.item-3 {
+    grid-area: label3;
+  }
 }

@@ -27,7 +27,7 @@ const useStyles = createStyles((theme) => ({
   title: {
     color: theme.white,
     fontSize: 52,
-    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    fontFamily: `Jost, ${theme.fontFamily}`,
     marginBottom: `calc(${theme.spacing.xl} * 1.5)`,
   },
 
@@ -37,6 +37,10 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.md,
     boxShadow: theme.shadows.lg,
     overflow: "hidden",
+  },
+
+  label: {
+    color: theme.white
   },
 
   control: {

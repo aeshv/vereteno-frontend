@@ -7,19 +7,18 @@ import Header from "@/components/features/header/Header";
 import Footer from "@/components/features/footer/Footer";
 export default function App({ Component, pageProps }) {
   return (
-    <MantineProvider
-      withGlobalStyles
-      withNormalizeCSS
-    >
-      <Provider store={store}>
-        <PageLayout>
-          <Header />
-          <div className="content">
-            <Component {...pageProps} />
-          </div>
-          <Footer />
-        </PageLayout>
-      </Provider>
-    </MantineProvider>
+    <>
+      <MantineProvider withGlobalStyles withNormalizeCSS>
+        <Provider store={store}>
+          <PageLayout>
+            <Header />
+            <div className="content">
+              <Component {...pageProps} />
+            </div>
+            <Footer />
+          </PageLayout>
+        </Provider>
+      </MantineProvider>
+    </>
   );
 }

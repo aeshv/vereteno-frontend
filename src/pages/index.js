@@ -13,6 +13,7 @@ import CatalogMenu from "@/components/features/catalogMenu/CatalogMenu";
 import { CarouselBanner } from "@/components/entity/carousel/CarouselBanner";
 import { FaqWithBg } from "@/components/entity/faq/FaqWithBg";
 import MainPageFeaturesContainer from "@/components/shared/features/MainPageFeaturesContainer/MainPageFeaturesContainer";
+import BuyingWith from "@/components/features/product/blocks/BuyingWith/BuyingWith";
 
 export default function Home() {
   const isAuth = useSelector(checkIsAuth);
@@ -46,6 +47,7 @@ export default function Home() {
           ))}
         </Grid>
         <FaqWithBg />
+        <BuyingWith title={"Часто покупают"} />
       </main>
     </>
   );
