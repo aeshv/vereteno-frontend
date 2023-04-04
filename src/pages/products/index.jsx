@@ -1,18 +1,22 @@
 import React, { useEffect } from "react";
-import axios from "@/api";
 
-const Products = ({ singleProduct }) => {
-  useEffect(() => {
-    const singleProduct = async () => {
-      await axios.get(`/products`);
-    };
-    console.log(singleProduct());
-  }, []);
 
+const Products = () => {
   return (
-    <div>
-      <h1>Продукты</h1>
+    <>
+    <div className="container">
+      <div className="catalog_banner"></div>
+      <div className="promo_banner"></div>
+      <div className="content">
+        <div className="filters">
+          <h2>Фильтры</h2>
+        </div>
+        <div className="store">
+          Товары
+        </div>
+      </div>
     </div>
+    </>
   );
 };
 
