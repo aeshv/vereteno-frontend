@@ -1,21 +1,23 @@
+import HatFilter from "@/components/entity/filters/HatFilter";
+import PageHead from "@/components/SEO/PageHead";
+import Head from "next/head";
 import React, { useEffect } from "react";
-
 
 const Products = () => {
   return (
     <>
-    <div className="container">
-      <div className="catalog_banner"></div>
-      <div className="promo_banner"></div>
-      <div className="content">
-        <div className="filters">
-          <h2>Фильтры</h2>
-        </div>
-        <div className="store">
-          Товары
+      <PageHead title="Все товары"/>
+      <div className="container">
+        <div className="catalog_banner"></div>
+        <div className="promo_banner"></div>
+        <div className="content">
+          <div className="filters">
+            <h2>Фильтры</h2>
+            <HatFilter/>
+          </div>
+          <div className="store">Товары</div>
         </div>
       </div>
-    </div>
     </>
   );
 };

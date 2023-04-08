@@ -12,6 +12,18 @@ const CatalogMenu = () => {
   const ref = useClickOutside(() => setOpened(false));
 
   const menuItems = [
+    { label: "Каталог", url: "/products" },
+    { label: "О нас", url: "/about" },
+    { label: "Личный кабинет", url: "/lk" },
+  ];
+
+  const menuItems2 = [
+    { label: "Домой", url: "/" },
+    { label: "О нас", url: "/about" },
+    { label: "Личный кабинет", url: "/lk" },
+  ];
+
+  const menuItems3 = [
     { label: "Домой", url: "/" },
     { label: "О нас", url: "/about" },
     { label: "Личный кабинет", url: "/lk" },
@@ -49,14 +61,14 @@ const CatalogMenu = () => {
                 ))}
               </div>
               <div className={[styles.col]}>
-                {menuItems.map((menuItem) => (
+                {menuItems2.map((menuItem) => (
                   <Link key={menuItem.url} href={menuItem.url}>
                     {menuItem.label}
                   </Link>
                 ))}
               </div>
               <div className={[styles.col]}>
-                {menuItems.map((menuItem) => (
+                {menuItems3.map((menuItem) => (
                   <Link key={menuItem.url} href={menuItem.url}>
                     {menuItem.label}
                   </Link>
