@@ -16,7 +16,10 @@ import {
 // import { GoogleButton, TwitterButton } from "../SocialButtons/SocialButtons";
 
 const RegisterPage = () => {
-  const [type, toggle] = useToggle(["Войти в свой аккаунт", "Зарегистрировать аккаунт"]);
+  const [type, toggle] = useToggle([
+    "Войти в свой аккаунт",
+    "Зарегистрировать аккаунт",
+  ]);
   const form = useForm({
     initialValues: {
       email: "",
@@ -28,88 +31,88 @@ const RegisterPage = () => {
     validate: {
       email: (val) => (/^\S+@\S+$/.test(val) ? null : "Некорректный адрес"),
       password: (val) =>
-        val.length <= 6
-          ? "Пароль должен состоять хотя бы из 6 символов"
-          : null,
+        val.length <= 6 ? "Пароль должен состоять хотя бы из 6 символов" : null,
     },
   });
 
   return (
-    <Paper radius="md" p="xl" withBorder>
-      <Text size="lg" weight={500}>
-        {type} 
-      </Text>
+    <div style={{maxWidth: '650px', margin: '1rem auto'}}>
+      <Paper radius="md" p="xl" withBorder>
+        <Text size="lg" weight={500}>
+          {type}
+        </Text>
 
-      <form onSubmit={form.onSubmit(() => {})}>
-        <Stack>
-          {type === "Зарегистрировать аккаунт" && (
+        <form onSubmit={form.onSubmit(() => {})}>
+          <Stack>
+            {type === "Зарегистрировать аккаунт" && (
+              <TextInput
+                label="Логин"
+                placeholder="Имя"
+                value={form.values.name}
+                onChange={(event) =>
+                  form.setFieldValue("name", event.currentTarget.value)
+                }
+                radius="md"
+              />
+            )}
+
             <TextInput
-              label="Логин"
-              placeholder="Имя"
-              value={form.values.name}
+              required
+              label="Email"
+              placeholder="hello@vereteno.ru"
+              value={form.values.email}
               onChange={(event) =>
-                form.setFieldValue("name", event.currentTarget.value)
+                form.setFieldValue("email", event.currentTarget.value)
+              }
+              error={form.errors.email && "Некорректный email"}
+              radius="md"
+            />
+
+            <PasswordInput
+              required
+              label="Пароль"
+              placeholder="Ваш пароль"
+              value={form.values.password}
+              onChange={(event) =>
+                form.setFieldValue("password", event.currentTarget.value)
+              }
+              error={
+                form.errors.password &&
+                "Пароль должен состоять хотя бы из 6 символов"
               }
               radius="md"
             />
-          )}
 
-          <TextInput
-            required
-            label="Email"
-            placeholder="hello@vereteno.ru"
-            value={form.values.email}
-            onChange={(event) =>
-              form.setFieldValue("email", event.currentTarget.value)
-            }
-            error={form.errors.email && "Некорректный email"}
-            radius="md"
-          />
+            {type === "Зарегистрировать аккаунт" && (
+              <Checkbox
+                label="Я согласен со всеми правилами"
+                checked={form.values.terms}
+                onChange={(event) =>
+                  form.setFieldValue("terms", event.currentTarget.checked)
+                }
+              />
+            )}
+          </Stack>
 
-          <PasswordInput
-            required
-            label="Пароль"
-            placeholder="Ваш пароль"
-            value={form.values.password}
-            onChange={(event) =>
-              form.setFieldValue("password", event.currentTarget.value)
-            }
-            error={
-              form.errors.password &&
-              "Пароль должен состоять хотя бы из 6 символов"
-            }
-            radius="md"
-          />
-
-          {type === "Зарегистрировать аккаунт" && (
-            <Checkbox
-              label="Я согласен со всеми правилами"
-              checked={form.values.terms}
-              onChange={(event) =>
-                form.setFieldValue("terms", event.currentTarget.checked)
-              }
-            />
-          )}
-        </Stack>
-
-        <Group position="apart" mt="xl">
-          <Anchor
-            component="button"
-            type="button"
-            color="dimmed"
-            onClick={() => toggle()}
-            size="xs"
-          >
-            {type === "Зарегистрировать аккаунт"
-              ? "Уже есть аккаунт? Войти"
-              : "Нет аккаунта? Зарегистрироваться"}
-          </Anchor>
-          <Button type="submit" radius="xl">
-            {upperFirst(type)}
-          </Button>
-        </Group>
-      </form>
-    </Paper>
+          <Group position="apart" mt="xl">
+            <Anchor
+              component="button"
+              type="button"
+              color="dimmed"
+              onClick={() => toggle()}
+              size="xs"
+            >
+              {type === "Зарегистрировать аккаунт"
+                ? "Уже есть аккаунт? Войти"
+                : "Нет аккаунта? Зарегистрироваться"}
+            </Anchor>
+            <Button type="submit" radius="xl">
+              {upperFirst(type)}
+            </Button>
+          </Group>
+        </form>
+      </Paper>
+    </div>
   );
 };
 
