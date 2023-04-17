@@ -3,19 +3,32 @@ import PageHead from "@/components/SEO/PageHead";
 import Head from "next/head";
 import React, { useEffect } from "react";
 
+import styles from "./Products.module.scss";
+import { Grid } from "@mantine/core";
+import Card from "@/components/entity/card/Card";
+import { products } from "@/utils/tempHatsList";
+
 const Products = () => {
   return (
     <>
-      <PageHead title="Все товары"/>
-      <div className="container">
-        <div className="catalog_banner"></div>
-        <div className="promo_banner"></div>
-        <div className="content">
-          <div className="filters">
+      <PageHead title="Все товары" />
+      <div className={styles.container}>
+        <div className={styles.catalog_banner}></div>
+        <div className={styles.promo_banner}></div>
+        <div className={styles.content}>
+          <div className={styles.filters}>
             <h2>Фильтры</h2>
-            <HatFilter/>
+            <HatFilter />
           </div>
-          <div className="store">Товары</div>
+          <div className={styles.store}>
+            <Grid gutter="xl">
+              {products.map((product) => (
+                <Grid.Col key={product.id} span={4}>
+                  <Card {...product} href={`/products/${product.id}`} />
+                </Grid.Col>
+              ))}
+            </Grid>
+          </div>
         </div>
       </div>
     </>
