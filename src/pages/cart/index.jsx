@@ -5,6 +5,7 @@ import React from 'react'
 const index = () => {
   return (
     <Paper>
+      
       <NoDataCart/>
     </Paper>
   )
