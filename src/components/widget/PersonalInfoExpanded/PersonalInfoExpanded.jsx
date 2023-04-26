@@ -19,6 +19,7 @@ import {
   IconSwitchHorizontal,
   IconLogout,
   IconGardenCart,
+  IconUserCircle,
 } from "@tabler/icons-react";
 import Link from "next/link";
 
@@ -92,19 +93,19 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const data = [
-  { link: "", label: "Уведомления", icon: IconBellRinging },
+  { link: "/lk", label: "Персональная информация", icon: IconUserCircle },
   {
-    link: "",
+    link: "/lk/payment",
     label: "Оплата",
     icon: IconReceipt2,
   },
-  { link: "", label: "Безопасность", icon: IconFingerprint },
+  { link: "/lk/security", label: "Безопасность", icon: IconFingerprint },
   {
     link: "/cart",
     label: "Корзина",
     icon: IconGardenCart,
   },
-  { link: "", label: "Остальные настройки", icon: IconSettings },
+  { link: "/lk/settings", label: "Остальные настройки", icon: IconSettings },
 ];
 
 export function PersonalInfoExpanded() {
@@ -138,15 +139,6 @@ export function PersonalInfoExpanded() {
       </Navbar.Section>
 
       <Navbar.Section className={classes.footer}>
-        {/*<Link*/}
-        {/*  href="#"*/}
-        {/*  className={classes.link}*/}
-        {/*  onClick={(event) => event.preventDefault()}*/}
-        {/*>*/}
-        {/*  <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />*/}
-        {/*  <span>Сменить аккаунт</span>*/}
-        {/*</Link>*/}
-
         <a
           href="#"
           className={classes.link}

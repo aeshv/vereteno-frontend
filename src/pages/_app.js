@@ -5,7 +5,11 @@ import { MantineProvider } from "@mantine/core";
 import PageLayout from "@/components/shared/layouts/page/PageLayout";
 import Header from "@/components/features/header/Header";
 import Footer from "@/components/features/footer/Footer";
+import MainLayout from "@/components/Layouts/MainLayout";
+
 export default function App({ Component, pageProps }) {
+  const Layout = Component.Layout || MainLayout;
+
   return (
     <>
       <MantineProvider
@@ -31,11 +35,13 @@ export default function App({ Component, pageProps }) {
       >
         <Provider store={store}>
           <PageLayout>
-            <Header />
-            <div className="content">
+            {/*<Header />*/}
+            {/*<div className="content">*/}
+            <Layout>
               <Component {...pageProps} />
-            </div>
-            <Footer />
+            </Layout>
+            {/*</div>*/}
+            {/*<Footer />*/}
           </PageLayout>
         </Provider>
       </MantineProvider>
