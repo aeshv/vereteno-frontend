@@ -23,10 +23,9 @@ error_messages = [
 
 def load_indicator():
     """Displays a simple loading animation"""
-    for i in range(101):
+    for i in range(5):
         time.sleep(0.005)
-        sys.stdout.write(f"\rLoading: {i}%")
-        sys.stdout.flush()
+        print(f"\rLoading: {i*5*5}%")
 
 
 def error_message():
