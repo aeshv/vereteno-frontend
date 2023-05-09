@@ -19,7 +19,7 @@ const NoDataCart = () => {
         </div>
       </div>
 
-      <BuyingWith title={"Рекомендуем вам"} />
+      {/*<BuyingWith title={"Рекомендуем вам"} />*/}
     </>
   );
 };

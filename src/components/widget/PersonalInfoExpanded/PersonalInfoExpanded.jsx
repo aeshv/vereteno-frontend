@@ -95,8 +95,8 @@ const useStyles = createStyles((theme) => ({
 const data = [
   { link: "/lk", label: "Персональная информация", icon: IconUserCircle },
   {
-    link: "/lk/payment",
-    label: "Оплата",
+    link: "/lk/orders",
+    label: "Заказы",
     icon: IconReceipt2,
   },
   { link: "/lk/security", label: "Безопасность", icon: IconFingerprint },

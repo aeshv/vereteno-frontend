@@ -13,7 +13,9 @@ const UserPageLayout = ({ children }) => {
       <div className="content">
         <Flex direction={"row"} gap={"md"}>
           <PersonalInfoExpanded />
-          {children}
+            <div style={{flexGrow: 1, maxWidth: '100%'}}>
+                {children}
+            </div>
         </Flex>
       </div>
       <Footer />
