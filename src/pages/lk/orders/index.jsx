@@ -3,7 +3,7 @@ import UserPageLayout from "@/components/Layouts/UserPageLayout";
 import {
     Badge, Flex, Group, ScrollArea, Table, Text
 } from "@mantine/core";
-import {data} from "@/pages/lk/orders/mockdata";
+import {data} from "@/utils/mockdata";
 import {OrderHatPreview} from "@/components/widget/Order/OrderHatPreview";
 
 const Index = () => {

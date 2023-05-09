@@ -1,5 +1,3 @@
-import noimage from '../../../../public/noimage.png'
-
 export const data = [
     {
         orderNumber: '1',
