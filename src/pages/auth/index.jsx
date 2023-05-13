@@ -1,10 +1,11 @@
-import {useToggle, upperFirst} from "@mantine/hooks";
+import {useToggle, upperFirst, useDisclosure} from "@mantine/hooks";
 import {useForm} from "@mantine/form";
 import {
-	TextInput, PasswordInput, Text, Paper, Group, Button, Checkbox, Anchor, Stack,
+	TextInput, PasswordInput, Text, Paper, Group, Button, Checkbox, Anchor, Stack, LoadingOverlay,
 } from "@mantine/core";
 import {loginUser, registerUser} from "@/redux/features/auth/authSlice";
 import {useDispatch} from "react-redux";
+import {notifications} from '@mantine/notifications';
 
 const RegisterPage = () => {
 	const [type, toggle] = useToggle(["Войти в свой аккаунт", "Зарегистрировать аккаунт",]);
@@ -22,27 +23,33 @@ const RegisterPage = () => {
 
 
 	const dispatch = useDispatch();
-
+	const [visibleLoading, loadingHandlers] = useDisclosure(false);
 	const handleRegister = (data) => {
-		console.log('Registration - ', data)
+		notifications.show({message: 'Registration'});
 		try {
+			// loadingHandlers.toggle()
 			dispatch(registerUser(data))
 		} catch (error) {
 			console.log(error);
+		} finally {
+			// loadingHandlers.toggle()
 		}
 	};
 
 	const handleLogin = (data) => {
-		console.log('Login - ', data)
 		try {
+			// loadingHandlers.toggle()
 			dispatch(loginUser(data))
 		} catch (error) {
-			console.log(error);
+			console.log('error is', error);
+		} finally {
+			// loadingHandlers.toggle()
 		}
 	};
 
 	return (<div style={{maxWidth: '650px', margin: '1rem auto'}}>
-		<Paper radius="md" p="xl" withBorder>
+		<Paper radius="md" p="xl" withBorder pos="relative">
+			<LoadingOverlay visible={visibleLoading} overlayBlur={2}/>
 			<Text size="lg" weight={500}>
 				{type}
 			</Text>

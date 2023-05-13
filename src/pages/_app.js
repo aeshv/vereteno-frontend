@@ -6,6 +6,7 @@ import PageLayout from "@/components/shared/layouts/page/PageLayout";
 import Header from "@/components/features/header/Header";
 import Footer from "@/components/features/footer/Footer";
 import MainLayout from "@/components/Layouts/MainLayout";
+import {Notifications} from "@mantine/notifications";
 
 export default function App({ Component, pageProps }) {
   const Layout = Component.Layout || MainLayout;
@@ -34,6 +35,7 @@ export default function App({ Component, pageProps }) {
         }}
       >
         <Provider store={store}>
+          <Notifications />
           <PageLayout>
             {/*<Header />*/}
             {/*<div className="content">*/}
