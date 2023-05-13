@@ -1,119 +1,111 @@
-import { useToggle, upperFirst } from "@mantine/hooks";
-import { useForm } from "@mantine/form";
+import {useToggle, upperFirst} from "@mantine/hooks";
+import {useForm} from "@mantine/form";
 import {
-  TextInput,
-  PasswordInput,
-  Text,
-  Paper,
-  Group,
-  PaperProps,
-  Button,
-  Divider,
-  Checkbox,
-  Anchor,
-  Stack,
+	TextInput, PasswordInput, Text, Paper, Group, Button, Checkbox, Anchor, Stack,
 } from "@mantine/core";
-// import { GoogleButton, TwitterButton } from "../SocialButtons/SocialButtons";
+import {loginUser, registerUser} from "@/redux/features/auth/authSlice";
+import {useDispatch} from "react-redux";
 
 const RegisterPage = () => {
-  const [type, toggle] = useToggle([
-    "Войти в свой аккаунт",
-    "Зарегистрировать аккаунт",
-  ]);
-  const form = useForm({
-    initialValues: {
-      email: "",
-      name: "",
-      password: "",
-      terms: true,
-    },
+	const [type, toggle] = useToggle(["Войти в свой аккаунт", "Зарегистрировать аккаунт",]);
+	const form = useForm({
+		initialValues: {
+			email: "", name: "", password: "", terms: true,
+		},
 
-    validate: {
-      email: (val) => (/^\S+@\S+$/.test(val) ? null : "Некорректный адрес"),
-      password: (val) =>
-        val.length <= 6 ? "Пароль должен состоять хотя бы из 6 символов" : null,
-    },
-  });
+		validate: {
+			email: (val) => (/^\S+@\S+$/.test(val) ? null : "Некорректный адрес электронной почты"),
+			password: (val) => val.length <= 6 ? "Пароль должен состоять хотя бы из 6 символов" : null,
+			terms: (val) => (val === true ? null : "Для регистрации необходимо принять условия использования"),
+		},
+	});
 
-  return (
-    <div style={{maxWidth: '650px', margin: '1rem auto'}}>
-      <Paper radius="md" p="xl" withBorder>
-        <Text size="lg" weight={500}>
-          {type}
-        </Text>
 
-        <form onSubmit={form.onSubmit(() => {})}>
-          <Stack>
-            {type === "Зарегистрировать аккаунт" && (
-              <TextInput
-                label="Логин"
-                placeholder="Имя"
-                value={form.values.name}
-                onChange={(event) =>
-                  form.setFieldValue("name", event.currentTarget.value)
-                }
-                radius="md"
-              />
-            )}
+	const dispatch = useDispatch();
 
-            <TextInput
-              required
-              label="Email"
-              placeholder="hello@vereteno.ru"
-              value={form.values.email}
-              onChange={(event) =>
-                form.setFieldValue("email", event.currentTarget.value)
-              }
-              error={form.errors.email && "Некорректный email"}
-              radius="md"
-            />
+	const handleRegister = (data) => {
+		console.log('Registration - ', data)
+		try {
+			dispatch(registerUser(data))
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-            <PasswordInput
-              required
-              label="Пароль"
-              placeholder="Ваш пароль"
-              value={form.values.password}
-              onChange={(event) =>
-                form.setFieldValue("password", event.currentTarget.value)
-              }
-              error={
-                form.errors.password &&
-                "Пароль должен состоять хотя бы из 6 символов"
-              }
-              radius="md"
-            />
+	const handleLogin = (data) => {
+		console.log('Login - ', data)
+		try {
+			dispatch(loginUser(data))
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-            {type === "Зарегистрировать аккаунт" && (
-              <Checkbox
-                label="Я согласен со всеми правилами"
-                checked={form.values.terms}
-                onChange={(event) =>
-                  form.setFieldValue("terms", event.currentTarget.checked)
-                }
-              />
-            )}
-          </Stack>
+	return (<div style={{maxWidth: '650px', margin: '1rem auto'}}>
+		<Paper radius="md" p="xl" withBorder>
+			<Text size="lg" weight={500}>
+				{type}
+			</Text>
 
-          <Group position="apart" mt="xl">
-            <Anchor
-              component="button"
-              type="button"
-              color="dimmed"
-              onClick={() => toggle()}
-              size="xs"
-            >
-              {type === "Зарегистрировать аккаунт"
-                ? "Уже есть аккаунт? Войти"
-                : "Нет аккаунта? Зарегистрироваться"}
-            </Anchor>
-            <Button type="submit" radius="xl">
-              {upperFirst(type)}
-            </Button>
-          </Group>
-        </form>
-      </Paper>
-    </div>
-  );
+			<form onSubmit={form.onSubmit((fullFormData) => {
+				{
+					type === "Зарегистрировать аккаунт" ? handleRegister(fullFormData) : handleLogin(fullFormData)
+				}
+			})}>
+				<Stack>
+					{type === "Зарегистрировать аккаунт" && (<TextInput
+						label="Логин"
+						placeholder="Имя"
+						value={form.values.name}
+						onChange={(event) => form.setFieldValue("name", event.currentTarget.value)}
+						radius="md"
+					/>)}
+
+					<TextInput
+						required
+						label="Email"
+						placeholder="hello@vereteno.ru"
+						value={form.values.email}
+						onChange={(event) => form.setFieldValue("email", event.currentTarget.value)}
+						error={form.errors.email}
+						radius="md"
+					/>
+
+					<PasswordInput
+						required
+						label="Пароль"
+						placeholder="Ваш пароль"
+						value={form.values.password}
+						onChange={(event) => form.setFieldValue("password", event.currentTarget.value)}
+						error={form.errors.password}
+						radius="md"
+					/>
+
+					{type === "Зарегистрировать аккаунт" && (<Checkbox
+						label="Я согласен со всеми правилами"
+						checked={form.values.terms}
+						error={form.errors.terms}
+						onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
+					/>)}
+				</Stack>
+
+				<Group position="apart" mt="xl">
+					<Anchor
+						component="button"
+						type="button"
+						color="dimmed"
+						onClick={() => toggle()}
+						size="xs"
+					>
+						{type === "Зарегистрировать аккаунт" ? "Уже есть аккаунт? Войти" : "Нет аккаунта? Зарегистрироваться"}
+					</Anchor>
+					<Button type="submit" radius="xl">
+						{upperFirst(type)}
+					</Button>
+				</Group>
+			</form>
+		</Paper>
+	</div>);
 };
 
 export default RegisterPage;
