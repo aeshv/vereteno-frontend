@@ -37,14 +37,15 @@ const RegisterPage = () => {
 	};
 
 	const handleLogin = (data) => {
-		try {
-			// loadingHandlers.toggle()
-			dispatch(loginUser(data))
-		} catch (error) {
-			console.log('error is', error);
-		} finally {
-			// loadingHandlers.toggle()
-		}
+
+		dispatch(loginUser(data)).unwrap().then(r => {
+			console.log('then');
+			loadingHandlers.toggle()
+		}).catch((rejectedValueOrSerializedError) => {
+			console.log('2', rejectedValueOrSerializedError)
+		})
+
+
 	};
 
 	return (<div style={{maxWidth: '650px', margin: '1rem auto'}}>
@@ -55,6 +56,7 @@ const RegisterPage = () => {
 			</Text>
 
 			<form onSubmit={form.onSubmit((fullFormData) => {
+				// loadingHandlers.toggle()
 				{
 					type === "Зарегистрировать аккаунт" ? handleRegister(fullFormData) : handleLogin(fullFormData)
 				}
