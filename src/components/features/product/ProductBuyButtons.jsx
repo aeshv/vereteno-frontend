@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import {Button, createStyles} from "@mantine/core";
 import {IconShoppingCart} from "@tabler/icons-react";
-import {useTimeout} from "@mantine/hooks";
 import {notifications} from "@mantine/notifications";
 
 const CatalogButtonStyles = createStyles(() => ({

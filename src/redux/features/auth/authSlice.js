@@ -60,21 +60,7 @@ export const authSlice = createSlice({
 			state.isLoading = false;
 			state.status = null;
 		},
-	}, // extraReducers: (builder) => {
-	//   builder
-	//     .addCase(loginUser.pending, (state, action) => {
-	//       state.another = "PENDING";
-	//       // state.entities.push(action.payload);
-	//     })
-	//     .addCase(loginUser.fulfilled, (state, action) => {
-	//       state.isLoading = "LOADED";
-	//       state.status = action.payload?.message;
-	//       state.user = action.payload?.user;
-	//       state.token = action.payload?.authorization?.token;
-	//       state.another = action;
-	//       state.another2 = action.payload;
-	//     });
-	// },
+	},
 	extraReducers: {
 		// Register user
 		[registerUser.pending]: (state) => {

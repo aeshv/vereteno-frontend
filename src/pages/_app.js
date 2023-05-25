@@ -3,8 +3,6 @@ import {store} from "@/redux/store";
 import {Provider} from "react-redux";
 import {MantineProvider} from "@mantine/core";
 import PageLayout from "@/components/shared/layouts/page/PageLayout";
-import Header from "@/components/features/header/Header";
-import Footer from "@/components/features/footer/Footer";
 import MainLayout from "@/components/Layouts/MainLayout";
 import {Notifications} from "@mantine/notifications";
 
