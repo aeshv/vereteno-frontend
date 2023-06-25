@@ -11,7 +11,7 @@ const RegisterPage = () => {
 	const [type, toggle] = useToggle(["Войти в свой аккаунт", "Зарегистрировать аккаунт",]);
 	const form = useForm({
 		initialValues: {
-			email: "", name: "", password: "", terms: true,
+			email: "", login: "", password: "", terms: true,
 		},
 
 		validate: {
@@ -26,6 +26,7 @@ const RegisterPage = () => {
 	const [visibleLoading, loadingHandlers] = useDisclosure(false);
 	const handleRegister = (data) => {
 		notifications.show({message: 'Registration'});
+		console.log('registration data is ', data)
 		try {
 			// loadingHandlers.toggle()
 			dispatch(registerUser(data))
@@ -65,8 +66,8 @@ const RegisterPage = () => {
 					{type === "Зарегистрировать аккаунт" && (<TextInput
 						label="Логин"
 						placeholder="Имя"
-						value={form.values.name}
-						onChange={(event) => form.setFieldValue("name", event.currentTarget.value)}
+						value={form.values.login}
+						onChange={(event) => form.setFieldValue("login", event.currentTarget.value)}
 						radius="md"
 					/>)}
 

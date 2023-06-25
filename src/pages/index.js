@@ -11,9 +11,10 @@ import BlurredBlock from "@/components/shared/BluredBlock/BlurredBlock";
 import {useEffect} from "react";
 import {getCategories, getProducts} from "@/redux/features/products/productsSlice";
 import axios, {productApi} from "@/api";
+import {categoryApi} from "@/api/category";
 
 
-export default function Home({products}) {
+export default function Home({products, categories}) {
 	return (<>
 		<Head>
 			<title>Веретено, магазин головных уборов</title>
@@ -31,7 +32,6 @@ export default function Home({products}) {
 		>
 			<CarouselBanner/>
 			<MainPageFeaturesContainer/>
-			{console.log(products)}
 			<Grid gutter="xl">
 				{products?.map((product) => (<Grid.Col key={product.id} span={3}>
 					<Card {...product} href={`/products/${product.id}`}/>
@@ -40,8 +40,12 @@ export default function Home({products}) {
 
 			{/*Categories block*/}
 			<Flex>
-				<BlurredBlock title={"Кепки"}/><BlurredBlock title={"Панамы"}/><BlurredBlock
-				title={"Шапки"}/><BlurredBlock title={"Шарфы"}/>
+				{categories?.map((category) => (
+					<BlurredBlock title={category.name} key={category.id}/>
+
+				))}
+				{/*<BlurredBlock title={"Кепки"}/><BlurredBlock title={"Панамы"}/><BlurredBlock*/}
+				{/*title={"Шапки"}/><BlurredBlock title={"Шарфы"}/>*/}
 			</Flex>
 
 			<BuyingWith title={"Часто покупают"}/>
@@ -54,9 +58,14 @@ export async function getServerSideProps() {
 	const {products} = await productApi.getProducts().then(({data}) => {
 		return data;
 	});
+
+	const {categories} = await categoryApi.getAll().then(({data}) => {
+		return data;
+	});
 	return {
 		props: {
 			products,
+			categories,
 		},
 	};
 }

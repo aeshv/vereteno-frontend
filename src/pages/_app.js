@@ -1,13 +1,21 @@
 import "@/styles/globals.scss";
 import {store} from "@/redux/store";
-import {Provider} from "react-redux";
+import {Provider, useDispatch, useSelector} from "react-redux";
 import {MantineProvider} from "@mantine/core";
 import PageLayout from "@/components/shared/layouts/page/PageLayout";
 import MainLayout from "@/components/Layouts/MainLayout";
 import {Notifications} from "@mantine/notifications";
+import {useEffect} from "react";
+import {getCookie} from "cookies-next";
 
 export default function App({Component, pageProps}) {
     const Layout = Component.Layout || MainLayout;
+    // const dispatch = useDispatch();
+    // const { isLoggedIn } = useSelector((state) => state.user);
+    //
+    // useEffect(() => {
+    //     getCookie("token") && dispatch(fetchUser());
+    // }, [dispatch, isLoggedIn]);
 
     return (
         <>
