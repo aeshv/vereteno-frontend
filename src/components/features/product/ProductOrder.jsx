@@ -3,21 +3,21 @@ import styles from "./ProductOrder.module.scss";
 import {IconShare, IconScale, IconStack3,} from "@tabler/icons-react";
 import ProductBuyButtons from "@/components/features/product/ProductBuyButtons";
 
-const ProductOrder = () => {
-
-
+const ProductOrder = ({product}) => {
 	return (<>
 		<div className={styles.container}>
-			<h1 className={styles.product__title}>ЧЕРНАЯ ШЛЯПА ФЕДОРА BLIXEN EDITION С УЗКИМИ ПОЛЯМИ</h1>
+			<h1 className={styles.product__title}>{product?.name || 'Ошибка загрузки имени'}</h1>
 			<div className={styles.backinfo}>
 				<div className={styles.tag}>Купили: 129 раз</div>
 				<div className={styles.tag}>Артикул: ЫВАЫВА-020Ы</div>
 			</div>
 			<div className={styles.shopinfo}>
-				<div className={styles.shop__item}>
-					<IconStack3 size="1.05rem" stroke={1.5}/>
-					<span>В наличии</span>
-				</div>
+				{product?.quantity > 0 && (
+					<div className={styles.shop__item}>
+						<IconStack3 size="1.05rem" stroke={1.5}/>
+						<span>В наличии ({product?.quantity} шт.)</span>
+					</div>
+				)}
 				<div className={styles.shop__item}>
 					<IconScale size="1.05rem" stroke={1.5}/>
 					<span>Сравнить</span>
@@ -29,8 +29,16 @@ const ProductOrder = () => {
 			</div>
 
 			<div className={styles.price}>
-				<span className={styles.old}>32 990 р.</span>
-				<span className={styles.current}>29 990 р.</span>
+				{product?.discount_id === 1 ?
+					<>
+						<span className={styles.current}>{product?.price} ₽</span>
+					</>
+					:
+					<>
+						<span className={styles.old}>{product?.price} ₽</span>
+						<span className={styles.current}>{product?.price * product?.discount_id} ₽</span>
+					</>
+				}
 			</div>
 
 			<ProductBuyButtons/>

@@ -60,8 +60,7 @@ export const authSlice = createSlice({
 			state.isLoading = false;
 			state.status = null;
 		},
-	},
-	extraReducers: {
+	}, extraReducers: {
 		// Register user
 		[registerUser.pending]: (state) => {
 			state.isLoading = true;

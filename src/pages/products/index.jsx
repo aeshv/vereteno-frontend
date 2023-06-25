@@ -7,8 +7,9 @@ import styles from "./Products.module.scss";
 import { Grid } from "@mantine/core";
 import Card from "@/components/entity/card/Card";
 import { products } from "@/utils/tempHatsList";
+import {productApi} from "@/api";
 
-const Products = () => {
+const Products = ({products}) => {
   return (
     <>
       <PageHead title="Все товары" />
@@ -22,7 +23,7 @@ const Products = () => {
           </div>
           <div className={styles.store}>
             <Grid gutter="xl">
-              {products.map((product) => (
+              {products?.map((product) => (
                 <Grid.Col key={product.id} span={4}>
                   <Card {...product} href={`/products/${product.id}`} />
                 </Grid.Col>
@@ -36,7 +37,16 @@ const Products = () => {
 };
 
 export default Products;
-
+export async function getServerSideProps() {
+  const {products} = await productApi.getProducts().then(({data}) => {
+    return data;
+  });
+  return {
+    props: {
+      products,
+    },
+  };
+}
 // export async function getServerSideProps() {
 //   const singleProduct2 = async ({ id }) => {
 //     try {

@@ -5,7 +5,7 @@ import ProductSectionGuarantee from "./sections/guarantee/ProductSectionGuarante
 import ProductSectionSpecs from "./sections/specs/ProductSectionSpecs";
 import ProductSectionPayment from "./sections/payment/ProductSectionPayment";
 
-const ProductInfo = () => {
+const ProductInfo = ({product}) => {
   const tabs = [
     { label: "О товаре", content: <ProductSectionAbout/> },
     { label: "Характеристики", content: <ProductSectionSpecs/>},
