@@ -9,7 +9,6 @@ const initialState = {
 export const getCategories = createAsyncThunk('products/getCategories', async () => {
     try {
         const {data} = await categoryApi.getAll()
-        console.log('categoryApi', data)
         return data
     } catch (error) {
         console.log(error)
