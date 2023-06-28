@@ -14,7 +14,7 @@ import axios, {productApi} from "@/api";
 import {categoryApi} from "@/api/category";
 
 
-export default function Home({products}) {
+export default function Home({products, categories}) {
     return (<>
         <Head>
             <title>Веретено, магазин головных уборов</title>
@@ -39,14 +39,14 @@ export default function Home({products}) {
             </Grid>
 
             {/*Categories block*/}
-            {/*<Flex>*/}
-            {/*	{categories?.map((category) => (*/}
-            {/*		<BlurredBlock title={category.name} key={category.id}/>*/}
+            <Flex>
+            	{categories?.map((category) => (
+            		<BlurredBlock title={category.name} key={category.id}/>
 
-            {/*	))}*/}
-            {/*	/!*<BlurredBlock title={"Кепки"}/><BlurredBlock title={"Панамы"}/><BlurredBlock*!/*/}
-            {/*	/!*title={"Шапки"}/><BlurredBlock title={"Шарфы"}/>*!/*/}
-            {/*</Flex>*/}
+            	))}
+            	{/*<BlurredBlock title={"Кепки"}/><BlurredBlock title={"Панамы"}/><BlurredBlock*/}
+            	{/*title={"Шапки"}/><BlurredBlock title={"Шарфы"}/>*/}
+            </Flex>
 
             <BuyingWith title={"Часто покупают"}/>
             <FaqWithBg/>
@@ -59,13 +59,13 @@ export async function getServerSideProps() {
         return data;
     });
 
-    // const {categories} = await categoryApi.getAll().then(({data}) => {
-    // 	return data;
-    // });
+    const {categories} = await categoryApi.getAll().then(({data}) => {
+    	return data;
+    });
     return {
         props: {
             products,
-            // categories,
+            categories
         },
     };
 }

@@ -7,7 +7,7 @@ export const userApi = {
 			method: 'POST',
 			url: '/auth/reg/',
 			data: {
-				name: login,
+				login,
 				password,
 				email
 			},

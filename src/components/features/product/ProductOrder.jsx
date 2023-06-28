@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./ProductOrder.module.scss";
 import {IconShare, IconScale, IconStack3,} from "@tabler/icons-react";
 import ProductBuyButtons from "@/components/features/product/ProductBuyButtons";
+import {ProductInfoContext} from "@/pages/products/[id]/ProductContext";
 
-const ProductOrder = ({product}) => {
+const ProductOrder = () => {
+
+	const product = useContext(ProductInfoContext)
+
 	return (<>
 		<div className={styles.container}>
 			<h1 className={styles.product__title}>{product?.name || 'Ошибка загрузки имени'}</h1>
@@ -18,10 +22,10 @@ const ProductOrder = ({product}) => {
 						<span>В наличии ({product?.quantity} шт.)</span>
 					</div>
 				)}
-				<div className={styles.shop__item}>
-					<IconScale size="1.05rem" stroke={1.5}/>
-					<span>Сравнить</span>
-				</div>
+				{/*<div className={styles.shop__item}>*/}
+				{/*	<IconScale size="1.05rem" stroke={1.5}/>*/}
+				{/*	<span>Сравнить</span>*/}
+				{/*</div>*/}
 				<div className={styles.shop__item}>
 					<IconShare size="1.05rem" stroke={1.5}/>
 					<span>Поделиться</span>

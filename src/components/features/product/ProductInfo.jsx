@@ -1,11 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./SingleProduct.module.scss";
 import ProductSectionAbout from "./sections/about/ProductSectionAbout";
 import ProductSectionGuarantee from "./sections/guarantee/ProductSectionGuarantee";
 import ProductSectionSpecs from "./sections/specs/ProductSectionSpecs";
 import ProductSectionPayment from "./sections/payment/ProductSectionPayment";
+import {ProductInfoContext} from "@/pages/products/[id]/ProductContext";
 
-const ProductInfo = ({product}) => {
+const ProductInfo = () => {
+
   const tabs = [
     { label: "О товаре", content: <ProductSectionAbout/> },
     { label: "Характеристики", content: <ProductSectionSpecs/>},
