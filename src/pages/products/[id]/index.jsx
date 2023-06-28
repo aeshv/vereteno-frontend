@@ -2,15 +2,14 @@ import ProductImage from "@/components/features/product/ProductImage";
 import ProductInfo from "@/components/features/product/ProductInfo";
 import ProductOrder from "@/components/features/product/ProductOrder";
 import {Paper} from "@mantine/core";
-import React, {useEffect} from "react";
+import React, {createContext, useEffect} from "react";
 import styles from "./SingleProduct.module.scss";
 import BuyingWith from "@/components/features/product/blocks/BuyingWith/BuyingWith";
 import {productApi} from "@/api";
-import {ProductInfoContext} from "@/pages/products/[id]/ProductContext";
+import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
+
 
 const SingleProduct = ({product}) => {
-	// const {product: currentProduct} = product
-	console.log(product)
 
 	return (<ProductInfoContext.Provider value={product}>
 			<Paper shadow="xl" radius="xl" p="xl">

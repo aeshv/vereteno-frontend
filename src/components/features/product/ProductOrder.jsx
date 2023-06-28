@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import styles from "./ProductOrder.module.scss";
 import {IconShare, IconScale, IconStack3,} from "@tabler/icons-react";
 import ProductBuyButtons from "@/components/features/product/ProductBuyButtons";
-import {ProductInfoContext} from "@/pages/products/[id]/ProductContext";
+import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 const ProductOrder = () => {
 

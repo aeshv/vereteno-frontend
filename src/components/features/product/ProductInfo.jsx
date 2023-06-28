@@ -4,7 +4,7 @@ import ProductSectionAbout from "./sections/about/ProductSectionAbout";
 import ProductSectionGuarantee from "./sections/guarantee/ProductSectionGuarantee";
 import ProductSectionSpecs from "./sections/specs/ProductSectionSpecs";
 import ProductSectionPayment from "./sections/payment/ProductSectionPayment";
-import {ProductInfoContext} from "@/pages/products/[id]/ProductContext";
+import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 const ProductInfo = () => {
 

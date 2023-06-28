@@ -1,6 +1,6 @@
 import React, {useContext} from "react";
 import styles from "./sectionAbout.module.scss";
-import {ProductInfoContext} from "@/pages/products/[id]/ProductContext";
+import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 const ProductSectionAbout = () => {
   const product = useContext(ProductInfoContext)
