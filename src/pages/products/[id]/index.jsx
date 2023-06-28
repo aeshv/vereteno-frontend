@@ -19,7 +19,7 @@ const SingleProduct = () => {
                         {/*<ProductOrder product={currentProduct[0]}/>*/}
                     </div>
                     <div className={styles.additional}>
-                        <ProductInfo product={product}/>
+                        {/*<ProductInfo product={product}/>*/}
                         <BuyingWith title={"С этим товаром покупают"}/>
                         <BuyingWith title={"Похожие товары"}/>
                     </div>
