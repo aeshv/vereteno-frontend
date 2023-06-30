@@ -10,8 +10,8 @@ export const cartApi = {
     },
     updateCartById({id, ...data}) {
         return api({
-            method: "PATCH",
-            url: `/cart/${id}/`,
+            method: "POST",
+            url: `/cart-item/${id}/`,
             data,
         });
     },

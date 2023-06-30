@@ -38,10 +38,17 @@ const ProductBuyButtons = () => {
 	const handlePlaceToCart = () => {
 		setIsLoading((prevState) => !prevState)
 
-		// cartApi.updateCartById({id: user.cart.id,  productId: productInfo.id, quantity: 1})
+		cartApi.updateCartById({id: user.cart.id, productId: productInfo.id}).then((response) => {
+			switch (response && response.statusText) {
+				case 'Created':
+					handleSuccessAddToCard();
+					break;
+				default:
+					handleErrorAddToCard();
+					break;
 
-		// eslint-disable-next-line react-hooks/rules-of-hooks
-		setTimeout(() => handleSuccessAddToCard(), 1000);
+			}
+		})
 	}
 
 	const handleSuccessAddToCard = () => {

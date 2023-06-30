@@ -14,7 +14,7 @@ const CartItemRow = ({item, isSelected, toggleRow}) => {
 
 
 	React.useEffect(() => {
-		const data = productApi.getProduct({id: item.id}).then(({data}) => {
+		const data = productApi.getProduct({id: item.product_id}).then(({data}) => {
 			if (data) {
 				setCurrentItemInfo(data?.product)
 			}
