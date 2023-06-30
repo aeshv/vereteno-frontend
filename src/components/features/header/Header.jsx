@@ -7,13 +7,10 @@ import Search from "@/components/shared/search/Search";
 import {IconLogin, IconShoppingCart, IconUser} from "@tabler/icons-react";
 import {ActionIcon} from "@mantine/core";
 import CatalogMenu from "@/components/features/catalogMenu/CatalogMenu";
-import {checkIsAuth} from "@/redux/features/auth/authSlice";
-import pageHead from "@/components/SEO/PageHead";
-import PageHead from "@/components/SEO/PageHead";
+import {useSelector} from "react-redux";
 
 const Header = () => {
-	const isLoggedIn = false
-
+	const isLoggedIn = useSelector((state) => !!state.auth.token)
 	return (<>
 		<header className={styles.container}>
 			<div className={styles.top}>

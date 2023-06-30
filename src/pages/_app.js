@@ -10,12 +10,6 @@ import {getCookie} from "cookies-next";
 
 export default function App({Component, pageProps}) {
     const Layout = Component.Layout || MainLayout;
-    // const dispatch = useDispatch();
-    // const { isLoggedIn } = useSelector((state) => state.user);
-    //
-    // useEffect(() => {
-    //     getCookie("token") && dispatch(fetchUser());
-    // }, [dispatch, isLoggedIn]);
 
     return (
         <>

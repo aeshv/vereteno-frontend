@@ -38,13 +38,13 @@ const RegisterPage = () => {
 	};
 
 	const handleLogin = (data) => {
-
+		loadingHandlers.toggle()
 		dispatch(loginUser(data)).unwrap().then(r => {
 			console.log('then');
 			loadingHandlers.toggle()
 		}).catch((rejectedValueOrSerializedError) => {
 			console.log('2', rejectedValueOrSerializedError)
-		})
+		}).then(()=>loadingHandlers.toggle())
 
 
 	};

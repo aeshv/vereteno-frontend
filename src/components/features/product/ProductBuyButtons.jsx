@@ -1,7 +1,10 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {Button, createStyles} from "@mantine/core";
 import {IconShoppingCart} from "@tabler/icons-react";
 import {notifications} from "@mantine/notifications";
+import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
+import {cartApi} from "@/api/cart";
+import {useSelector} from "react-redux";
 
 const CatalogButtonStyles = createStyles(() => ({
 	button: {
@@ -24,12 +27,19 @@ const CatalogButtonStyles = createStyles(() => ({
 }));
 
 const ProductBuyButtons = () => {
+
+	const productInfo = useContext(ProductInfoContext)
+	const {user} = useSelector((state) => state.auth)
+
 	const {classes} = CatalogButtonStyles();
 
 	const [isLoading, setIsLoading] = useState(false)
-
+	console.log(productInfo)
 	const handlePlaceToCart = () => {
 		setIsLoading((prevState) => !prevState)
+
+		// cartApi.updateCartById({id: user.cart.id,  productId: productInfo.id, quantity: 1})
+
 		// eslint-disable-next-line react-hooks/rules-of-hooks
 		setTimeout(() => handleSuccessAddToCard(), 1000);
 	}
