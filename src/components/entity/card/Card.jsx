@@ -33,7 +33,7 @@ const Card = (props) => {
 
 			<div className={styles.content}>
 				<div className={styles.row}>
-					<span className={styles.title}>{props?.title}</span>
+					<span className={styles.title}>{props?.title || props?.name}</span>
 				</div>
 				<div className={styles.row}>
 					<span className={styles.price}>{props?.description}</span>
