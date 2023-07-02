@@ -60,31 +60,31 @@ export const authSlice = createSlice({
 		// Login user
 		[loginUser.pending]: (state) => {
 			state.isLoading = true;
-			state.status = 'загрузка';
+			state.status = null;
 		}, [loginUser.fulfilled]: (state, action) => {
 			state.isLoading = false;
 			state.user = action.payload?.user;
 			state.token = action.payload?.authorization?.token;
 		}, [loginUser.rejectWithValue]: (state, action) => {
-			state.status = action.payload?.data?.message || 'реджектед';
+			state.status = action.payload?.data?.message;
 			state.isLoading = false;
 		},
 
-		  // Проверка авторизации
-		//TODO:
-		  [getMe.pending]: (state) => {
-		    state.isLoading = true;
-		    state.status = null;
-		  },
-		  [getMe.fulfilled]: (state, action) => {
-		    state.isLoading = false;
-		    state.status = null;
-		    state.user = action.payload?.user;
-		  },
-		  [getMe.rejectWithValue]: (state, action) => {
-		    state.status = action.payload.message;
-		    state.isLoading = false;
-		  },
+		// Проверка авторизации
+		[getMe.pending]: (state) => {
+			state.isLoading = true;
+			state.status = null;
+		},
+		[getMe.fulfilled]: (state, action) => {
+			state.isLoading = false;
+			state.status = null;
+			state.user = action.payload?.user;
+			state.token = getCookie("token");
+		},
+		[getMe.rejectWithValue]: (state, action) => {
+			state.status = action.payload?.message;
+			state.isLoading = false;
+		},
 	},
 });
 

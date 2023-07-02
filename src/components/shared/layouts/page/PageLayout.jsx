@@ -7,12 +7,12 @@ import {getMe} from "@/redux/features/auth/authSlice";
 const PageLayout = ({ children }) => {
   const dispatch = useDispatch();
   const isToken = useSelector((state) => !!state.auth.token)
-  console.log('isToken',isToken);
   const token = getCookie("token")
 
   useEffect(() => {
-    isToken && dispatch(getMe());
-  }, [dispatch, isToken]);
+    console.log('isToken from PageLayout', isToken, token, token && !isToken)
+    if (token && !isToken) dispatch(getMe());
+  }, [dispatch, isToken, token]);
 
   return <div className={styles.container}>{children}</div>;
 };
