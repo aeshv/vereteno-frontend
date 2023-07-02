@@ -37,13 +37,9 @@ export default function App({Component, pageProps}) {
                 <Provider store={store}>
                     <Notifications/>
                     <PageLayout>
-                        {/*<Header />*/}
-                        {/*<div className="content">*/}
                         <Layout>
                             <Component {...pageProps} />
                         </Layout>
-                        {/*</div>*/}
-                        {/*<Footer />*/}
                     </PageLayout>
                 </Provider>
             </MantineProvider>

@@ -2,12 +2,13 @@ import {useDisclosure} from '@mantine/hooks';
 import {Dialog, Group, Button, TextInput, Text, Flex} from '@mantine/core';
 import {IconCookie} from "@tabler/icons-react";
 import {getCookie, setCookie} from "cookies-next";
+import {getNextMonth} from "@/utils/getNextMonth";
 
 export function CookieDialog() {
 	const isCookieAccepted = getCookie('isCookieAccepted')
 	const onCookieClose = () => {
 		close()
-		setCookie('isCookieAccepted', 'true')
+		setCookie('isCookieAccepted', 'true', {expires: getNextMonth() })
 	}
 	const [opened, {close}] = useDisclosure(!!!isCookieAccepted);
 	return (<>

@@ -1,5 +1,6 @@
 import {api} from '.';
 import {setCookie} from "cookies-next";
+import {getNextMonth} from "@/utils/getNextMonth";
 
 export const userApi = {
 	async register({login, password, email}) {
@@ -14,33 +15,48 @@ export const userApi = {
 		});
 
 		if (data.authorization.token) {
-			setCookie("token", data.authorization.token);
-			api.defaults.headers.common['Authorization'] = `Token ${data.authorization.token}`;
+			setCookie("token", data.authorization.token, {expires: getNextMonth() });
+			api.config.headers.Authorization = `Bearer ${data.authorization.token}`;
+			api.defaults.headers.common['Authorization'] = `Bearer ${data.authorization.token}`;
 		}
+
 
 		return data;
 	},
 
 
-	async login({login, password}) {
+	async login({email, password}) {
 		const res = await api({
 			method: 'POST',
-			url: 'api/auth-token/login/',
+			url: 'auth/login/',
 			data: {
-				login,
+				email,
 				password,
 			},
 		});
 
-		if (res.status === 200) {
-			const token = res.data.token;
 
-			localStorage.setItem('token', token);
-			api.defaults.headers.common['Authorization'] = `Token ${token}`;
+		if (res?.data.authorization.token) {
+			setCookie("token", res?.data.authorization.token, {expires: getNextMonth() });
+			// api.config.headers.Authorization = `Bearer ${res?.data.authorization.token}`;
+
+			api.defaults.headers.common['Authorization'] = `Bearer ${res?.data.authorization.token}`;
 		}
+		console.log('LOGIN DATA IS', res)
 
 		return res;
 	},
+
+	async loginByToken() {
+		const res = await api({
+			method: 'get',
+			url: 'auth/by-token/',
+		});
+
+
+		return res;
+	},
+
 	async logout() {
 		const res = api({
 			method: 'POST',
@@ -48,7 +64,7 @@ export const userApi = {
 		});
 
 		localStorage.removeItem('token');
-		delete api.defaults.headers.common['Authorization'];
+		delete api.config.headers.Authorization
 
 		return res;
 	},

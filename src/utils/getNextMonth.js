@@ -1,0 +1,1 @@
+export const getNextMonth = () => new Date(new Date().setMonth(new Date().getMonth() + 1));

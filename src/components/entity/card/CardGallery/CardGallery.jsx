@@ -37,7 +37,7 @@ const CardGallery = ({ images }) => {
               fill
               style={{
                 objectFit: "cover",
-                filter: `brightness(${100 - 10 * index}%)`,
+                // filter: `brightness(${100 - 10 * index}%)`,
               }}
             />
           </>
