@@ -1,5 +1,5 @@
 .container {
-  width: 100%;
+
   border: 1.5px solid #6f73ee;
   border-radius: 5px;
   border-top-right-radius: 9px;
@@ -20,7 +20,7 @@
 
 .searchinput {
   padding: 10px 20px;
-  width: 100%;
+
 
   & input {
     width: 100%;
@@ -47,5 +47,5 @@
 }
 
 .submit:hover {
-    opacity: 75%;
+  opacity: 75%;
 }
