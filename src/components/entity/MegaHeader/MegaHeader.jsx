@@ -16,7 +16,10 @@ import {
     Drawer,
     Collapse,
     ScrollArea,
-    rem, Autocomplete, Loader,
+    rem,
+    Autocomplete,
+    Loader,
+    ActionIcon,
 } from '@mantine/core';
 
 import {useDisclosure} from '@mantine/hooks';
@@ -27,18 +30,25 @@ import {
     IconChartPie3,
     IconFingerprint,
     IconCoin,
-    IconChevronDown, IconSearch, IconShirt,
+    IconChevronDown,
+    IconSearch,
+    IconShirt,
+    IconShoppingCart,
+    IconLogin, IconUser,
 } from '@tabler/icons-react';
 import Link from "next/link";
 import Search from "@/components/shared/search/Search";
 import React from "react";
+import Icon from "@/components/shared/icon/Icon";
+import {useSelector} from "react-redux";
 
 const useStyles = createStyles((theme) => ({
     container: {
         width: "100%",
         maxWidth: "1220px",
-        // display: "flex",
-        // flexDirection: "column",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: 'nowrap',
         alignItems: "center",
         margin: "0 auto",
         padding: `0 ${theme.spacing.xs}`,
@@ -46,7 +56,11 @@ const useStyles = createStyles((theme) => ({
     },
 
     header: {
-        borderBottom: "none"
+        borderBottom: "none",
+        width: '100%',
+    },
+    wrapper: {
+        width: '100%',
     },
 
     link: {
@@ -61,10 +75,7 @@ const useStyles = createStyles((theme) => ({
         fontSize: theme.fontSizes.sm,
 
         [theme.fn.smallerThan('sm')]: {
-            height: rem(42),
-            display: 'flex',
-            alignItems: 'center',
-            width: '100%',
+            height: rem(42), display: 'flex', alignItems: 'center', width: '100%',
         },
 
         ...theme.fn.hover({
@@ -76,8 +87,7 @@ const useStyles = createStyles((theme) => ({
         width: '100%',
         padding: `${theme.spacing.xs} ${theme.spacing.md}`,
         borderRadius: theme.radius.md,
-        textDecoration: 'none',
-        ...theme.fn.hover({
+        textDecoration: 'none', ...theme.fn.hover({
             backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[7] : theme.colors.gray[0],
         }),
 
@@ -90,9 +100,7 @@ const useStyles = createStyles((theme) => ({
         marginTop: theme.spacing.sm,
         padding: `${theme.spacing.md} calc(${theme.spacing.md} * 2)`,
         paddingBottom: theme.spacing.xl,
-        borderTop: `${rem(1)} solid ${
-            theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]
-        }`,
+        borderTop: `${rem(1)} solid ${theme.colorScheme === 'dark' ? theme.colors.dark[5] : theme.colors.gray[1]}`,
     },
 
     hiddenMobile: {
@@ -114,162 +122,152 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-const mockdata = [
-    {
-        icon: IconShirt,
-        title: 'Handcrafted',
-        description: 'These hats are handmade from quality materials',
-    }, {
-        icon: IconShirt,
-        title: 'High-tech',
-        description: 'These caps are made with modern technology for a comfortable fit',
-    }, {
-        icon: IconShirt,
-        title: 'Knitted',
-        description: 'These beanies are knitted with love and care',
-    }, {
-        icon: IconShirt,
-        title: 'Vintage',
-        description: 'These scarves are carefully made with vintage techniques',
-    },
-    {icon: IconShirt, title: 'Organic', description: 'These bonnets are made with natural and organic materials',},
-];
+const mockdata = [{
+    icon: IconShirt, title: 'Большие', description: 'These hats are handmade from quality materials',
+}, {
+    icon: IconShirt,
+    title: 'Женские',
+    description: 'These caps are made with modern technology for a comfortable fit',
+}, {
+    icon: IconShirt, title: 'Мужские', description: 'These beanies are knitted with love and care',
+}, {
+    icon: IconShirt, title: 'Винтаж', description: 'These scarves are carefully made with vintage techniques',
+}, {icon: IconShirt, title: 'Детские', description: 'These bonnets are made with natural and organic materials',},];
 
 export function MegaHeader() {
     const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
     const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
     const {classes, theme} = useStyles();
+    const isLoggedIn = useSelector((state) => !!state.auth.token)
 
-    const links = mockdata.map((item) => (
-        <UnstyledButton className={classes.subLink} key={item.title}>
-            <Group noWrap align="flex-start">
-                <ThemeIcon size={34} variant="default" radius="md">
-                    <item.icon size={rem(22)} color={theme.fn.primaryColor()}/>
-                </ThemeIcon>
-                <Link href="/">
-                    <Text size="sm" fw={500}>
-                        {item.title}
-                    </Text>
-                    <Text size="xs" color="dimmed">
-                        {item.description}
-                    </Text>
-                </Link>
-            </Group>
-        </UnstyledButton>
-    ));
+    const links = mockdata.map((item) => (<UnstyledButton className={classes.subLink} key={item.title}>
+        <Group noWrap align="flex-start">
+            <ThemeIcon size={34} variant="default" radius="md">
+                <item.icon size={rem(22)} color={theme.fn.primaryColor()}/>
+            </ThemeIcon>
+            <Link href="/">
+                <Text size="sm" fw={500}>
+                    {item.title}
+                </Text>
+                <Text size="xs" color="dimmed">
+                    {item.description}
+                </Text>
+            </Link>
+        </Group>
+    </UnstyledButton>));
 
-    return (
-        <Box className={classes.container}>
-            <Header height={70} px="md" className={classes.header}>
-                <Group position="apart" sx={{height: '100%'}}>
-                    <span>Logo</span>
+    return (<Box className={classes.container}>
+        <Header height={70} px="md" className={classes.header}>
+            <Group sx={{height: '90%'}} className={classes.wrapper}>
+                <span>ВЕРЕТЕНО</span>
+                <Group sx={{height: '100%'}} spacing={0} className={classes.hiddenMobile}>
+                    <Link href="/" className={classes.link}>
+                        Главная
+                    </Link>
+                    <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
+                        <HoverCard.Target>
+                            <a href="#" className={classes.link}>
+                                <Center inline>
+                                    <Box component="span" mr={5}>
+                                        Категории
+                                    </Box>
+                                    <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
+                                </Center>
+                            </a>
+                        </HoverCard.Target>
 
-                    <Group sx={{height: '100%'}} spacing={0} className={classes.hiddenMobile}>
-                        <Link href="/" className={classes.link}>
-                            Главная
-                        </Link>
-                        <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
-                            <HoverCard.Target>
-                                <a href="#" className={classes.link}>
-                                    <Center inline>
-                                        <Box component="span" mr={5}>
-                                            Категории
-                                        </Box>
-                                        <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
-                                    </Center>
-                                </a>
-                            </HoverCard.Target>
+                        <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
 
-                            <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
+                            <SimpleGrid cols={2} spacing={0}>
+                                {links}
+                            </SimpleGrid>
 
-                                <SimpleGrid cols={2} spacing={0}>
-                                    {links}
-                                </SimpleGrid>
-
-                                <div className={classes.dropdownFooter}>
-                                    <Group position="apart">
-                                        <div>
-                                            <Text fw={500} fz="sm">
-                                                Начните с каталога
-                                            </Text>
-                                            <Text size="xs" color="dimmed">
-                                                Найдите лучший головной убор
-                                            </Text>
-                                        </div>
-                                        <Button variant="default">В каталог</Button>
-                                    </Group>
-                                </div>
-                            </HoverCard.Dropdown>
-                        </HoverCard>
-                        <Link href="/about" className={classes.link}>
-                            О Нас
-                        </Link>
-                        <Link href="/lk" className={classes.link}>
-                            Личный кабинет
-                        </Link>
-                    </Group>
-
-
-                    <Search/>
-                    
-                    {/*<Autocomplete*/}
-                    {/*    className={classes.search}*/}
-                    {/*    placeholder="Поиск"*/}
-                    {/*    icon={<IconSearch size="1rem" stroke={1.5}/>}*/}
-                    {/*    data={['шляпы', 'головные уборы', 'кепки', 'шапки', 'ушанки', 'шелковые штуки',]}*/}
-                    {/*/>*/}
-
-
-                    <Group className={classes.hiddenMobile}>
-                        <Button variant="default">Корзина</Button>
-                        <Button>Войти</Button>
-                    </Group>
-
-
-                    <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
+                            <div className={classes.dropdownFooter}>
+                                <Group position="apart">
+                                    <div>
+                                        <Text fw={500} fz="sm">
+                                            Начните с каталога
+                                        </Text>
+                                        <Text size="xs" color="dimmed">
+                                            Найдите лучший головной убор
+                                        </Text>
+                                    </div>
+                                    <Button variant="default">В каталог</Button>
+                                </Group>
+                            </div>
+                        </HoverCard.Dropdown>
+                    </HoverCard>
+                    <Link href="/about" className={classes.link}>
+                        О Нас
+                    </Link>
+                    <Link href="/lk" className={classes.link}>
+                        Личный кабинет
+                    </Link>
                 </Group>
-            </Header>
+                <Search/>
+                <Group className={classes.hiddenMobile}>
+                    <Link href="/cart">
+                        <ActionIcon color="indigo" size="40px" radius="xl" variant="light">
+                            <IconShoppingCart size="20px"/>
+                        </ActionIcon>
+                    </Link>
 
-            {/*Мобильное меню*/}
-            <Drawer
-                opened={drawerOpened}
-                onClose={closeDrawer}
-                size="100%"
-                padding="md"
-                title="Navigation"
-                className={classes.hiddenDesktop}
-                zIndex={1000000}
-            >
-                <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
-                    <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
+                    {isLoggedIn ? <Link href="/lk">
+                        <ActionIcon color="indigo" size="40px" radius="xl" variant="light">
+                            <IconUser size="20px"/>
+                        </ActionIcon>
+                    </Link> : <Link href="/auth">
+                        <ActionIcon color="indigo" size="40px" radius="xl" variant="light">
+                            <IconLogin size="20px"/>
+                        </ActionIcon>
+                    </Link>}
 
-                    <a href="#" className={classes.link}>
-                        Home
-                    </a>
-                    <UnstyledButton className={classes.link} onClick={toggleLinks}>
-                        <Center inline>
-                            <Box component="span" mr={5}>
-                                Features
-                            </Box>
-                            <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
-                        </Center>
-                    </UnstyledButton>
-                    <Collapse in={linksOpened}>{links}</Collapse>
-                    <a href="#" className={classes.link}>
-                        Learn
-                    </a>
-                    <a href="#" className={classes.link}>
-                        Academy
-                    </a>
+                </Group>
 
-                    <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
-                    <Group position="center" grow pb="xl" px="md">
-                        <Button variant="default">Корзина</Button>
-                        <Button>Войти</Button>
-                    </Group>
-                </ScrollArea>
-            </Drawer>
-        </Box>
-    );
+                <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
+            </Group>
+        </Header>
+
+        {/*Мобильное меню*/}
+        <Drawer
+            opened={drawerOpened}
+            onClose={closeDrawer}
+            size="100%"
+            padding="md"
+            title="Navigation"
+            className={classes.hiddenDesktop}
+            zIndex={1000000}
+        >
+            <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
+                <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
+
+                <a href="#" className={classes.link}>
+                    Home
+                </a>
+                <UnstyledButton className={classes.link} onClick={toggleLinks}>
+                    <Center inline>
+                        <Box component="span" mr={5}>
+                            Features
+                        </Box>
+                        <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
+                    </Center>
+                </UnstyledButton>
+                <Collapse in={linksOpened}>{links}</Collapse>
+                <a href="#" className={classes.link}>
+                    Learn
+                </a>
+                <a href="#" className={classes.link}>
+                    Academy
+                </a>
+
+                <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
+
+                <Group position="center" grow pb="xl" px="md">
+                    <Button variant="default">Корзина</Button>
+                    <Button>Войти</Button>
+                </Group>
+            </ScrollArea>
+        </Drawer>
+    </Box>);
 }
