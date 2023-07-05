@@ -1,17 +1,19 @@
 .content {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    padding-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  padding-bottom: 2rem;
 }
 
 .filters {
-    position: relative;
-    max-width: 255px;
-    margin-right: 16px;
+  position: relative;
+  max-width: 255px;
+  margin-right: 16px;
 }
 
 .store {
-    position: relative;
-    flex: 1;
+  position: relative;
+  flex: 1;
+  max-width: 100%;
+  overflow: hidden;
 }

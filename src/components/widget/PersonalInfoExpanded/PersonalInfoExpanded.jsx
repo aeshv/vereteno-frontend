@@ -110,8 +110,7 @@ const data = [
 
 export function PersonalInfoExpanded() {
     const {classes, cx} = useStyles();
-    const [active, setActive] = useState("Billing");
-
+    const [active, setActive] = useState("Персональная информация");
     const links = data.map((item) => (
         <Link
             className={cx(classes.link, {

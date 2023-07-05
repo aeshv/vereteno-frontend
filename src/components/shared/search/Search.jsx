@@ -1,7 +1,9 @@
 import React from "react";
 import {SlMagnifier} from "react-icons/sl";
 import styles from "./Search.module.scss";
-import {Autocomplete, createStyles} from "@mantine/core";
+import {Autocomplete, createStyles, TextInput} from "@mantine/core";
+import {useRouter} from "next/router";
+import {useDebouncedState} from "@mantine/hooks";
 
 
 const useStyles = createStyles((theme) => ({
@@ -52,13 +54,25 @@ const useStyles = createStyles((theme) => ({
 
 const Search = () => {
     const {classes} = useStyles();
+
+    const {query} = useRouter()
+
+    //Значение поиска
+    const [searchValue, setSearchValue] = useDebouncedState(query.search || '', 350)
+
+    const onSearchChange = (e) => {
+
+        //Значение поиска
+        setSearchValue(e)
+    }
+
     return (
         <div className={classes.container}>
             <div className={classes.searchinput}>
                 <Autocomplete
                     placeholder="Поиск..."
                     variant="unstyled"
-
+                    onChange={onSearchChange}
                     size="sm"
                     data={['шляпы', 'головные уборы', 'кепки', 'шапки', 'ушанки', 'шелковые штуки',]}
                 />

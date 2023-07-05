@@ -44,6 +44,7 @@ import Search from "@/components/shared/search/Search";
 import React from "react";
 import Icon from "@/components/shared/icon/Icon";
 import {useSelector} from "react-redux";
+import {useRouter} from "next/router";
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -152,13 +153,10 @@ export function MegaHeader() {
     const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
     const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
     const {classes, theme} = useStyles();
-    const isLoggedIn = useSelector((state) => !!state.auth.token)
+    const isLoggedIn = useSelector((state) => !!state.auth.token);
 
     const links = mockdata.map((item) => (<UnstyledButton className={classes.subLink} key={item.title}>
         <Group noWrap align="flex-start">
-            <ThemeIcon size={34} variant="default" radius="md">
-                <item.icon size={rem(22)} color={theme.fn.primaryColor()}/>
-            </ThemeIcon>
             <Link href="/">
                 <Text size="sm" fw={500}>
                     {item.title}

@@ -1,52 +1,50 @@
 import HatFilter from "@/components/entity/filters/HatFilter";
 import PageHead from "@/components/SEO/PageHead";
-import Head from "next/head";
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 
 import styles from "./Products.module.scss";
-import { Grid } from "@mantine/core";
+import {Grid} from "@mantine/core";
 import Card from "@/components/entity/card/Card";
-import { products } from "@/utils/tempHatsList";
 import {productApi} from "@/api";
+import {ProductsGrid} from "@/components/entity/ProductsGrid/ProductsGrid";
+import {useRouter} from "next/router";
 
 const Products = ({products}) => {
-  return (
-    <>
-      <PageHead title="Все товары" />
-      <div className={styles.container}>
-        <div className={styles.catalog_banner}></div>
-        <div className={styles.promo_banner}></div>
-        <div className={styles.content}>
-          <div className={styles.filters}>
-            <h2>Фильтры</h2>
-            <HatFilter />
-          </div>
-          <div className={styles.store}>
-            <Grid gutter="xl">
-              {products?.map((product) => (
-                <Grid.Col key={product.id} span={4}>
-                  <Card {...product} href={`/products/${product.id}`} />
-                </Grid.Col>
-              ))}
-            </Grid>
-          </div>
-        </div>
-      </div>
-    </>
-  );
+    const {query} = useRouter()
+    console.log('router in products - \n', query, '\n');
+    return (
+        <>
+            <PageHead title="Все товары"/>
+            <div className={styles.container}>
+                <div className={styles.catalog_banner}></div>
+                <div className={styles.promo_banner}></div>
+                <div className={styles.content}>
+                    <div className={styles.filters}>
+                        <h2>Фильтры</h2>
+                        <HatFilter/>
+                    </div>
+                    <div className={styles.store}>
+                        <ProductsGrid products={products}/>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 };
 
 export default Products;
+
 export async function getServerSideProps() {
-  const {products} = await productApi.getProducts().then(({data}) => {
-    return data;
-  });
-  return {
-    props: {
-      products,
-    },
-  };
+    const {products} = await productApi.getProducts().then(({data}) => {
+        return data;
+    });
+    return {
+        props: {
+            products,
+        },
+    };
 }
+
 // export async function getServerSideProps() {
 //   const singleProduct2 = async ({ id }) => {
 //     try {
