@@ -20,6 +20,7 @@ import {
     Autocomplete,
     Loader,
     ActionIcon,
+    Flex,
 } from '@mantine/core';
 
 import {useDisclosure} from '@mantine/hooks';
@@ -34,7 +35,9 @@ import {
     IconSearch,
     IconShirt,
     IconShoppingCart,
-    IconLogin, IconUser,
+    IconLogin,
+    IconUser,
+    IconMenu2,
 } from '@tabler/icons-react';
 import Link from "next/link";
 import Search from "@/components/shared/search/Search";
@@ -56,11 +59,10 @@ const useStyles = createStyles((theme) => ({
     },
 
     header: {
-        borderBottom: "none",
+        borderBottom: "none", width: '100%',
+    }, wrapper: {
         width: '100%',
-    },
-    wrapper: {
-        width: '100%',
+
     },
 
     link: {
@@ -120,14 +122,26 @@ const useStyles = createStyles((theme) => ({
             display: 'none',
         },
     },
+
+    button: {
+        background: "#6F73EE",
+        border: "1.5px solid #6F73EE",
+        borderRadius: "5px",
+        padding: "8px 18px",
+        height: "100%",
+        maxHeight: "46px",
+
+    },
+
+    flexGrow: {
+        flexGrow: 111
+    },
 }));
 
 const mockdata = [{
     icon: IconShirt, title: 'Большие', description: 'These hats are handmade from quality materials',
 }, {
-    icon: IconShirt,
-    title: 'Женские',
-    description: 'These caps are made with modern technology for a comfortable fit',
+    icon: IconShirt, title: 'Женские', description: 'These caps are made with modern technology for a comfortable fit',
 }, {
     icon: IconShirt, title: 'Мужские', description: 'These beanies are knitted with love and care',
 }, {
@@ -158,22 +172,19 @@ export function MegaHeader() {
 
     return (<Box className={classes.container}>
         <Header height={70} px="md" className={classes.header}>
-            <Group sx={{height: '90%'}} className={classes.wrapper}>
-                <span>ВЕРЕТЕНО</span>
-                <Group sx={{height: '100%'}} spacing={0} className={classes.hiddenMobile}>
-                    <Link href="/" className={classes.link}>
-                        Главная
-                    </Link>
+            <Flex sx={{height: '90%'}} className={classes.wrapper} gap={{base: 'sm', sm: 'lg'}}
+                  justify={{sm: 'center'}} align={"center"}>
+                <Link href="/" className={classes.link}>
+                    <span>Веретено</span>
+                </Link>
+                <Group className={`${classes.hiddenMobile} `}>
                     <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
                         <HoverCard.Target>
-                            <a href="#" className={classes.link}>
-                                <Center inline>
-                                    <Box component="span" mr={5}>
-                                        Категории
-                                    </Box>
-                                    <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
-                                </Center>
-                            </a>
+                            <Link href="/products" className={classes.link}>
+                                <Button className={classes.button} leftIcon={<IconMenu2/>}>
+                                    Каталог
+                                </Button>
+                            </Link>
                         </HoverCard.Target>
 
                         <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
@@ -192,19 +203,17 @@ export function MegaHeader() {
                                             Найдите лучший головной убор
                                         </Text>
                                     </div>
-                                    <Button variant="default">В каталог</Button>
+                                    <Link href={'/products'}>
+                                        <Button variant="default">В каталог</Button>
+                                    </Link>
                                 </Group>
                             </div>
                         </HoverCard.Dropdown>
                     </HoverCard>
-                    <Link href="/about" className={classes.link}>
-                        О Нас
-                    </Link>
-                    <Link href="/lk" className={classes.link}>
-                        Личный кабинет
-                    </Link>
                 </Group>
-                <Search/>
+                <div className={classes.hiddenMobile} style={{flexGrow: 111}}>
+                    <Search/>
+                </div>
                 <Group className={classes.hiddenMobile}>
                     <Link href="/cart">
                         <ActionIcon color="indigo" size="40px" radius="xl" variant="light">
@@ -223,10 +232,8 @@ export function MegaHeader() {
                     </Link>}
 
                 </Group>
-
-
                 <Burger opened={drawerOpened} onClick={toggleDrawer} className={classes.hiddenDesktop}/>
-            </Group>
+            </Flex>
         </Header>
 
         {/*Мобильное меню*/}
@@ -242,30 +249,34 @@ export function MegaHeader() {
             <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
                 <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
-                <a href="#" className={classes.link}>
-                    Home
-                </a>
+                <Link href="/" className={classes.link}>
+                    Главная страница
+                </Link>
                 <UnstyledButton className={classes.link} onClick={toggleLinks}>
                     <Center inline>
                         <Box component="span" mr={5}>
-                            Features
+                            Категории
                         </Box>
                         <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
                     </Center>
                 </UnstyledButton>
                 <Collapse in={linksOpened}>{links}</Collapse>
-                <a href="#" className={classes.link}>
-                    Learn
-                </a>
-                <a href="#" className={classes.link}>
-                    Academy
-                </a>
+                <Link href="/lk" className={classes.link}>
+                    Личный кабинет
+                </Link>
+                <Link href="/about" className={classes.link}>
+                    О Нас
+                </Link>
 
                 <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
                 <Group position="center" grow pb="xl" px="md">
-                    <Button variant="default">Корзина</Button>
-                    <Button>Войти</Button>
+                    <Link href="/cart">
+                        <Button variant="default">Корзина</Button>
+                    </Link>
+                    <Link href="/auth">
+                        <Button>Войти</Button>
+                    </Link>
                 </Group>
             </ScrollArea>
         </Drawer>

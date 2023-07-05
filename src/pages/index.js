@@ -40,12 +40,10 @@ export default function Home({products, categories}) {
 
             {/*Categories block*/}
             <Flex>
-            	{categories?.map((category) => (
-            		<BlurredBlock title={category.name} key={category.id}/>
+                {categories?.slice(0, 4)?.map((category) => (
+                    <BlurredBlock title={category.name} key={category.id} link={category.name}/>
 
-            	))}
-            	{/*<BlurredBlock title={"Кепки"}/><BlurredBlock title={"Панамы"}/><BlurredBlock*/}
-            	{/*title={"Шапки"}/><BlurredBlock title={"Шарфы"}/>*/}
+                ))}
             </Flex>
 
             <BuyingWith title={"Часто покупают"}/>
@@ -60,7 +58,7 @@ export async function getServerSideProps() {
     });
 
     const {categories} = await categoryApi.getAll().then(({data}) => {
-    	return data;
+        return data;
     });
     return {
         props: {
