@@ -54,22 +54,32 @@ const useStyles = createStyles((theme) => ({
 
 const Search = () => {
     const {classes} = useStyles();
-
-    const {query} = useRouter()
-
+    const router = useRouter()
+    const {query} = router
     //Значение поиска
-    const [searchValue, setSearchValue] = useDebouncedState(query.search || '', 350)
+    const [searchValue, setSearchValue] = useDebouncedState(query.search || '', 0)
+    console.log('Search = ', query, searchValue)
 
     const onSearchChange = (e) => {
-
-        //Значение поиска
-        setSearchValue(e)
+        if (e.length !== 0) {
+            //Значение поиска
+            setSearchValue(e)
+            router.query.search = e
+            router.push(router)
+        } else {
+            setSearchValue('')
+            if (router.query.search) {
+                delete router.query.search
+                router.push(router)
+            }
+        }
     }
 
     return (
         <div className={classes.container}>
             <div className={classes.searchinput}>
                 <Autocomplete
+                    value={searchValue}
                     placeholder="Поиск..."
                     variant="unstyled"
                     onChange={onSearchChange}
