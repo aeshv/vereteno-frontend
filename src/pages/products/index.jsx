@@ -9,9 +9,7 @@ import {productApi} from "@/api";
 import {ProductsGrid} from "@/components/entity/ProductsGrid/ProductsGrid";
 import {useRouter} from "next/router";
 
-const Products = ({products}) => {
-    const {query} = useRouter()
-    console.log('router in products - \n', query, '\n');
+const Products = () => {
     return (
         <>
             <PageHead title="Все товары"/>
@@ -24,7 +22,7 @@ const Products = ({products}) => {
                         <HatFilter/>
                     </div>
                     <div className={styles.store}>
-                        <ProductsGrid products={products}/>
+                        <ProductsGrid/>
                     </div>
                 </div>
             </div>
@@ -34,16 +32,16 @@ const Products = ({products}) => {
 
 export default Products;
 
-export async function getServerSideProps() {
-    const {products} = await productApi.getProducts().then(({data}) => {
-        return data;
-    });
-    return {
-        props: {
-            products,
-        },
-    };
-}
+// export async function getServerSideProps() {
+//     const {products} = await productApi.getProducts().then(({data}) => {
+//         return data;
+//     });
+//     return {
+//         props: {
+//             products,
+//         },
+//     };
+// }
 
 // export async function getServerSideProps() {
 //   const singleProduct2 = async ({ id }) => {

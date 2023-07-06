@@ -8,6 +8,13 @@ export const productApi = {
             params,
         });
     },
+    getProductsQuery(params) {
+        return api({
+            method: "GET",
+            url: "/product/",
+            params,
+        });
+    },
     createProduct(data) {
         return api({
             method: "POST",

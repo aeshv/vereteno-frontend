@@ -58,8 +58,7 @@ const Search = () => {
     const {query} = router
     //Значение поиска
     const [searchValue, setSearchValue] = useDebouncedState(query.search || '', 0)
-    console.log('Search = ', query, searchValue)
-
+    console.log('KKK', router)
     const onSearchChange = (e) => {
         if (e.length !== 0) {
             //Значение поиска
