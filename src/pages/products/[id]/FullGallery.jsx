@@ -15,6 +15,7 @@ const FullGallery = () => {
 
   const onImageClick = (id) => {
     setCurrentImage(id);
+    // s
     setShowModal(true);
   };
 
