@@ -23,13 +23,14 @@ export const ProductsGrid = () => {
     return (
         <>
             <Grid gutter="sm">
+              {console.log('datadatadatadata', data)}
                 {data?.data?.products.map((product) => (
                     <Grid.Col key={product.id} span={4}>
                         <Card {...product} href={`/products/${product.id}`}/>
                     </Grid.Col>
                 ))}
             </Grid>
-            <ProductsPagination/>
+            <ProductsPagination total={data?.data?.totalCount || 1}/>
         </>
     )
 }

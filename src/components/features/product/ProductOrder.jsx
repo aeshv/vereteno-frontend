@@ -12,8 +12,8 @@ const ProductOrder = () => {
 		<div className={styles.container}>
 			<h1 className={styles.product__title}>{product?.name || 'Ошибка загрузки имени'}</h1>
 			<div className={styles.backinfo}>
-				<div className={styles.tag}>Купили: 129 раз</div>
-				<div className={styles.tag}>Артикул: ЫВАЫВА-020Ы</div>
+				{/*<div className={styles.tag}>Купили: 129 раз</div>*/}
+				<div className={styles.tag}>Артикул: {product?.vendor_code?.code}</div>
 			</div>
 			<div className={styles.shopinfo}>
 				{product?.quantity > 0 && (
@@ -31,16 +31,15 @@ const ProductOrder = () => {
 					<span>Поделиться</span>
 				</div>
 			</div>
-
 			<div className={styles.price}>
-				{product?.discount_id === 1 ?
+				{product?.discount === 1 ?
 					<>
 						<span className={styles.current}>{product?.price} ₽</span>
 					</>
 					:
 					<>
-						<span className={styles.old}>{product?.price} ₽</span>
-						<span className={styles.current}>{product?.price * product?.discount_id} ₽</span>
+						<span className={styles.old}>{product?.price * product?.discount} ₽</span>
+						<span className={styles.current}>{product?.price } ₽</span>
 					</>
 				}
 			</div>

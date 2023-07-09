@@ -39,7 +39,7 @@ export default SingleProduct;
 export async function getStaticPaths() {
 
 	const {products} = await productApi.getProducts().then(({data}) => {
-		console.log('Dasdasdasdasdasd ', typeof data, data)
+		console.log('Dasda	sdasdasdasd ', typeof data, data)
 		return {...data, products : data.products.slice(0, 20)}
 	});
 
@@ -51,7 +51,7 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps = async ({params}) => {
-	const {product} = await productApi.getProduct(params).then(({data}) => {
+	const product = await productApi.getProduct(params).then(({data}) => {
 		return data
 	});
 

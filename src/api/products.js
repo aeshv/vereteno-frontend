@@ -5,14 +5,22 @@ export const productApi = {
         return api({
             method: "GET",
             url: "/product/",
-            params,
+            params: {
+                limit: 10,
+                offset: 0,
+                ...params,
+            }
         });
     },
     getProductsQuery(params) {
         return api({
             method: "GET",
             url: "/product/",
-            params,
+            params: {
+                limit: 10,
+                offset: 0,
+                ...params,
+            }
         });
     },
     createProduct(data) {

@@ -1,6 +1,7 @@
 import SpecRow from "@/components/shared/SpecRow/SpecRow";
-import React from "react";
+import React, {useContext} from "react";
 import styles from "./sectionSpecs.module.scss";
+import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 const ProductSectionSpecs = () => {
   const specs = [
@@ -57,10 +58,10 @@ const ProductSectionSpecs = () => {
       value: "100% шерсть",
     },
   ];
-
+  const {attributes} = useContext(ProductInfoContext)
   return (
     <div className={styles.container}>
-      {specs.map((spec, index) => (
+      {attributes.map((spec, index) => (
         <SpecRow key={index} {...spec} />
       ))}
     </div>

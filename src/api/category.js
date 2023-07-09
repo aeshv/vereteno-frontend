@@ -5,7 +5,11 @@ export const categoryApi = {
         return api({
             method: "GET",
             url: "/category/",
-            params,
+            params: {
+                limit: 10,
+                offset: 0,
+                ...params,
+            }
         });
     },
     // createProduct(data) {

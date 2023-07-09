@@ -8,15 +8,6 @@ import Link from "next/link";
 import noimage from "../../../../public/noimage.png";
 
 const Card = (props) => {
-	// {
-	// 	"id": 3,
-	// 	"title": "Шляпа",
-	// 	"description": "Шляпа Описание",
-	// 	"category_id": 3,
-	// 	"discount_id": null,
-	// 	"created_at": null,
-	// 	"updated_at": null
-	// }
 
 	const noimageArray = [{src: noimage}]
 
