@@ -1,10 +1,10 @@
 import {api} from ".";
 
 export const cartApi = {
-    getCartById({id, ...params}) {
+    getCartById({...params}) {
         return api({
             method: "GET",
-            url: `/cart/${id}/`,
+            url: `/cart-item/`,
             params,
         });
     },
