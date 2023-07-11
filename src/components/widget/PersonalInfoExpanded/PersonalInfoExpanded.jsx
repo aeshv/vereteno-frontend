@@ -22,6 +22,10 @@ import {
     IconUserCircle,
 } from "@tabler/icons-react";
 import Link from "next/link";
+import {userApi} from "@/api";
+import {useDispatch} from "react-redux";
+import {logout} from "@/redux/features/auth/authSlice";
+import {useRouter} from "next/router";
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -110,6 +114,8 @@ const data = [
 
 export function PersonalInfoExpanded() {
     const {classes, cx} = useStyles();
+    const dispatch = useDispatch();
+    const router = useRouter();
     const [active, setActive] = useState("Персональная информация");
     const links = data.map((item) => (
         <Link
@@ -141,7 +147,12 @@ export function PersonalInfoExpanded() {
                 <a
                     href="#"
                     className={classes.link}
-                    onClick={(event) => event.preventDefault()}
+                    onClick={(event) => {
+                        event.preventDefault();
+                        userApi.logout()
+                        dispatch(logout())
+                        router.push('/')
+                    }}
                 >
                     <IconLogout className={classes.linkIcon} stroke={1.5}/>
                     <span>Выйти</span>

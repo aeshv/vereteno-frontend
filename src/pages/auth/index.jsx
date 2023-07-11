@@ -1,121 +1,131 @@
 import {useToggle, upperFirst, useDisclosure} from "@mantine/hooks";
 import {useForm} from "@mantine/form";
 import {
-	TextInput, PasswordInput, Text, Paper, Group, Button, Checkbox, Anchor, Stack, LoadingOverlay,
+    TextInput, PasswordInput, Text, Paper, Group, Button, Checkbox, Anchor, Stack, LoadingOverlay,
 } from "@mantine/core";
 import {loginUser, registerUser} from "@/redux/features/auth/authSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {notifications} from '@mantine/notifications';
+import {useRouter} from "next/router";
+import {useEffect} from "react";
 
 const RegisterPage = () => {
-	const [type, toggle] = useToggle(["Войти в свой аккаунт", "Зарегистрировать аккаунт",]);
-	const form = useForm({
-		initialValues: {
-			email: "", login: "", password: "", terms: true,
-		},
+    const [type, toggle] = useToggle(["Войти в свой аккаунт", "Зарегистрировать аккаунт",]);
+    const {user} = useSelector((state) => state.auth)
+    const router = useRouter()
+    const form = useForm({
+        initialValues: {
+            email: "", login: "", password: "", terms: true,
+        },
 
-		validate: {
-			email: (val) => (/^\S+@\S+$/.test(val) ? null : "Некорректный адрес электронной почты"),
-			password: (val) => val.length <= 6 ? "Пароль должен состоять хотя бы из 6 символов" : null,
-			terms: (val) => (val === true ? null : "Для регистрации необходимо принять условия использования"),
-		},
-	});
+        validate: {
+            email: (val) => (/^\S+@\S+$/.test(val) ? null : "Некорректный адрес электронной почты"),
+            password: (val) => val.length <= 6 ? "Пароль должен состоять хотя бы из 6 символов" : null,
+            terms: (val) => (val === true ? null : "Для регистрации необходимо принять условия использования"),
+        },
+    });
+
+    useEffect(() => {
+        if (user) {
+            router.push('/')
+        }
+    }, [user])
 
 
-	const dispatch = useDispatch();
-	const [visibleLoading, loadingHandlers] = useDisclosure(false);
-	const handleRegister = (data) => {
-		notifications.show({message: 'Registration'});
-		console.log('registration data is ', data)
-		try {
-			// loadingHandlers.toggle()
-			dispatch(registerUser(data))
-		} catch (error) {
-			console.log(error);
-		} finally {
-			// loadingHandlers.toggle()
-		}
-	};
+    const dispatch = useDispatch();
+    const [visibleLoading, handlers] = useDisclosure(false);
 
-	const handleLogin = (data) => {
-		try {
-			loadingHandlers.toggle()
-			dispatch(loginUser(data))
-		} catch (error) {
-			console.log(error);
-		} finally {
-			loadingHandlers.toggle()
-		}
+    const handleRegister = (data) => {
+        handlers.open();
+        try {
+            dispatch(registerUser(data)).then((a) => {
+                handlers.close();
+                router.push('/')
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
-	};
+    const handleLogin = (data) => {
+        handlers.open();
+        try {
+            dispatch(loginUser(data)).then((a) => {
+                handlers.close();
+                router.push('/')
+            })
+        } catch (error) {
+            console.log(error);
+        }
 
-	return (<div style={{maxWidth: '650px', margin: '1rem auto'}}>
-		<Paper radius="md" p="xl" withBorder pos="relative">
-			<LoadingOverlay visible={visibleLoading} overlayBlur={2}/>
-			<Text size="lg" weight={500}>
-				{type}
-			</Text>
+    };
 
-			<form onSubmit={form.onSubmit((fullFormData) => {
-				// loadingHandlers.toggle()
-				{
-					type === "Зарегистрировать аккаунт" ? handleRegister(fullFormData) : handleLogin(fullFormData)
-				}
-			})}>
-				<Stack>
-					{type === "Зарегистрировать аккаунт" && (<TextInput
-						label="Логин"
-						placeholder="Имя"
-						value={form.values.login}
-						onChange={(event) => form.setFieldValue("login", event.currentTarget.value)}
-						radius="md"
-					/>)}
+    return (<div style={{maxWidth: '650px', margin: '1rem auto'}}>
+        <Paper radius="md" p="xl" withBorder pos="relative">
+            <LoadingOverlay visible={visibleLoading} overlayBlur={2}/>
+            <Text size="lg" weight={500}>
+                {type}
+            </Text>
 
-					<TextInput
-						required
-						label="Email"
-						placeholder="hello@vereteno.ru"
-						value={form.values.email}
-						onChange={(event) => form.setFieldValue("email", event.currentTarget.value)}
-						error={form.errors.email}
-						radius="md"
-					/>
+            <form onSubmit={form.onSubmit((fullFormData) => {
+                {
+                    type === "Зарегистрировать аккаунт" ? handleRegister(fullFormData) : handleLogin(fullFormData)
+                }
+            })}>
+                <Stack>
+                    {type === "Зарегистрировать аккаунт" && (<TextInput
+                        label="Логин"
+                        placeholder="Имя"
+                        value={form.values.login}
+                        onChange={(event) => form.setFieldValue("login", event.currentTarget.value)}
+                        radius="md"
+                    />)}
 
-					<PasswordInput
-						required
-						label="Пароль"
-						placeholder="Ваш пароль"
-						value={form.values.password}
-						onChange={(event) => form.setFieldValue("password", event.currentTarget.value)}
-						error={form.errors.password}
-						radius="md"
-					/>
+                    <TextInput
+                        required
+                        label="Email"
+                        placeholder="hello@vereteno.ru"
+                        value={form.values.email}
+                        onChange={(event) => form.setFieldValue("email", event.currentTarget.value)}
+                        error={form.errors.email}
+                        radius="md"
+                    />
 
-					{type === "Зарегистрировать аккаунт" && (<Checkbox
-						label="Я согласен со всеми правилами"
-						checked={form.values.terms}
-						error={form.errors.terms}
-						onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
-					/>)}
-				</Stack>
+                    <PasswordInput
+                        required
+                        label="Пароль"
+                        placeholder="Ваш пароль"
+                        value={form.values.password}
+                        onChange={(event) => form.setFieldValue("password", event.currentTarget.value)}
+                        error={form.errors.password}
+                        radius="md"
+                    />
 
-				<Group position="apart" mt="xl">
-					<Anchor
-						component="button"
-						type="button"
-						color="dimmed"
-						onClick={() => toggle()}
-						size="xs"
-					>
-						{type === "Зарегистрировать аккаунт" ? "Уже есть аккаунт? Войти" : "Нет аккаунта? Зарегистрироваться"}
-					</Anchor>
-					<Button type="submit" radius="xl">
-						{upperFirst(type)}
-					</Button>
-				</Group>
-			</form>
-		</Paper>
-	</div>);
+                    {type === "Зарегистрировать аккаунт" && (<Checkbox
+                        label="Я согласен со всеми правилами"
+                        checked={form.values.terms}
+                        error={form.errors.terms}
+                        onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
+                    />)}
+                </Stack>
+
+                <Group position="apart" mt="xl">
+                    <Anchor
+                        component="button"
+                        type="button"
+                        color="dimmed"
+                        onClick={() => toggle()}
+                        size="xs"
+                    >
+                        {type === "Зарегистрировать аккаунт" ? "Уже есть аккаунт? Войти" : "Нет аккаунта? Зарегистрироваться"}
+                    </Anchor>
+                    <Button type="submit" radius="xl">
+                        {upperFirst(type)}
+                    </Button>
+                </Group>
+            </form>
+        </Paper>
+    </div>);
 };
 
 export default RegisterPage;
