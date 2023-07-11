@@ -44,6 +44,7 @@ const RegisterPage = () => {
             })
         } catch (error) {
             console.log(error);
+            handlers.close();
         }
     };
 
@@ -56,6 +57,7 @@ const RegisterPage = () => {
             })
         } catch (error) {
             console.log(error);
+            handlers.close();
         }
 
     };

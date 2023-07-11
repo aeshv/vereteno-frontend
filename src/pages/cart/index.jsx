@@ -5,28 +5,26 @@ import UserPageLayout from "@/components/Layouts/UserPageLayout";
 import {CartTable} from "@/components/features/cart/CartTable/CartTable";
 import {useSelector} from "react-redux";
 import {cartApi} from "@/api/cart";
+import {CartPage} from "@/components/features/cart/CartPage";
+import {useProducts} from "@/utils/hooks/useProducts";
+import {useCarts} from "@/utils/hooks/useCarts";
+import {CartContext} from "@/components/shared/Contexts/CartContext";
 
 const Index = () => {
     const {user} = useSelector((state) => state.auth)
+    const getCart = useCarts();
 
-    const [userCartItemsList, setUserCartItemsList] = useState([]);
-    const [isLoadingList, setIsLoadingList] = useState(true);
+    const {isLoading, isError, data, error} = getCart
 
-
-    React.useEffect(() => {
-        const data = cartApi.getCartById({}).then(({data}) => {
-            if (data?.items) {
-                setUserCartItemsList(data?.items)
-                setIsLoadingList(false)
-            }
-        });
-    }, [])
-
-    console.log(userCartItemsList)
 
     return (<Paper>
-        {isLoadingList ? <>Загрузка..</> : <>
-            {userCartItemsList.length >= 1 ? <CartTable data={userCartItemsList}/> : <NoDataCart/>}
+        {isLoading ? <>Загрузка..</> : <>
+            {data.data.totalCount >= 1 ?
+                <CartContext.Provider value={data?.data}>
+                    <CartPage/>
+                </CartContext.Provider>
+
+                : <NoDataCart/>}
         </>}
     </Paper>)
 }

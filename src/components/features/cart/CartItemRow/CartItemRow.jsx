@@ -8,25 +8,17 @@ const useStyles = createStyles((theme) => ({
         backgroundColor: theme.colorScheme === 'dark' ? theme.fn.rgba(theme.colors[theme.primaryColor][7], 0.2) : theme.colors[theme.primaryColor][0],
     },
 }));
-const CartItemRow = ({item, isSelected, toggleRow}) => {
+const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
     const {classes, cx} = useStyles();
     const currentItemInfo = item.product;
-    console.log('item from cat', item)
-
-    // React.useEffect(() => {
-    // 	const data = productApi.getProduct({id: item.product_id}).then(({data}) => {
-    // 		if (data) {
-    // 			setCurrentItemInfo(data?.product)
-    // 		}
-    // 	});
-    // }, [item])
 
     return (<tr key={item.id} className={cx({[classes.rowSelected]: isSelected})}>
         <td>
             <Checkbox
                 checked={isSelected}
-                onChange={() => toggleRow(item.id)}
+                onChange={() => toggleRow(item)}
                 transitionDuration={0}
+                disabled={isDisabled}
             />
         </td>
         <td>
