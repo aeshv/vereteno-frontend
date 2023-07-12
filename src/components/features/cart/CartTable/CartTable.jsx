@@ -14,11 +14,14 @@ const useStyles = createStyles((theme) => ({
 
 export function CartTable() {
     const [isOrderFormVisible, setIsOrderFormVisible] = useState(false);
-    const {items} = useContext(CartContext)
+    const cartContext = useContext(CartContext)
+    const {refetchCartFunction} = cartContext
+    const items = cartContext?.data.items || []
+
     const {classes, cx} = useStyles();
     const [selection, setSelection] = useState([]);
     const toggleRow = (newItem) => setSelection((current) => current.includes(newItem) ? current.filter((item) => item.id !== newItem.id) : [...current, newItem]);
-    const toggleAll = () => setSelection((current) => (current.length === items.length ? [] : items.map((item) => item.id)));
+    const toggleAll = () => setSelection((current) => (current.length === items.length ? [] : items.map((item) => item)));
 
     const rows = items.map((item) => {
         const selected = selection.includes(item);
@@ -31,7 +34,7 @@ export function CartTable() {
         <>
             {/*<Collapse in={!isOrderFormVisible}>*/}
             <ScrollArea>
-                <Table miw={800} verticalSpacing="sm">
+                <Table miw={800} verticalSpacing="sm" highlightOnHover>
                     <thead>
                     <tr>
                         <th style={{width: rem(40)}}>
@@ -46,6 +49,7 @@ export function CartTable() {
                         <th>Название</th>
                         <th>Количество</th>
                         <th>Цена</th>
+                        <th>Действия</th>
                     </tr>
                     </thead>
                     <tbody>{rows}</tbody>

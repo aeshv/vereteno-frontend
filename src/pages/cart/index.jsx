@@ -14,13 +14,13 @@ const Index = () => {
     const {user} = useSelector((state) => state.auth)
     const getCart = useCarts();
 
-    const {isLoading, isError, data, error} = getCart
+    const {isLoading, isError, data, error, refetch} = getCart
 
 
     return (<Paper>
         {isLoading ? <>Загрузка..</> : <>
             {data.data.totalCount >= 1 ?
-                <CartContext.Provider value={data?.data}>
+                <CartContext.Provider value={{data: data?.data, refetchCartFunction: refetch}}>
                     <CartPage/>
                 </CartContext.Provider>
 

@@ -17,15 +17,16 @@ export const cartApi = {
     },
     removeItemCartById({id, ...data}) {
         return api({
-            method: "PATCH",
-            url: `/cart/${id}/remove`,
+            method: "DELETE",
+            url: `/cart-item/${id}/`,
             data,
         });
     },
-    clearCart({id}) {
+    updateItemById({id, ...data}) {
         return api({
-            method: "DELETE",
-            url: `/cart/${id}/`,
+            method: "PATCH",
+            url: `/cart-item/${id}/`,
+            data,
         });
     },
 

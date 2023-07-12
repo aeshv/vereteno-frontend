@@ -12,7 +12,7 @@ export function useCarts(params) {
             cartApi.getCartById({...params})
         ,
         {
-            keepPreviousData: true,
+            keepPreviousData: false,
             refetchOnWindowFocus: true,
         },
     );
