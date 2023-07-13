@@ -52,7 +52,7 @@ const BlurredBlock = ({title = 'Шляпы', link}) => {
     return (<>
         <Box mx="auto" className={classes.box} onClick={(e) => onCatalogChange()}>
             <BackgroundImage
-                src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80"
+                src="https://images.unsplash.com/photo-1606343131164-ab932aeffdaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
                 radius="xs"
                 className={classes.link}
             >

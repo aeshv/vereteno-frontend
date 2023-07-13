@@ -45,6 +45,8 @@ import React from "react";
 import Icon from "@/components/shared/icon/Icon";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import {useOrders} from "@/utils/hooks/useOrders";
+import {useCategories} from "@/utils/hooks/useCategories";
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -158,7 +160,13 @@ export function MegaHeader() {
     const router = useRouter()
     const {query} = router
 
+    const getAvailableCategories = useCategories();
 
+    const {isLoading, isError, data, error, refetch} = getAvailableCategories
+
+    const firstGradeCategories = data?.data?.categories.filter((category) => category.level === 3) || []
+
+    console.log(firstGradeCategories)
     const handlePageChange = (route) => {
         closeDrawer()
         if (route) {
@@ -170,16 +178,17 @@ export function MegaHeader() {
         }
     }
 
-    const catalogLinks = mockdata.map((item) => (<UnstyledButton className={classes.subLink} key={item.title}>
-        <Stack align="flex-start" spacing="xs" onClick={() => handlePageChange(item.title)}>
-            <Text size="sm" fw={500} pl={'xs'}>
-                {item.title}
-            </Text>
-            <Text size="xs" color="dimmed" pl={'xs'}>
-                {item.description}
-            </Text>
-        </Stack>
-    </UnstyledButton>));
+    const catalogLinks = firstGradeCategories.map((item) => (
+        <UnstyledButton className={classes.subLink} key={item.title}>
+            <Stack align="flex-start" spacing="xs" onClick={() => handlePageChange(item.name)}>
+                <Text size="sm" fw={500} pl={'xs'}>
+                    {item.name}
+                </Text>
+                <Text size="xs" color="dimmed" pl={'xs'}>
+                    {item.description}
+                </Text>
+            </Stack>
+        </UnstyledButton>));
 
     return (<Box className={classes.container}>
         <Header height={70} px="md" className={classes.header}>
@@ -200,9 +209,16 @@ export function MegaHeader() {
 
                         <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
 
-                            <SimpleGrid cols={2} spacing={0}>
-                                {catalogLinks}
-                            </SimpleGrid>
+
+                            {isLoading ? <><Loader/></>
+                                :
+                                <>
+                                    <SimpleGrid cols={2} spacing={0}>
+                                        {catalogLinks}
+                                    </SimpleGrid>
+                                </>
+                            }
+
 
                             <div className={classes.dropdownFooter}>
                                 <Group position="apart">
