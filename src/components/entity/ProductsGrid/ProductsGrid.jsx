@@ -1,4 +1,4 @@
-import {Grid, Loader, Pagination} from "@mantine/core";
+import {Grid, Loader, Pagination, SimpleGrid} from "@mantine/core";
 import Card from "@/components/entity/card/Card";
 import React from "react";
 import {useProducts} from "@/utils/hooks/useProducts";
@@ -22,13 +22,15 @@ export const ProductsGrid = () => {
 
     return (
         <>
-            <Grid gutter="sm">
+            <SimpleGrid cols={3}
+                        spacing="lg" breakpoints={[
+                {maxWidth: '68rem', cols: 2, spacing: 'md'},
+                {maxWidth: '48rem', cols: 1, spacing: 'sm'},
+            ]}>
                 {data?.data?.products.map((product) => (
-                    <Grid.Col key={product.id} span={4}>
-                        <Card {...product} href={`/products/${product.id}`}/>
-                    </Grid.Col>
+                    <Card key={product.id} {...product} href={`/products/${product.id}`}/>
                 ))}
-            </Grid>
+            </SimpleGrid>
             <ProductsPagination total={data?.data?.totalCount || 1}/>
         </>
     )

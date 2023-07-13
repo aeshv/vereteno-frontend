@@ -3,10 +3,11 @@ import {api} from ".";
 export const orderApi = {
 
     //order - получить все заказы пользователя
-    getAllOrders() {
+    getAllOrders(params) {
         return api({
             method: "GET",
             url: `/order/`,
+            params
         });
     },
 

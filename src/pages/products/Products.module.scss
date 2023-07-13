@@ -3,12 +3,23 @@
   justify-content: space-between;
   flex-wrap: nowrap;
   padding-bottom: 2rem;
+
+  @media screen and (max-width: 48rem) {
+    flex-direction: column;
+    padding: 0 0.7rem;
+  }
 }
 
 .filters {
   position: relative;
   max-width: 255px;
   margin-right: 16px;
+
+  @media screen and (max-width: 48rem) {
+    margin-right: 0;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
 }
 
 .store {

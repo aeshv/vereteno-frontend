@@ -20,7 +20,7 @@ import {
     Autocomplete,
     Loader,
     ActionIcon,
-    Flex,
+    Flex, Stack,
 } from '@mantine/core';
 
 import {useDisclosure} from '@mantine/hooks';
@@ -155,17 +155,30 @@ export function MegaHeader() {
     const {classes, theme} = useStyles();
     const isLoggedIn = useSelector((state) => !!state.auth.token);
 
-    const links = mockdata.map((item) => (<UnstyledButton className={classes.subLink} key={item.title}>
-        <Group noWrap align="flex-start">
-            <Link href="/">
-                <Text size="sm" fw={500}>
-                    {item.title}
-                </Text>
-                <Text size="xs" color="dimmed">
-                    {item.description}
-                </Text>
-            </Link>
-        </Group>
+    const router = useRouter()
+    const {query} = router
+
+
+    const handlePageChange = (route) => {
+        closeDrawer()
+        if (route) {
+            delete router.query.category
+            router.pathname = '/products'
+
+            router.query.category = route
+            router.push(router)
+        }
+    }
+
+    const catalogLinks = mockdata.map((item) => (<UnstyledButton className={classes.subLink} key={item.title}>
+        <Stack align="flex-start" spacing="xs" onClick={() => handlePageChange(item.title)}>
+            <Text size="sm" fw={500} pl={'xs'}>
+                {item.title}
+            </Text>
+            <Text size="xs" color="dimmed" pl={'xs'}>
+                {item.description}
+            </Text>
+        </Stack>
     </UnstyledButton>));
 
     return (<Box className={classes.container}>
@@ -188,7 +201,7 @@ export function MegaHeader() {
                         <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
 
                             <SimpleGrid cols={2} spacing={0}>
-                                {links}
+                                {catalogLinks}
                             </SimpleGrid>
 
                             <div className={classes.dropdownFooter}>
@@ -213,11 +226,14 @@ export function MegaHeader() {
                     <Search/>
                 </div>
                 <Group className={classes.hiddenMobile}>
-                    <Link href="/cart">
-                        <ActionIcon color="indigo" size="40px" radius="xl" variant="light">
-                            <IconShoppingCart size="20px"/>
-                        </ActionIcon>
-                    </Link>
+
+                    {isLoggedIn &&
+                        <Link href="/cart">
+                            <ActionIcon color="indigo" size="40px" radius="xl" variant="light">
+                                <IconShoppingCart size="20px"/>
+                            </ActionIcon>
+                        </Link>
+                    }
 
                     {isLoggedIn ? <Link href="/lk">
                         <ActionIcon color="indigo" size="40px" radius="xl" variant="light">
@@ -240,7 +256,7 @@ export function MegaHeader() {
             onClose={closeDrawer}
             size="100%"
             padding="md"
-            title="Navigation"
+            title="Веретено"
             className={classes.hiddenDesktop}
             zIndex={1000000}
         >
@@ -258,23 +274,35 @@ export function MegaHeader() {
                         <IconChevronDown size={16} color={theme.fn.primaryColor()}/>
                     </Center>
                 </UnstyledButton>
-                <Collapse in={linksOpened}>{links}</Collapse>
-                <Link href="/lk" className={classes.link}>
-                    Личный кабинет
-                </Link>
+                <Collapse in={linksOpened}>{catalogLinks}</Collapse>
                 <Link href="/about" className={classes.link}>
                     О Нас
+                </Link>
+                <Link href="/reviews" className={classes.link}>
+                    Отзывы
                 </Link>
 
                 <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 
-                <Group position="center" grow pb="xl" px="md">
-                    <Link href="/cart">
-                        <Button variant="default">Корзина</Button>
-                    </Link>
-                    <Link href="/auth">
-                        <Button>Войти</Button>
-                    </Link>
+                <Group position="center" grow px="md">
+                    {isLoggedIn &&
+                        <Center>
+                            <Link href="/cart">
+                                <Button variant="default">Корзина</Button>
+                            </Link>
+                        </Center>
+                    }
+
+
+                    {isLoggedIn ? <Link href="/lk">
+                        <Link href="/auth">
+                            <Button>Профиль</Button>
+                        </Link>
+                    </Link> : <Link href="/auth">
+                        <Link href="/auth">
+                            <Button>Войти</Button>
+                        </Link>
+                    </Link>}
                 </Group>
             </ScrollArea>
         </Drawer>

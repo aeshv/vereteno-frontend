@@ -3,6 +3,7 @@ import Image from "next/image";
 import noImage from '../../../../public/noimage.png'
 import {BackgroundImage, Box, Center, createStyles, Group, rem, Text} from "@mantine/core";
 import Link from "next/link";
+import {useRouter} from "next/router";
 
 const blurredBlockClasses = createStyles((theme) => ({
     box: {
@@ -12,6 +13,7 @@ const blurredBlockClasses = createStyles((theme) => ({
         padding: '18px',
         overflow: 'hidden',
         transition: 'all 0.2s ease-in-out',
+        cursor: 'pointer',
         '&:hover': {
             opacity: 0.9
         },
@@ -32,21 +34,34 @@ const blurredBlockClasses = createStyles((theme) => ({
 
 const BlurredBlock = ({title = 'Шляпы', link}) => {
     const {classes} = blurredBlockClasses();
+
+    const router = useRouter()
+    const {query} = router
+
+
+    const onCatalogChange = () => {
+        if (title) {
+            delete router.query.category
+            router.pathname = '/products'
+
+            router.query.category = title
+            router.push(router)
+        }
+    }
+
     return (<>
-        <Box mx="auto" className={classes.box}>
-            <Link href={link || '#'}>
-                <BackgroundImage
-                    src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80"
-                    radius="xs"
-                    className={classes.link}
-                >
-                    <Center p="md" className={classes.content}>
-                        <Text color="#fff">
-                            {title}
-                        </Text>
-                    </Center>
-                </BackgroundImage>
-            </Link>
+        <Box mx="auto" className={classes.box} onClick={(e) => onCatalogChange()}>
+            <BackgroundImage
+                src="https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80"
+                radius="xs"
+                className={classes.link}
+            >
+                <Center p="md" className={classes.content}>
+                    <Text color="#fff">
+                        {title}
+                    </Text>
+                </Center>
+            </BackgroundImage>
         </Box>
     </>)
 }
