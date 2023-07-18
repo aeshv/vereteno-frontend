@@ -44,12 +44,17 @@ export default function Home({products, categories}) {
             </SimpleGrid>
 
             {/*Categories block*/}
-            <Flex>
-                {categories?.slice(0, 4)?.map((category) => (
+            <SimpleGrid cols={4}
+                        spacing="lg" breakpoints={[
+                {maxWidth: '68rem', cols: 3, spacing: 'md'},
+                {maxWidth: '48rem', cols: 2, spacing: 'sm'},
+                {maxWidth: '36rem', cols: 1, spacing: 'sm'},
+            ]}>
+                {categories?.slice(0, 8)?.map((category) => (
                     <BlurredBlock title={category.name} key={category.id} link={category.name}/>
 
                 ))}
-            </Flex>
+            </SimpleGrid>
 
             <BuyingWith title={"Часто покупают"}/>
             <FaqWithBg/>

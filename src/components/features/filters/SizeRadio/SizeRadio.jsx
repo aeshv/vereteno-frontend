@@ -4,22 +4,9 @@ import React from "react";
 
 const useStyles = createStyles((theme) => ({
     root: {
-        position: 'relative',
+        minWidth: '100%',
     },
 
-    input: {
-        height: rem(54),
-        paddingTop: rem(18),
-    },
-
-    label: {
-        position: 'absolute',
-        pointerEvents: 'none',
-        fontSize: theme.fontSizes.xs,
-        paddingLeft: theme.spacing.sm,
-        paddingTop: `calc(${theme.spacing.sm} / 2)`,
-        zIndex: 1,
-    },
 }));
 
 export function SizeRadio() {
@@ -51,11 +38,9 @@ export function SizeRadio() {
         <Select
             value={value}
             onChange={onSelectedChange}
-            mt="md"
             withinPortal
             data={['XS', 'SM', 'MD', 'XL']}
             placeholder="Все размеры"
-            label="Размер"
             classNames={classes}
             clearable
         />

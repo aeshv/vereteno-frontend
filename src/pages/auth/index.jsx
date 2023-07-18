@@ -53,7 +53,16 @@ const RegisterPage = () => {
         try {
             dispatch(loginUser(data)).then((a) => {
                 handlers.close();
-                router.push('/')
+                if (a?.meta?.requestStatus === "rejected") {
+                    notifications.show({
+                        title: "Ошибка авторизации",
+                        message: 'Неверные данные для входа',
+                        color: 'red'
+                    });
+                } else {
+                    router.push('/');
+                }
+
             })
         } catch (error) {
             console.log(error);

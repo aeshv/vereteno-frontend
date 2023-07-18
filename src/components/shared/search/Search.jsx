@@ -58,7 +58,6 @@ const Search = () => {
     const {query} = router
     //Значение поиска
     const [searchValue, setSearchValue] = useDebouncedState(query.search || '', 0)
-    console.log('KKK', router)
     const onSearchChange = (e) => {
         if (e.length !== 0) {
             //Значение поиска
@@ -74,6 +73,11 @@ const Search = () => {
         }
     }
 
+    const handleSearchButton = () => {
+        router.pathname = '/products'
+        router.push(router)
+    }
+
     return (
         <div className={classes.container}>
             <div className={classes.searchinput}>
@@ -84,9 +88,10 @@ const Search = () => {
                     onChange={onSearchChange}
                     size="sm"
                     data={['шляпы', 'головные уборы', 'кепки', 'шапки', 'ушанки', 'шелковые штуки',]}
+                    
                 />
             </div>
-            <div className={classes.submit}>
+            <div className={classes.submit} onClick={handleSearchButton}>
                 <SlMagnifier color={"white"}/>
             </div>
         </div>

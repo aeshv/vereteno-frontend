@@ -141,16 +141,6 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-const mockdata = [{
-    icon: IconShirt, title: 'Большие', description: 'These hats are handmade from quality materials',
-}, {
-    icon: IconShirt, title: 'Женские', description: 'These caps are made with modern technology for a comfortable fit',
-}, {
-    icon: IconShirt, title: 'Мужские', description: 'These beanies are knitted with love and care',
-}, {
-    icon: IconShirt, title: 'Винтаж', description: 'These scarves are carefully made with vintage techniques',
-}, {icon: IconShirt, title: 'Детские', description: 'These bonnets are made with natural and organic materials',},];
-
 export function MegaHeader() {
     const [drawerOpened, {toggle: toggleDrawer, close: closeDrawer}] = useDisclosure(false);
     const [linksOpened, {toggle: toggleLinks}] = useDisclosure(false);
@@ -164,9 +154,8 @@ export function MegaHeader() {
 
     const {isLoading, isError, data, error, refetch} = getAvailableCategories
 
-    const firstGradeCategories = data?.data?.categories.filter((category) => category.level === 3) || []
+    const firstGradeCategories = data?.data?.categories.filter((category) => category.level === 1) || []
 
-    console.log(firstGradeCategories)
     const handlePageChange = (route) => {
         closeDrawer()
         if (route) {
@@ -209,7 +198,6 @@ export function MegaHeader() {
 
                         <HoverCard.Dropdown sx={{overflow: 'hidden'}}>
 
-
                             {isLoading ? <><Loader/></>
                                 :
                                 <>
@@ -218,7 +206,6 @@ export function MegaHeader() {
                                     </SimpleGrid>
                                 </>
                             }
-
 
                             <div className={classes.dropdownFooter}>
                                 <Group position="apart">

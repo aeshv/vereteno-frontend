@@ -10,6 +10,7 @@ import {
 import {useUncontrolled} from "@mantine/hooks";
 import {useRouter} from "next/router";
 import React, {useState} from "react";
+import {useSelectStyles} from "@/components/features/filters/MaterialSelect/MaterialSelect";
 
 
 const mockdata = [
@@ -22,7 +23,7 @@ export function ColorSelect() {
     const router = useRouter()
     const {query} = router
     const [value, setValue] = useState(query?.color || []);
-
+    const {classes} = useSelectStyles();
 
     const onColorChange = (e) => {
         if (e.length >= 1) {
@@ -41,10 +42,9 @@ export function ColorSelect() {
     };
 
     return (
-        <SimpleGrid cols={1}>
-            <MultiSelect value={value} onChange={onColorChange} data={mockdata} placeholder="Выберите цвет"
-                         searchable clearable
-                         nothingFound="Список пуст"/>
-        </SimpleGrid>
+        <MultiSelect classNames={classes} value={value} onChange={onColorChange} data={mockdata}
+                     placeholder="Выберите цвет"
+                     clearable
+                     nothingFound="Список пуст"/>
     );
 }
