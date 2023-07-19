@@ -10,6 +10,7 @@ import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 
 const SingleProduct = ({product}) => {
+    console.log(product)
 
     return (<ProductInfoContext.Provider value={product}>
             <Paper shadow="xl" radius="xl" p="xl">
@@ -39,20 +40,21 @@ export default SingleProduct;
 export async function getStaticPaths() {
 
     const {products} = await productApi.getProducts().then(({data}) => {
-        return {...data, products: data.products.slice(0, 20)}
+        return {...data, products: data.products}
     });
 
-    const paths = products.map((huy) => ({
-        params: {id: '' + huy.id, slug: huy.slug},
+    const paths = products.map((product) => ({
+        params: {id: '' + product.id, slug: product.slug},
     }))
 
-    return {paths, fallback: false}
+    return {paths, fallback: true}
 }
 
 export const getStaticProps = async ({params}) => {
     const product = await productApi.getProduct(params).then(({data}) => {
         return data
     });
+
 
     return {
         props: {
