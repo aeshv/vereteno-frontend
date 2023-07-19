@@ -69,12 +69,21 @@ const ProductBuyButtons = () => {
         setCurrentButtonStatus('В корзину')
     }
 
-    return (<div className={classes.buyContainer}>
-        <Button className={classes.button} loading={isLoading} leftIcon={<IconShoppingCart/>}
-                onClick={(e) => handlePlaceToCart(e)}>
-            {currentButtonStatus}
-        </Button>
-    </div>)
+    if (user) {
+
+        return (
+
+            <div className={classes.buyContainer}>
+                <Button className={classes.button} loading={isLoading} leftIcon={<IconShoppingCart/>}
+                        onClick={(e) => handlePlaceToCart(e)}>
+                    {currentButtonStatus}
+                </Button>
+            </div>
+
+        )
+    } else {
+        <></>
+    }
 }
 export default ProductBuyButtons
 

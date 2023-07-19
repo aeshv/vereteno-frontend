@@ -11,7 +11,7 @@ import {useEffect} from "react";
 
 const RegisterPage = () => {
     const [type, toggle] = useToggle(["Войти в свой аккаунт", "Зарегистрировать аккаунт",]);
-    const {user} = useSelector((state) => state.auth)
+
     const router = useRouter()
     const form = useForm({
         initialValues: {
@@ -25,11 +25,13 @@ const RegisterPage = () => {
         },
     });
 
+    // Проверка авторизации
+    const {user} = useSelector((state) => state.auth)
     useEffect(() => {
         if (user) {
             router.push('/')
         }
-    }, [user])
+    }, [router, user])
 
 
     const dispatch = useDispatch();
@@ -71,72 +73,76 @@ const RegisterPage = () => {
 
     };
 
-    return (<div style={{maxWidth: '650px', margin: '1rem auto'}}>
-        <Paper radius="md" p="xl" withBorder pos="relative">
-            <LoadingOverlay visible={visibleLoading} overlayBlur={2}/>
-            <Text size="lg" weight={500}>
-                {type}
-            </Text>
+    return (
+        <>
+            <div style={{maxWidth: '650px', margin: '1rem auto'}}>
+                <Paper radius="md" p="xl" withBorder pos="relative">
+                    <LoadingOverlay visible={visibleLoading} overlayBlur={2}/>
+                    <Text size="lg" weight={500}>
+                        {type}
+                    </Text>
 
-            <form onSubmit={form.onSubmit((fullFormData) => {
-                {
-                    type === "Зарегистрировать аккаунт" ? handleRegister(fullFormData) : handleLogin(fullFormData)
-                }
-            })}>
-                <Stack>
-                    {type === "Зарегистрировать аккаунт" && (<TextInput
-                        label="Логин"
-                        placeholder="Имя"
-                        value={form.values.login}
-                        onChange={(event) => form.setFieldValue("login", event.currentTarget.value)}
-                        radius="md"
-                    />)}
+                    <form onSubmit={form.onSubmit((fullFormData) => {
+                        {
+                            type === "Зарегистрировать аккаунт" ? handleRegister(fullFormData) : handleLogin(fullFormData)
+                        }
+                    })}>
+                        <Stack>
+                            {type === "Зарегистрировать аккаунт" && (<TextInput
+                                label="Логин"
+                                placeholder="Имя"
+                                value={form.values.login}
+                                onChange={(event) => form.setFieldValue("login", event.currentTarget.value)}
+                                radius="md"
+                            />)}
 
-                    <TextInput
-                        required
-                        label="Email"
-                        placeholder="hello@vereteno.ru"
-                        value={form.values.email}
-                        onChange={(event) => form.setFieldValue("email", event.currentTarget.value)}
-                        error={form.errors.email}
-                        radius="md"
-                    />
+                            <TextInput
+                                required
+                                label="Email"
+                                placeholder="hello@vereteno.ru"
+                                value={form.values.email}
+                                onChange={(event) => form.setFieldValue("email", event.currentTarget.value)}
+                                error={form.errors.email}
+                                radius="md"
+                            />
 
-                    <PasswordInput
-                        required
-                        label="Пароль"
-                        placeholder="Ваш пароль"
-                        value={form.values.password}
-                        onChange={(event) => form.setFieldValue("password", event.currentTarget.value)}
-                        error={form.errors.password}
-                        radius="md"
-                    />
+                            <PasswordInput
+                                required
+                                label="Пароль"
+                                placeholder="Ваш пароль"
+                                value={form.values.password}
+                                onChange={(event) => form.setFieldValue("password", event.currentTarget.value)}
+                                error={form.errors.password}
+                                radius="md"
+                            />
 
-                    {type === "Зарегистрировать аккаунт" && (<Checkbox
-                        label="Я согласен со всеми правилами"
-                        checked={form.values.terms}
-                        error={form.errors.terms}
-                        onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
-                    />)}
-                </Stack>
+                            {type === "Зарегистрировать аккаунт" && (<Checkbox
+                                label="Я согласен со всеми правилами"
+                                checked={form.values.terms}
+                                error={form.errors.terms}
+                                onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
+                            />)}
+                        </Stack>
 
-                <Group position="apart" mt="xl">
-                    <Anchor
-                        component="button"
-                        type="button"
-                        color="dimmed"
-                        onClick={() => toggle()}
-                        size="xs"
-                    >
-                        {type === "Зарегистрировать аккаунт" ? "Уже есть аккаунт? Войти" : "Нет аккаунта? Зарегистрироваться"}
-                    </Anchor>
-                    <Button type="submit" radius="xl">
-                        {upperFirst(type)}
-                    </Button>
-                </Group>
-            </form>
-        </Paper>
-    </div>);
+                        <Group position="apart" mt="xl">
+                            <Anchor
+                                component="button"
+                                type="button"
+                                color="dimmed"
+                                onClick={() => toggle()}
+                                size="xs"
+                            >
+                                {type === "Зарегистрировать аккаунт" ? "Уже есть аккаунт? Войти" : "Нет аккаунта? Зарегистрироваться"}
+                            </Anchor>
+                            <Button type="submit" radius="xl">
+                                {upperFirst(type)}
+                            </Button>
+                        </Group>
+                    </form>
+                </Paper>
+            </div>
+        </>
+    );
 };
 
 export default RegisterPage;

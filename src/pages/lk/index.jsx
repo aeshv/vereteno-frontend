@@ -4,9 +4,6 @@ import UserPageLayout from "@/components/Layouts/UserPageLayout";
 import {IconAt, IconMapPin, IconPhoneCall} from "@tabler/icons-react";
 import noimage from "../../../public/noimage.png";
 import {useSelector} from "react-redux";
-import User from "@/assets/icons/user";
-import {cartApi} from "@/api/cart";
-import {userApi} from "@/api/auth";
 
 const useStyles = createStyles((theme) => ({
     icon: {

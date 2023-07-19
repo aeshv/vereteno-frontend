@@ -12,8 +12,6 @@ const Index = () => {
 
     const {isLoading, isError, data, error, refetch} = getUserOrders
 
-    console.log(data)
-
     return (
         <>
             <ScrollArea>

@@ -7,12 +7,16 @@ import styles from "./SingleProduct.module.scss";
 import BuyingWith from "@/components/features/product/blocks/BuyingWith/BuyingWith";
 import {productApi} from "@/api";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
+import PageHead from "@/components/SEO/PageHead";
 
 
 const SingleProduct = ({product}) => {
     console.log(product)
 
-    return (<ProductInfoContext.Provider value={product}>
+    return (
+
+        <ProductInfoContext.Provider value={product}>
+            <PageHead title={product?.name || 'Загрузка'}/>
             <Paper shadow="xl" radius="xl" p="xl">
                 <div className={styles.container}>
                     <div className={styles.top}></div>

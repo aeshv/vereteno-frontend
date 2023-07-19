@@ -12,19 +12,12 @@ import {useEffect} from "react";
 import {getCategories, getProducts} from "@/redux/features/products/productsSlice";
 import axios, {productApi} from "@/api";
 import {categoryApi} from "@/api/category";
+import PageHead from "@/components/SEO/PageHead";
 
 
 export default function Home({products, categories}) {
     return (<>
-        <Head>
-            <title>Веретено, магазин головных уборов</title>
-            <meta
-                name="description"
-                content="Купить шапки, шляпы, восьмиклинки быстро и просто"
-            />
-            <meta name="viewport" content="width=device-width, initial-scale=1"/>
-            <link rel="icon" href="/favicon.ico"/>
-        </Head>
+        <PageHead title={'Главная'}/>
         <main
             style={{
                 display: "flex", flexDirection: "column", gap: "2rem", paddingBottom: "4rem",

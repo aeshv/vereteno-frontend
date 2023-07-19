@@ -6,7 +6,7 @@ import {
     Code,
     getStylesRef,
     rem,
-    Title,
+    Title, Tooltip,
 } from "@mantine/core";
 import {
     IconBellRinging,
@@ -78,6 +78,12 @@ const useStyles = createStyles((theme) => ({
                 ? theme.colors.dark[2]
                 : theme.colors.gray[6],
         marginRight: theme.spacing.sm,
+
+
+        [theme.fn.smallerThan('sm')]: {
+            marginRight: 0,
+        },
+
     },
 
     linkActive: {
@@ -92,6 +98,12 @@ const useStyles = createStyles((theme) => ({
                 color: theme.fn.variant({variant: "light", color: theme.primaryColor})
                     .color,
             },
+        },
+    },
+
+    hiddenMobile: {
+        [theme.fn.smallerThan('sm')]: {
+            display: 'none',
         },
     },
 }));
@@ -118,6 +130,7 @@ export function PersonalInfoExpanded() {
     const router = useRouter();
     const [active, setActive] = useState("Персональная информация");
     const links = data.map((item) => (
+
         <Link
             className={cx(classes.link, {
                 [classes.linkActive]: item.label === active,
@@ -129,15 +142,18 @@ export function PersonalInfoExpanded() {
                 setActive(item.label);
             }}
         >
-            <item.icon className={classes.linkIcon} stroke={1.5}/>
-            <span>{item.label}</span>
+            <Tooltip label={item.label}>
+                <item.icon className={classes.linkIcon} stroke={1.5}/>
+            </Tooltip>
+            <span className={classes.hiddenMobile}>{item.label}</span>
         </Link>
+
     ));
 
     return (
         <Navbar zIndex={300} height={700} width={{sm: 300}} p="md">
             <Navbar.Section grow>
-                <Group className={classes.header} position="apart">
+                <Group classNames={classes.header} position="apart">
                     <Title size={"x-large"}>Личный кабинет</Title>
                 </Group>
                 {links}
@@ -154,8 +170,10 @@ export function PersonalInfoExpanded() {
                         router.push('/')
                     }}
                 >
-                    <IconLogout className={classes.linkIcon} stroke={1.5}/>
-                    <span>Выйти</span>
+                    <Tooltip label={'Выйти'}>
+                        <IconLogout className={classes.linkIcon} stroke={1.5}/>
+                    </Tooltip>
+                    <span className={classes.hiddenMobile}>Выйти</span>
                 </a>
             </Navbar.Section>
         </Navbar>
