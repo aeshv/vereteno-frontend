@@ -48,13 +48,14 @@ export function QuantityInput({min = 1, max = 10, current, handleChange}) {
         handleChange(value)
         setValue(value)
     }
-    const onIncrement = (value) => {
-        // handleChange(value)
+    const onIncrement = () => {
+        handleChange(value + 1)
         setValue((prev) => prev + 1)
     }
-    const onDecrement = (value) => {
-        // handleChange(value)
+    const onDecrement = () => {
+        handleChange(value - 1)
         setValue((prev) => prev - 1)
+
     }
 
 
@@ -63,7 +64,7 @@ export function QuantityInput({min = 1, max = 10, current, handleChange}) {
             <ActionIcon
                 size={28}
                 variant={"transparent"}
-                onClick={() => onDecrement()}
+                onClick={(e) => onDecrement(e)}
                 disabled={value === min}
                 className={classes.control}
                 onMouseDown={(event) => event.preventDefault()}

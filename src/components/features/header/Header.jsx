@@ -20,6 +20,7 @@ const Header = () => {
                         <Link href="/reviews">Отзывы</Link>
                         <Link href="/lk">Личный кабинет</Link>
                         <Link href="/products">Продукты</Link>
+                        <Link href="/legal">Правовая информация</Link>
                     </ul>
                 </div>
 

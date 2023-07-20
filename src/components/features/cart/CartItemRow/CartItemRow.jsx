@@ -19,7 +19,6 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
 
     const cartContext = useContext(CartContext)
     const {refetchCartFunction} = cartContext
-
     const handleDeleteItemFromCart = () => {
         let id = item.id
         setIsDeleteLoading(true)
@@ -44,8 +43,7 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
 
     const handleChangeItemAmount = (amount) => {
         let id = item.id
-        console.log('CHANGING TO', id)
-        cartApi.updateItemById({id: id, ...{...item, amount: amount}})
+        cartApi.updateItemById({id: id, quantity: amount})
     }
 
 

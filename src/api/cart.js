@@ -22,11 +22,13 @@ export const cartApi = {
             data,
         });
     },
-    updateItemById({id, ...data}) {
+    updateItemById({id, ...rest}) {
         return api({
             method: "PATCH",
             url: `/cart-item/${id}/`,
-            data,
+            data: {
+                ...rest
+            },
         });
     },
 

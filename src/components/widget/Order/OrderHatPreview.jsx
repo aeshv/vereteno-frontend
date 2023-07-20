@@ -1,5 +1,6 @@
-import {createStyles, Image, Tooltip} from "@mantine/core";
+import {createStyles, Image, Skeleton, Tooltip} from "@mantine/core";
 import React from "react";
+import {returnNoImage} from "@/components/widget/Order/noImage";
 
 const useStyles = createStyles((theme) => ({
     container: {
@@ -21,14 +22,27 @@ const useStyles = createStyles((theme) => ({
 
     }
 }));
-export const OrderHatPreview = ({id, name, image_src}) => {
+
+
+//     {
+//         "id": 101,
+//         "product": {
+//             "id": 4,
+//             "name": "non",
+//             "description": "Deserunt et alias sit ad nostrum.",
+//             "images": []
+//         },
+
+export const OrderHatPreview = ({id, product}) => {
     const {classes} = useStyles();
 
 
     return (<>
-        <Tooltip label={name ? name : 'Товар'}>
+        <Tooltip label={product.name ? product.name : 'Товар'}>
             <div className={classes.container}>
-                {image_src && (<Image src={image_src}/>)}
+                {product.images.length ? <Image src={product.images?.[0]?.src} alt={product.name}/> :
+                    <Skeleton height={30}/>
+                }
             </div>
         </Tooltip>
     </>)

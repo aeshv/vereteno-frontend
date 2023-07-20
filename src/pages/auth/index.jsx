@@ -1,7 +1,7 @@
 import {useToggle, upperFirst, useDisclosure} from "@mantine/hooks";
 import {useForm} from "@mantine/form";
 import {
-    TextInput, PasswordInput, Text, Paper, Group, Button, Checkbox, Anchor, Stack, LoadingOverlay,
+    TextInput, PasswordInput, Text, Paper, Group, Button, Checkbox, Anchor, Stack, LoadingOverlay, createStyles,
 } from "@mantine/core";
 import {loginUser, registerUser} from "@/redux/features/auth/authSlice";
 import {useDispatch, useSelector} from "react-redux";
@@ -9,9 +9,21 @@ import {notifications} from '@mantine/notifications';
 import {useRouter} from "next/router";
 import {useEffect} from "react";
 
+
+const registerStyles = createStyles(() => ({
+    text: {
+        fontFamily: '"Jost"',
+        fontStyle: "normal",
+        fontWeight: 400,
+        fontSize: "14px",
+        lineHeight: "20px",
+        color: "#282739"
+    }
+}));
+
 const RegisterPage = () => {
     const [type, toggle] = useToggle(["Войти в свой аккаунт", "Зарегистрировать аккаунт",]);
-
+    const {classes} = registerStyles();
     const router = useRouter()
     const form = useForm({
         initialValues: {
@@ -116,12 +128,29 @@ const RegisterPage = () => {
                                 radius="md"
                             />
 
-                            {type === "Зарегистрировать аккаунт" && (<Checkbox
-                                label="Я согласен со всеми правилами"
-                                checked={form.values.terms}
-                                error={form.errors.terms}
-                                onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
-                            />)}
+                            {type === "Зарегистрировать аккаунт" && (
+                                <>
+                                    <Checkbox
+                                        label="Я согласен со всеми правилами"
+                                        checked={form.values.terms}
+                                        error={form.errors.terms}
+                                        onChange={(event) => form.setFieldValue("terms", event.currentTarget.checked)}
+                                    />
+                                    <Text className={classes.text}>
+                                        Номер телефона необходим исключительно для связи с покупателем в целях уточнения
+                                        и
+                                        подтверждения заказа. Адрес электронной почты необходим исключительно для
+                                        уведомлений о
+                                        стадиях выполнения заказа от оформления до получения покупателем.<br/><br/>
+
+                                        Интернет-магазин «Веретено», являющийся оператором персональных данных, согласно
+                                        федеральному закону РФ № 152-ФЗ использует персональные данные исключительно для
+                                        взаимодействия с покупателем и не передает персональные данные третьим лицам.
+                                    </Text>
+                                </>
+                            )}
+
+
                         </Stack>
 
                         <Group position="apart" mt="xl">

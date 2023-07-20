@@ -17,7 +17,23 @@ export function SizeRadio() {
     const {query} = router
     const [value, setValue] = React.useState(query.size ? query.size : null);
     console.log(value, query)
-
+    const sizes = [
+        '51',
+        '52',
+        '53',
+        '54',
+        '55',
+        '56',
+        '57',
+        '58',
+        '59',
+        '60',
+        '61',
+        '62',
+        '63',
+        '64',
+        '65',
+    ]
     const onSelectedChange = (e) => {
         if (e !== null) {
             //Значение поиска
@@ -39,7 +55,7 @@ export function SizeRadio() {
             value={value}
             onChange={onSelectedChange}
             withinPortal
-            data={['XS', 'SM', 'MD', 'XL']}
+            data={sizes}
             placeholder="Все размеры"
             classNames={classes}
             clearable
