@@ -1,11 +1,12 @@
 import Image from "next/image";
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import noimage from "../../../../public/noimage.png";
 import styles from "./SingleProduct.module.scss";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import {Carousel} from "@mantine/carousel";
 import {createStyles, getStylesRef, rem, useMantineTheme} from "@mantine/core";
-import {useMediaQuery} from "@mantine/hooks";
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
 
 
 const useStyles = createStyles((theme) => ({
@@ -52,12 +53,16 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const ProductImage = () => {
-    // NEXT_PUBLIC_IMAGE
     const ctx = useContext(ProductInfoContext)
     const {images} = ctx || []
     const {classes} = useStyles();
     const theme = useMantineTheme();
-    const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+
+    const toggleImageViewer = () => {
+        setOpen(true)
+    }
+    const [open, setOpen] = useState(false);
+
     return (
         <>
             <div className={styles.wrapper}>
@@ -70,7 +75,7 @@ const ProductImage = () => {
                                 indicator: classes.carouselIndicator,
                             }}>
                                 {images?.map((image, index) => (
-                                    <Carousel.Slide key={index}>
+                                    <Carousel.Slide key={index} onClick={() => toggleImageViewer()}>
                                         <div className={styles.image}>
                                             <Image
                                                 src={`${process.env.NEXT_PUBLIC_IMAGE}${image.path}`}
@@ -117,6 +122,11 @@ const ProductImage = () => {
 
                 </div>
             </div>
+            <Lightbox
+                open={open}
+                close={() => setOpen(false)}
+                slides={images?.map((item) => ({src: `${process.env.NEXT_PUBLIC_IMAGE}${item.path}`}))}
+            />
         </>
     );
 };

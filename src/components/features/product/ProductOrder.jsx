@@ -7,6 +7,7 @@ import {useClipboard} from "@mantine/hooks";
 import {useRouter} from "next/router";
 import LoginToBuyButton from "@/components/features/product/LoginToBuyButton";
 import {Skeleton} from "@mantine/core";
+import {VendorInfo} from "@/components/features/product/blocks/vendorInfo/VendorInfo";
 
 const ProductOrder = () => {
 
@@ -24,28 +25,44 @@ const ProductOrder = () => {
 
             </div>
             <div className={styles.shopinfo}>
-                {product?.quantity > 0 && (
-                    <div className={styles.shop__item}>
-                        <IconStack3 size="1.05rem" stroke={1.5}/>
-                        <span>В наличии ({product?.quantity} шт.)</span>
-                    </div>
-                )}
-                <div className={styles.shop__item}>
+
+
+                {/*Наличие*/}
+                {product?.quantity > 0 ? (
+                        <div className={styles.shop__item}>
+                            <IconStack3 size="1.05rem" stroke={1.5}/>
+                            <span>В наличии ({product?.quantity} шт.)</span>
+                        </div>
+                    ) :
+                    (
+                        <div className={styles.shop__item__disabled}>
+                            <IconStack3 size="1.05rem" stroke={1.5}/>
+                            <span>Нет в начличии</span>
+                        </div>
+                    )
+                }
+
+
+                {/*Кнопка Поделиться*/}
+                <div className={styles.shop__item__active}>
                     <IconShare size="1.05rem" stroke={1.5}/>
                     <span
                         onClick={() => clipboard.copy(window?.location?.href && '')}>{clipboard.copied ? 'Скопировано!' : 'Поделиться'}</span>
                 </div>
             </div>
+
+            <VendorInfo/>
+            {/*Цена*/}
             <div className={styles.price}>
 
                 {product?.price ? product?.discount === 1 ?
                         <>
-                            <span className={styles.current}>{product?.price} ₽</span>
+                            <span className={styles.current}>{product?.price} руб.</span>
                         </>
                         :
                         <>
-                            <span className={styles.old}>{product?.price * product?.discount} ₽</span>
-                            <span className={styles.current}>{product?.price} ₽</span>
+                            <span className={styles.old}>{product?.price * product?.discount} руб.</span>
+                            <span className={styles.current}>{product?.price} руб.</span>
                         </>
                     :
                     <Skeleton height={90} mt={2} radius="xl"/>}

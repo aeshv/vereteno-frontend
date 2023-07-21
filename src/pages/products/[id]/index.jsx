@@ -8,6 +8,7 @@ import BuyingWith from "@/components/features/product/blocks/BuyingWith/BuyingWi
 import {productApi} from "@/api";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import PageHead from "@/components/SEO/PageHead";
+import {ProductBreadcrumbs} from "@/components/features/product/ProductBreadcrumbs";
 
 
 const SingleProduct = ({product}) => {
@@ -19,7 +20,9 @@ const SingleProduct = ({product}) => {
             <PageHead title={product?.name || 'Загрузка'}/>
             <Paper shadow="xl" radius="xl" p="xl">
                 <div className={styles.container}>
-                    <div className={styles.top}></div>
+                    <div className={styles.top}>
+                        <ProductBreadcrumbs/>
+                    </div>
                     <div className={styles.body}>
                         <div className={styles.main}>
                             <ProductImage/>

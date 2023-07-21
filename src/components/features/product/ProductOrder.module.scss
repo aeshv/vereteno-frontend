@@ -61,7 +61,47 @@
   &:active {
     color: #42448a;
   }
+
+
+  &__active {
+    font-family: "Jost";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #282739;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+
+    &:hover {
+      color: #6f73ee;
+    }
+
+    &:active {
+      color: #42448a;
+    }
+
+  }
+
+  &__disabled {
+    font-family: "Jost";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    cursor: default;
+    color: #686a75;
+    pointer-events: none;
+  }
 }
+
 
 .price {
   display: flex;
