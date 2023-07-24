@@ -100,10 +100,13 @@ const Card = (props) => {
     return (<Link className={classes.card} href={props?.href}>
 
 
-        {props.images ? (
-                <div className={classes.gallery}>
-                    <CardGallery images={props.images}/>
-                </div>) :
+
+        {props?.vendorCodes?.[0]?.images
+          ?
+          (<div className={classes.gallery}>
+                    <CardGallery images={props?.vendorCodes?.[0]?.images}/>
+                </div>)
+          :
             (<div className={classes.gallery}>
                 <CardGallery images={noimageArray}/>
             </div>)
@@ -116,7 +119,7 @@ const Card = (props) => {
             {/*<div className={classes.row}>*/}
             {/*    <span className={classes.price}>{props?.description.slice(0, 35)}...</span>*/}
             {/*</div>*/}
-            {props?.vendor_codes?.map((item, index) => (
+            {props?.vendorCodes?.map((item, index) => (
 
                 <ColorDot key={index} color={item?.color?.hex}/>
             ))}
@@ -130,15 +133,15 @@ const Card = (props) => {
             {/*    </div>*/}
             {/*</>)}*/}
             <div className={classes.row}>
-                {props?.discount === 1 ?
+                {!props?.discount ?
                     <>
-                        <span className={classes.price}>{props?.vendor_codes?.[0]?.price} ₽</span>
+                        <span className={classes.current}>{props?.vendorCodes?.[0]?.price} ₽</span>
                     </>
                     :
                     <>
-                        <span className={classes.current}>{props?.vendor_codes?.[0]?.price} руб.</span>
+                        <span className={classes.current}>{props?.vendorCodes?.[0]?.price} руб.</span>
                         <span
-                            className={classes.old}>{props?.vendor_codes?.[0]?.price * props?.vendor_codes?.[0]?.discount} руб.</span>
+                            className={classes.old}>{props?.vendorCodes?.[0]?.price * props?.vendorCodes?.[0]?.discount} руб.</span>
                     </>
                 }
             </div>

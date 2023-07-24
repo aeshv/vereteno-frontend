@@ -19,7 +19,6 @@ export const registerUser2 = createAsyncThunk('auth/register', async ({login, pa
         notifications.show({title: "Попытка", message: 'зарегаться', color: 'green'});
         return result
     } catch (e) {
-        console.log('2zyzz@zzzz.z2', e)
         notifications.show({title: "Ошибка при регистрации", message: e, color: 'red'});
     }
 });

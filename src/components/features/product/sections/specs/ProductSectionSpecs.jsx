@@ -5,8 +5,8 @@ import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 const ProductSectionSpecs = () => {
     const {product, vendorIndex} = useContext(ProductInfoContext)
-    const productInfo = product?.vendor_codes?.[vendorIndex.currentVendorIndex]
-    console.log(product)
+    const productInfo = product?.vendorCodes?.[vendorIndex.currentVendorIndex]
+
     return (
         <div className={styles.container}>
             {productInfo?.attributes?.map((spec, index) => (

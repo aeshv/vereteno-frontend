@@ -34,7 +34,7 @@ const SingleProduct = ({product}) => {
                             <ProductOrder/>
                         </div>
                         <div className={styles.additional}>
-                            {product?.vendor_codes?.length > 1 &&
+                            {product?.vendorCodes?.length > 1 &&
                                 <ProductVendorVariations/>
                             }
                             <ProductInfo/>

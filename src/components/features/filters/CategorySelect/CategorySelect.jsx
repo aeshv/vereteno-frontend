@@ -32,11 +32,12 @@ export function CategorySelect() {
     }))
     const onCategoryChange = (e) => {
         let selectValue = Array.isArray(e) ? e : [e]
-
+        console.log(`Стандартное значение ${e}, После трансформации - ${selectValue}`, e, selectValue)
         if (selectValue.length >= 1) {
             //Значение цвета
             setValue(selectValue)
             router.query.categories = selectValue
+            console.log(`Стандартное значение ${e}, После трансформации - ${selectValue}`, e, selectValue, router.query.categories)
             router.push(router)
         } else {
             setValue([])
@@ -47,7 +48,7 @@ export function CategorySelect() {
         }
 
     };
-    console.log('CATEGORY DO', data, 'AFTER:', categoriesToSelectArray)
+
     if (isLoading) {
         return (
             <Loader/>

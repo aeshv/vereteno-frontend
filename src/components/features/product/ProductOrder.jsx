@@ -15,9 +15,9 @@ const ProductOrder = () => {
     const {product, vendorIndex} = ctx
     const clipboard = useClipboard({timeout: 1400});
 
-    const productInfo = product?.vendor_codes?.[vendorIndex.currentVendorIndex]
+    const productInfo = product?.vendorCodes?.[vendorIndex.currentVendorIndex]
 
-    console.log(productInfo)
+
 
     return (<>
         <div className={styles.container}>

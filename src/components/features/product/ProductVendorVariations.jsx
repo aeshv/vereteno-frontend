@@ -40,11 +40,9 @@ const ProductVendorVariations = () => {
     const ctx = useContext(ProductInfoContext)
     const {product, vendorIndex} = ctx
 
-    const {vendor_codes} = product
+    const {vendorCodes} = product
     const {currentVendorIndex, setCurrentVendorIndex} = vendorIndex
 
-
-    console.log(vendor_codes)
 
 
     return (
@@ -52,7 +50,7 @@ const ProductVendorVariations = () => {
             <h3 className={classes.title}>Другие вариации</h3>
             <Center>
                 <Flex gap={'xs'}>
-                    {vendor_codes?.map((vendor, index) => (
+                    {vendorCodes?.map((vendor, index) => (
                         <>
                             <VendorCard handleChangeVendor={() => setCurrentVendorIndex(index)}
                                         material={vendor?.material}

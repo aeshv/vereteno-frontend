@@ -18,7 +18,7 @@ const CardGallery = ({images}) => {
                                 style={{display: activeSlide === index ? "block" : "none"}}
                             >
                                 <Image
-                                    src={process.env.NEXT_PUBLIC_IMAGE + item?.src}
+                                    src={process.env.NEXT_PUBLIC_IMAGE + item?.path}
                                     alt="Изображение"
                                     fill
                                     style={{

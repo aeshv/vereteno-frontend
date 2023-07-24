@@ -10,7 +10,6 @@ const PageLayout = ({ children }) => {
   const token = getCookie("token")
 
   useEffect(() => {
-    console.log('isToken from PageLayout', isToken, token, token && !isToken)
     if (token && !isToken) dispatch(getMe());
   }, [dispatch, isToken, token]);
 

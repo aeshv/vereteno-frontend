@@ -33,7 +33,7 @@ export function ColorSelect() {
     const {isLoading, isError, data, error, refetch} = getColors
 
     const colorsToSelectArray = data?.data?.map((item) => ({...item, label: item.name, value: item.id}))
-    console.log('colorsToSelectArray', colorsToSelectArray)
+
     const onColorChange = (e) => {
         let selectValue = Array.isArray(e) ? e : [e]
         if (selectValue.length >= 1) {

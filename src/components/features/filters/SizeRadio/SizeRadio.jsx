@@ -40,7 +40,7 @@ export function SizeRadio() {
     const getSizes = useFiltersSizes();
 
     const {isLoading, isError, data, error} = getSizes
-    console.log(data)
+
     const sizesToSelectArray = data?.data?.map((item) => ({...item, label: item.number, value: item.id}))
     const onSelectedChange = (e) => {
         if (e !== null) {

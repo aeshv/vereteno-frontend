@@ -27,6 +27,7 @@ export function AttributesSelect() {
 
     const {isLoading, isError, data, error} = getAttributes
     const AttributesToSelectArray = data?.data?.map((item) => ({...item, label: item.name, value: item.id}))
+
     const onAttributesChange = (e) => {
         let selectValue = Array.isArray(e) ? e : [e]
 
@@ -34,7 +35,6 @@ export function AttributesSelect() {
             //Значение цвета
             setValue(selectValue)
             router.query.attributes = selectValue
-            console.log('router.query.attributes', router.query.attributes)
             router.push(router)
         } else {
             setValue([])

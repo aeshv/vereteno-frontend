@@ -28,10 +28,10 @@ const VendorStyles = createStyles((theme) => ({
 export const VendorInfo = () => {
     const ctx = useContext(ProductInfoContext)
     const {classes} = VendorStyles();
-    const {vendor_codes} = ctx.product || []
-    console.log('vendor_codes vendor', vendor_codes, ctx)
-    const {color, material, size} = vendor_codes?.[ctx.vendorIndex.currentVendorIndex] || []
-    console.log('color', color, 'material', material, 'size', size)
+    const {vendorCodes} = ctx.product || []
+
+    const {color, material, size} = vendorCodes?.[ctx.vendorIndex.currentVendorIndex] || []
+
 
     return (
         <>

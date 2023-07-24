@@ -13,7 +13,7 @@ const PriceRange = () => {
     const {query} = router
 
     const onPriceChange = () => {
-        console.log(debounced)
+
         if (debounced === [0, 25000]) {
             delete router.query.price
             router.push(router)
@@ -28,7 +28,7 @@ const PriceRange = () => {
     useEffect(() => {
         onPriceChange()
     }, [debounced])
-    console.log('debounced', debounced)
+
 
     return (
         <div className={styles.container}>
