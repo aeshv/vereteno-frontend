@@ -5,14 +5,15 @@ import {
     Image,
     SimpleGrid,
     createStyles,
-    rem, MultiSelect, Loader,
+    rem, MultiSelect, Loader, Group,
 } from "@mantine/core";
 import {useUncontrolled} from "@mantine/hooks";
 import {useRouter} from "next/router";
-import React, {useState} from "react";
+import React, {forwardRef, useState} from "react";
 import {useSelectStyles} from "@/components/features/filters/MaterialSelect/MaterialSelect";
 import {useCategories} from "@/utils/hooks/useCategories";
 import {useFiltersColors} from "@/utils/hooks/filtersApiHooks/useFiltersColors";
+import ColorDot from "@/components/shared/ColorDot/ColorDot";
 
 
 const mockdata = [
@@ -32,14 +33,13 @@ export function ColorSelect() {
     const {isLoading, isError, data, error, refetch} = getColors
 
     const colorsToSelectArray = data?.data?.map((item) => ({...item, label: item.name, value: item.id}))
+    console.log('colorsToSelectArray', colorsToSelectArray)
     const onColorChange = (e) => {
         let selectValue = Array.isArray(e) ? e : [e]
-        console.log('COLOLORLORLORLROLRORL', e, selectValue)
         if (selectValue.length >= 1) {
             //Значение цвета
             setValue(selectValue)
             router.query.colors = selectValue
-            console.log('router.query.colors', router.query.colors)
             router.push(router)
         } else {
             setValue([])
@@ -61,6 +61,27 @@ export function ColorSelect() {
         <MultiSelect classNames={classes} value={value} onChange={onColorChange} data={colorsToSelectArray}
                      placeholder="Выберите цвет"
                      clearable
-                     nothingFound="Список пуст"/>
+                     nothingFound="Список пуст"
+                     itemComponent={SelectItem}
+        />
     );
 }
+
+
+// eslint-disable-next-line react/display-name
+const SelectItem = forwardRef(
+    ({hex, label, ...others}, ref) => (
+        <div ref={ref} {...others}>
+            <Group noWrap>
+                <ColorDot color={hex}/>
+                <div>
+                    <Text size="sm">{label}</Text>
+                    {/*<Text size="xs" opacity={0.65}>*/}
+                    {/*    {description}*/}
+                    {/*</Text>*/}
+                </div>
+            </Group>
+        </div>
+    )
+);
+

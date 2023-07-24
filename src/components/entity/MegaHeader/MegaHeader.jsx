@@ -153,7 +153,7 @@ export function MegaHeader() {
     const getAvailableCategories = useCategories();
 
     const {isLoading, isError, data, error, refetch} = getAvailableCategories
-
+    console.log(data)
     const firstGradeCategories = data?.data?.categories.filter((category) => category.level === 1) || []
 
     const handlePageChange = (route) => {

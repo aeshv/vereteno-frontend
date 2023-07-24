@@ -20,6 +20,10 @@ export const ProductsGrid = () => {
         return <span>Ошибка: {error.message}</span>;
     }
 
+    if (data?.data?.products?.length <= 0) {
+        return <span>Ничего не найдено</span>;
+    }
+
     return (
         <>
             <SimpleGrid cols={3}
@@ -27,7 +31,8 @@ export const ProductsGrid = () => {
                 {maxWidth: '68rem', cols: 2, spacing: 'md'},
                 {maxWidth: '48rem', cols: 1, spacing: 'sm'},
             ]}>
-                {data?.data?.products.map((product) => (
+
+                {data?.data?.products?.map((product) => (
                     <Card key={product.id} {...product} href={`/products/${product.id}`}/>
                 ))}
             </SimpleGrid>

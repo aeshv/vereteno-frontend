@@ -8,6 +8,7 @@ import {ColorSelect} from "@/components/features/filters/ColorSelect/ColorSelect
 import {MaterialSelect} from "@/components/features/filters/MaterialSelect/MaterialSelect";
 import {SizeRadio} from "@/components/features/filters/SizeRadio/SizeRadio";
 import {AttributesSelect} from "@/components/features/filters/AttributesSelect/AttributesSelect";
+import {CategorySelect} from "@/components/features/filters/CategorySelect/CategorySelect";
 
 const HatFilter = ({onSubmit}) => (
     <div className={styles.container}>
@@ -23,6 +24,10 @@ const HatFilter = ({onSubmit}) => (
             <div className={styles.block}>
                 <h2 className={styles.block__title}>Цена</h2>
                 <PriceRange/>
+            </div>
+            <div className={styles.block}>
+                <h2 className={styles.block__title}>Категории</h2>
+                <CategorySelect/>
             </div>
             <div className={styles.block}>
                 <h2 className={styles.block__title}>Цвет</h2>
