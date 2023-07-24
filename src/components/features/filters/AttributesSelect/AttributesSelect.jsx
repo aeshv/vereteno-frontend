@@ -13,38 +13,33 @@ import React, {useState} from "react";
 import {useSelectStyles} from "@/components/features/filters/MaterialSelect/MaterialSelect";
 import {useCategories} from "@/utils/hooks/useCategories";
 import {useFiltersColors} from "@/utils/hooks/filtersApiHooks/useFiltersColors";
+import {useFiltersAttributes} from "@/utils/hooks/filtersApiHooks/useFiltersAttributes";
 
 
-const mockdata = [
-    {label: "Красный", color: "#dddd", value: 'cc-33'},
-    {label: "Бирюзовый", color: "#00cacc", value: 'cc-55'},
-];
-
-export function ColorSelect() {
+export function AttributesSelect() {
 
     const router = useRouter()
     const {query} = router
     const [value, setValue] = useState([]);
     const {classes} = useSelectStyles();
 
-    const getColors = useFiltersColors();
+    const getAttributes = useFiltersAttributes();
 
-    const {isLoading, isError, data, error, refetch} = getColors
-
-    const colorsToSelectArray = data?.data?.map((item) => ({...item, label: item.name, value: item.id}))
-    const onColorChange = (e) => {
+    const {isLoading, isError, data, error} = getAttributes
+    const AttributesToSelectArray = data?.data?.map((item) => ({...item, label: item.name, value: item.id}))
+    const onAttributesChange = (e) => {
         let selectValue = Array.isArray(e) ? e : [e]
-        console.log('COLOLORLORLORLROLRORL', e, selectValue)
+
         if (selectValue.length >= 1) {
             //Значение цвета
             setValue(selectValue)
-            router.query.colors = selectValue
-            console.log('router.query.colors', router.query.colors)
+            router.query.attributes = selectValue
+            console.log('router.query.attributes', router.query.attributes)
             router.push(router)
         } else {
             setValue([])
-            if (router.query.colors) {
-                delete router.query.colors
+            if (router.query.attributes) {
+                delete router.query.attributes
                 router.push(router)
             }
         }
@@ -58,8 +53,8 @@ export function ColorSelect() {
     }
 
     return (
-        <MultiSelect classNames={classes} value={value} onChange={onColorChange} data={colorsToSelectArray}
-                     placeholder="Выберите цвет"
+        <MultiSelect classNames={classes} value={value} onChange={onAttributesChange} data={AttributesToSelectArray}
+                     placeholder="Особенности"
                      clearable
                      nothingFound="Список пуст"/>
     );

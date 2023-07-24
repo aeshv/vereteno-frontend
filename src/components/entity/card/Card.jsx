@@ -96,7 +96,9 @@ const Card = (props) => {
 
     const noimageArray = [{src: noimage}]
     const {classes} = CardStyles(undefined, undefined);
+
     return (<Link className={classes.card} href={props?.href}>
+
 
         {props.images ? (
                 <div className={classes.gallery}>
@@ -114,7 +116,10 @@ const Card = (props) => {
             {/*<div className={classes.row}>*/}
             {/*    <span className={classes.price}>{props?.description.slice(0, 35)}...</span>*/}
             {/*</div>*/}
-            <ColorDot color={props?.vendor_code?.color?.hex}/>
+            {props?.vendor_codes?.map((item, index) => (
+
+                <ColorDot key={index} color={item?.color?.hex}/>
+            ))}
             {/*{props?.colors?.length && (<>*/}
             {/*    <div className={classes.row}>*/}
             {/*  <span className={classes.colors}>*/}
@@ -127,12 +132,13 @@ const Card = (props) => {
             <div className={classes.row}>
                 {props?.discount === 1 ?
                     <>
-                        <span className={classes.price}>{props?.price} ₽</span>
+                        <span className={classes.price}>{props?.vendor_codes?.[0]?.price} ₽</span>
                     </>
                     :
                     <>
-                        <span className={classes.current}>{props?.price} руб.</span>
-                        <span className={classes.old}>{props?.price * props?.discount} руб.</span>
+                        <span className={classes.current}>{props?.vendor_codes?.[0]?.price} руб.</span>
+                        <span
+                            className={classes.old}>{props?.vendor_codes?.[0]?.price * props?.vendor_codes?.[0]?.discount} руб.</span>
                     </>
                 }
             </div>

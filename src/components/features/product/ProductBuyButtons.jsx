@@ -28,8 +28,11 @@ const CatalogButtonStyles = createStyles(() => ({
 
 const ProductBuyButtons = () => {
 
-    const productInfo = useContext(ProductInfoContext)
+    const {product, vendorIndex} = useContext(ProductInfoContext)
     const {user} = useSelector((state) => state.auth)
+
+    //id выбранного пользователем вендоркода (вариации товара)
+    const currentVendorCodeId = product?.vendor_codes?.[vendorIndex.currentVendorIndex]?.id
 
     const {classes} = CatalogButtonStyles();
 
@@ -40,7 +43,7 @@ const ProductBuyButtons = () => {
     const handlePlaceToCart = () => {
         setIsLoading((prevState) => !prevState)
         console.log(user)
-        cartApi.updateCartById({id: productInfo.id}).then((response) => {
+        cartApi.updateCartById({productId: product.id, vendorCodeId: currentVendorCodeId}).then((response) => {
             switch (response && response.statusText) {
                 case 'Created':
                     handleSuccessAddToCard();

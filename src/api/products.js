@@ -50,4 +50,31 @@ export const productApi = {
         });
     },
 
+
+    //Sorting
+    getSortingAttributes() {
+        return api({
+            method: "GET",
+            url: `/product/list/attributes/`,
+        });
+    },
+    getSortingColors() {
+        return api({
+            method: "GET",
+            url: `/product/list/colors/`,
+        });
+    },
+    getSortingMaterials() {
+        return api({
+            method: "GET",
+            url: `/product/list/materials/`,
+        });
+    },
+    getSortingSizes() {
+        return api({
+            method: "GET",
+            url: `/product/list/sizes/`,
+        });
+    },
+
 };

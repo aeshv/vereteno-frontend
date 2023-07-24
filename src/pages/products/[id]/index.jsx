@@ -2,21 +2,26 @@ import ProductImage from "@/components/features/product/ProductImage";
 import ProductInfo from "@/components/features/product/ProductInfo";
 import ProductOrder from "@/components/features/product/ProductOrder";
 import {Paper} from "@mantine/core";
-import React, {createContext, useEffect} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import styles from "./SingleProduct.module.scss";
 import BuyingWith from "@/components/features/product/blocks/BuyingWith/BuyingWith";
 import {productApi} from "@/api";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import PageHead from "@/components/SEO/PageHead";
 import {ProductBreadcrumbs} from "@/components/features/product/ProductBreadcrumbs";
+import ProductVendorVariations from "@/components/features/product/ProductVendorVariations";
 
 
 const SingleProduct = ({product}) => {
-    console.log(product)
+    console.log('ВСЯ ИНФА О ПРОДУКТЕ:', product)
+
+    const [currentVendorIndex, setCurrentVendorIndex] = useState(0);
+
+    const vendorIndex = {currentVendorIndex, setCurrentVendorIndex}
 
     return (
 
-        <ProductInfoContext.Provider value={product}>
+        <ProductInfoContext.Provider value={{product: {...product}, vendorIndex}}>
             <PageHead title={product?.name || 'Загрузка'}/>
             <Paper shadow="xl" radius="xl" p="xl">
                 <div className={styles.container}>
@@ -29,6 +34,9 @@ const SingleProduct = ({product}) => {
                             <ProductOrder/>
                         </div>
                         <div className={styles.additional}>
+                            {product?.vendor_codes?.length > 1 &&
+                                <ProductVendorVariations/>
+                            }
                             <ProductInfo/>
                             <BuyingWith title={"С этим товаром покупают"}/>
                             <BuyingWith title={"Похожие товары"}/>

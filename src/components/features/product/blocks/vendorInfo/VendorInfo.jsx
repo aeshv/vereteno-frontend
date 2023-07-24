@@ -26,11 +26,12 @@ const VendorStyles = createStyles((theme) => ({
 }));
 
 export const VendorInfo = () => {
-    const product = useContext(ProductInfoContext)
+    const ctx = useContext(ProductInfoContext)
     const {classes} = VendorStyles();
-    const {vendor_code} = product || []
-    const {color, material, size} = vendor_code || []
-    console.log(color, material, size)
+    const {vendor_codes} = ctx.product || []
+    console.log('vendor_codes vendor', vendor_codes, ctx)
+    const {color, material, size} = vendor_codes?.[ctx.vendorIndex.currentVendorIndex] || []
+    console.log('color', color, 'material', material, 'size', size)
 
     return (
         <>
@@ -49,7 +50,7 @@ export const VendorInfo = () => {
                     <Box>
                         <Title className={classes.title} size={'xs'} color="dimmed" weight={400}>Материал</Title>
                         <Flex align={'center'} gap={'xs'}>
-                            <Text className={classes.text} size={'md'}>{material?.name}</Text>
+                            <Text className={classes.text} size={'md'}>{material}</Text>
                         </Flex>
                     </Box>
 
@@ -57,7 +58,7 @@ export const VendorInfo = () => {
                     <Box>
                         <Title className={classes.title} size={'xs'} color="dimmed" weight={400}>Размер</Title>
                         <Flex align={'center'} gap={'xs'}>
-                            <Text className={classes.text} size={'md'}>{size?.number}</Text>
+                            <Text className={classes.text} size={'md'}>{size}</Text>
                         </Flex>
                     </Box>
                 </Stack>

@@ -11,8 +11,13 @@ import {VendorInfo} from "@/components/features/product/blocks/vendorInfo/Vendor
 
 const ProductOrder = () => {
 
-    const product = useContext(ProductInfoContext)
+    const ctx = useContext(ProductInfoContext)
+    const {product, vendorIndex} = ctx
     const clipboard = useClipboard({timeout: 1400});
+
+    const productInfo = product?.vendor_codes?.[vendorIndex.currentVendorIndex]
+
+    console.log(productInfo)
 
     return (<>
         <div className={styles.container}>
@@ -20,7 +25,9 @@ const ProductOrder = () => {
                 <Skeleton height={30} width={100} radius="xl"/>}
 
             <div className={styles.backinfo}>
-                {product?.vendor_code?.code ? <div className={styles.tag}>Артикул: {product?.vendor_code?.code}</div> :
+                {productInfo?.code ?
+                    <div
+                        className={styles.tag}>Артикул: {productInfo?.code}</div> :
                     <Skeleton height={15} width={60} mt={2} radius="xl"/>}
 
             </div>
@@ -28,16 +35,16 @@ const ProductOrder = () => {
 
 
                 {/*Наличие*/}
-                {product?.quantity > 0 ? (
+                {productInfo?.quantity > 0 ? (
                         <div className={styles.shop__item}>
                             <IconStack3 size="1.05rem" stroke={1.5}/>
-                            <span>В наличии ({product?.quantity} шт.)</span>
+                            <span>В наличии ({productInfo?.quantity} шт.)</span>
                         </div>
                     ) :
                     (
                         <div className={styles.shop__item__disabled}>
                             <IconStack3 size="1.05rem" stroke={1.5}/>
-                            <span>Нет в начличии</span>
+                            <span>Нет в наличии</span>
                         </div>
                     )
                 }
@@ -55,14 +62,14 @@ const ProductOrder = () => {
             {/*Цена*/}
             <div className={styles.price}>
 
-                {product?.price ? product?.discount === 1 ?
+                {productInfo?.price ? productInfo?.discount === 1 ?
                         <>
-                            <span className={styles.current}>{product?.price} руб.</span>
+                            <span className={styles.current}>{productInfo?.price} руб.</span>
                         </>
                         :
                         <>
-                            <span className={styles.old}>{product?.price * product?.discount} руб.</span>
-                            <span className={styles.current}>{product?.price} руб.</span>
+                            <span className={styles.old}>{productInfo?.price * productInfo?.discount} руб.</span>
+                            <span className={styles.current}>{productInfo?.price} руб.</span>
                         </>
                     :
                     <Skeleton height={90} mt={2} radius="xl"/>}

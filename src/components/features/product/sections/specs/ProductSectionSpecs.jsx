@@ -4,10 +4,12 @@ import styles from "./sectionSpecs.module.scss";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 const ProductSectionSpecs = () => {
-    const {attributes} = useContext(ProductInfoContext)
+    const {product, vendorIndex} = useContext(ProductInfoContext)
+    const productInfo = product?.vendor_codes?.[vendorIndex.currentVendorIndex]
+    console.log(product)
     return (
         <div className={styles.container}>
-            {attributes.map((spec, index) => (
+            {productInfo?.attributes?.map((spec, index) => (
                 <SpecRow key={index} {...spec} />
             ))}
         </div>

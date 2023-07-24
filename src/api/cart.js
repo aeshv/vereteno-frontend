@@ -8,11 +8,13 @@ export const cartApi = {
             params,
         });
     },
-    updateCartById({id, ...data}) {
+    updateCartById({productId, vendorCodeId, ...data}) {
         return api({
             method: "POST",
-            url: `/cart-item/${id}/`,
-            data,
+            url: `/cart-item/`,
+            data: {
+                productId, vendorCodeId, ...data
+            }
         });
     },
     removeItemCartById({id, ...data}) {

@@ -33,9 +33,8 @@ const BreadcrumbsStyles = createStyles((theme) => ({
 
 
 export const ProductBreadcrumbs = () => {
-    const product = useContext(ProductInfoContext)
+    const {product} = useContext(ProductInfoContext)
     const {classes} = BreadcrumbsStyles();
-    console.log(product)
 
     const links = [
         {title: 'Главная', href: '/'},

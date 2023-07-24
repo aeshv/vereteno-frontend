@@ -7,6 +7,7 @@ import {GenderRadio} from "@/components/features/filters/GenderRadio/GenderRadio
 import {ColorSelect} from "@/components/features/filters/ColorSelect/ColorSelect";
 import {MaterialSelect} from "@/components/features/filters/MaterialSelect/MaterialSelect";
 import {SizeRadio} from "@/components/features/filters/SizeRadio/SizeRadio";
+import {AttributesSelect} from "@/components/features/filters/AttributesSelect/AttributesSelect";
 
 const HatFilter = ({onSubmit}) => (
     <div className={styles.container}>
@@ -34,6 +35,10 @@ const HatFilter = ({onSubmit}) => (
             <div className={styles.block}>
                 <h2 className={styles.block__title}>Размеры</h2>
                 <SizeRadio/>
+            </div>
+            <div className={styles.block}>
+                <h2 className={styles.block__title}>Аттрибуты</h2>
+                <AttributesSelect/>
             </div>
             {/*<button type="submit" className={styles.submit}>*/}
             {/*    Применить*/}

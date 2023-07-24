@@ -53,8 +53,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const ProductImage = () => {
-    const ctx = useContext(ProductInfoContext)
-    const {images} = ctx || []
+    const {product, vendorIndex} = useContext(ProductInfoContext)
+    const {images} = product?.vendor_codes?.[vendorIndex.currentVendorIndex] || []
     const {classes} = useStyles();
     const theme = useMantineTheme();
 
@@ -69,7 +69,8 @@ const ProductImage = () => {
                 <div className={styles.container}>
 
                     {images?.length ? <>
-                            <Carousel withIndicators align="center" classNames={{
+                            <Carousel withIndicators align="center" draggable={images?.length > 1}
+                                      withControls={images?.length > 1} classNames={{
                                 root: classes.carousel,
                                 controls: classes.carouselControls,
                                 indicator: classes.carouselIndicator,
