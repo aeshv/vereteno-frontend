@@ -1,6 +1,5 @@
-import {Checkbox, Text} from "@mantine/core";
+import {Checkbox, Stack} from "@mantine/core";
 import {useMemo, useState} from "react";
-import {useListState} from "@mantine/hooks";
 
 
 // {
@@ -26,54 +25,39 @@ import {useListState} from "@mantine/hooks";
 export const AttributeItem = (props) => {
     const [checkboxGroupValue, setCheckboxGroupValue] = useState([]);
 
-    const initialValues = () => {
-
-        let result = props?.values?.map((item) => {
-
-            return (
-                {label: item.value, checked: false, value: item.attributeValueId, key: item.attributeValueId}
-            )
-        })
-
-        console.log('RESULT', result)
-
-        return result
+    const handleChange = (e) => {
+        props?.onChange(e, props?.name)
+        setCheckboxGroupValue(e)
     }
 
-    const [values, handlers] = useListState(initialValues);
-
-    console.log(values)
-
-    const items = values.map((value, index) => (
-        <Checkbox
-            mt="xs"
-            ml={33}
-            label={value.label}
-            key={value.key}
-            checked={value.checked}
-            onChange={(event) => handlers.setItemProp(index, 'checked', event.currentTarget.checked)}
-        />
-    ));
+    const initialValues = useMemo(() => {
+        return props?.values?.map((item) => {
+            return (
+                {label: item.value, value: '' + item.attributeValueId, key: item.attributeValueId}
+            )
+        })
+    }, [props?.values])
 
     return (
         <>
-            <Text>☻{props?.name}</Text>
 
-            {items}
-            {/*<Checkbox.Group*/}
-            {/*    label={props?.name}*/}
-            {/*    value={checkboxGroupValue} onChange={setCheckboxGroupValue}*/}
-            {/*>*/}
+            <Checkbox.Group
+                value={checkboxGroupValue} onChange={(e) => handleChange(e)}
 
-            {/*    {props?.values?.map((singleItem) => (*/}
-            {/*            <Checkbox key={singleItem.attributeValueId}*/}
-            {/*                      checked={checkboxGroupValue.includes('' + singleItem.attributeValueId)}*/}
-            {/*                      value={singleItem.attributeValueId} label={singleItem.value}/>*/}
-            {/*        )*/}
-            {/*    )}*/}
+            >
+                <Stack spacing={'xs'}>
+                    {initialValues?.map((singleItem) => (
+                            <Checkbox key={singleItem.key}
+                                      value={singleItem.value}
+                                      label={`${singleItem.label}`}
+
+                            />
+                        )
+                    )}
+                </Stack>
 
 
-            {/*</Checkbox.Group>*/}
+            </Checkbox.Group>
         </>
     )
 }

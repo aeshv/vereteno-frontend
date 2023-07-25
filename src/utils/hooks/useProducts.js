@@ -7,17 +7,17 @@ export function useProducts() {
     const router = useRouter()
     const {query} = router
 
-  function checkProperties(obj) {
-      const transformObjectNames = ['categories', 'materials', 'sizes', 'attributes']
+    function checkProperties(obj) {
+        const transformObjectNames = ['categories', 'materials', 'sizes', 'attributes', 'colors']
 
-    for (const key in obj) {
-      if (obj.hasOwnProperty(key) && typeof obj[key] === "string" && transformObjectNames.includes(key.toLowerCase())) {
-        obj[key] = [obj[key]];
-      }
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key) && typeof obj[key] === "string" && transformObjectNames.includes(key.toLowerCase())) {
+                obj[key] = [obj[key]];
+            }
+        }
+
+        return obj;
     }
-
-    return obj;
-  }
 
 
     return useQuery(

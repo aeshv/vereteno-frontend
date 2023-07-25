@@ -24,19 +24,22 @@ export const ProductsGrid = () => {
         return <span>Ничего не найдено</span>;
     }
 
-    return (
-        <>
-            <SimpleGrid cols={3}
-                        spacing="lg" breakpoints={[
-                {maxWidth: '68rem', cols: 2, spacing: 'md'},
-                {maxWidth: '48rem', cols: 1, spacing: 'sm'},
-            ]}>
 
-                {data?.data?.products?.map((product) => (
-                    <Card key={product.id} {...product} href={`/products/${product.id}`}/>
-                ))}
-            </SimpleGrid>
-            <ProductsPagination total={data?.data?.totalCount || 1}/>
-        </>
-    )
+    if (data?.data?.products) {
+        return (
+            <>
+                <SimpleGrid cols={3}
+                            spacing="lg" breakpoints={[
+                    {maxWidth: '68rem', cols: 2, spacing: 'md'},
+                    {maxWidth: '48rem', cols: 1, spacing: 'sm'},
+                ]}>
+
+                    {data?.data?.products?.map((product) => (
+                        <Card key={product.id} {...product} href={`/products/${product.id}`}/>
+                    ))}
+                </SimpleGrid>
+                <ProductsPagination total={data?.data?.totalCount || 1}/>
+            </>
+        )
+    }
 }
