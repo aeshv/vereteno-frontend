@@ -39,7 +39,7 @@ export const ProductBreadcrumbs = () => {
     const links = [
         {title: 'Главная', href: '/'},
         {title: 'Каталог', href: '/products'},
-        {title: product?.category?.name, href: `/products?category=${product?.category?.name}`},
+        {title: product?.category?.name, href: `/products?categories[]=${product?.category?.name}`},
         {title: product?.name, href: null},
     ]
 

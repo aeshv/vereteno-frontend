@@ -5,7 +5,7 @@ import {
     Image,
     SimpleGrid,
     createStyles,
-    rem, MultiSelect, Loader,
+    rem, MultiSelect, Loader, Stack,
 } from "@mantine/core";
 import {useUncontrolled} from "@mantine/hooks";
 import {useRouter} from "next/router";
@@ -14,6 +14,7 @@ import {useSelectStyles} from "@/components/features/filters/MaterialSelect/Mate
 import {useCategories} from "@/utils/hooks/useCategories";
 import {useFiltersColors} from "@/utils/hooks/filtersApiHooks/useFiltersColors";
 import {useFiltersAttributes} from "@/utils/hooks/filtersApiHooks/useFiltersAttributes";
+import {AttributeItem} from "@/components/features/filters/AttributesSelect/AttributeItem";
 
 
 export function AttributesSelect() {
@@ -26,7 +27,8 @@ export function AttributesSelect() {
     const getAttributes = useFiltersAttributes();
 
     const {isLoading, isError, data, error} = getAttributes
-    const AttributesToSelectArray = data?.data?.map((item) => ({...item, label: item.name, value: item.id}))
+    const tempData = data?.data || []
+    // const AttributesToSelectArray = data?.data?.map((item) => ({...item, label: item.name, value: item.id}))
 
     const onAttributesChange = (e) => {
         let selectValue = Array.isArray(e) ? e : [e]
@@ -53,9 +55,16 @@ export function AttributesSelect() {
     }
 
     return (
-        <MultiSelect classNames={classes} value={value} onChange={onAttributesChange} data={AttributesToSelectArray}
-                     placeholder="Особенности"
-                     clearable
-                     nothingFound="Список пуст"/>
+        <Stack>
+            {tempData.slice(0, 1)?.map((singleAttribute) => {
+
+                return (
+                    <>
+                        <AttributeItem key={singleAttribute.id} {...singleAttribute}/>
+                    </>
+                )
+
+            })}
+        </Stack>
     );
 }

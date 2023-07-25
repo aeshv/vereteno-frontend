@@ -41,10 +41,10 @@ const BlurredBlock = ({title = 'Шляпы', link}) => {
 
     const onCatalogChange = () => {
         if (title) {
-            delete router.query.category
+            delete router.query.categories
             router.pathname = '/products'
 
-            router.query.category = title
+            router.query.categories = title
             router.push(router)
         }
     }

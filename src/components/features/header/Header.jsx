@@ -21,6 +21,7 @@ const Header = () => {
                         <Link href="/lk">Личный кабинет</Link>
                         <Link href="/products">Продукты</Link>
                         <Link href="/legal">Правовая информация</Link>
+                        <Link href="/info">Как узнать размер</Link>
                     </ul>
                 </div>
 
