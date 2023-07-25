@@ -42,7 +42,7 @@ const HatFilter = ({onSubmit}) => (
                 <SizeRadio/>
             </div>
             <div className={styles.block}>
-                <h2 className={styles.block__title}>Атрибуты</h2>
+                <h2 className={styles.block__title}>Особености</h2>
                 <AttributesSelect/>
             </div>
             {/*<button type="submit" className={styles.submit}>*/}

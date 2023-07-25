@@ -2,16 +2,13 @@ import React from "react";
 import {
   createStyles,
   Image,
-  Card,
   Text,
-  Group,
   Button,
   getStylesRef,
   rem,
   Grid,
 } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
-import { IconStar } from "@tabler/icons-react";
 import styles from "./CarouselBanner.module.scss";
 import Label from "@/components/shared/label/Label";
 
@@ -93,7 +90,6 @@ const content = [
 
 export function CarouselBanner() {
   const { classes } = useStyles();
-
   const slides = content.map((item, index) => (
     <Carousel.Slide key={`${item.id}_${index}`}>
       <div className={styles.sliderContent}>

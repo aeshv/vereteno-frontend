@@ -116,26 +116,16 @@ const Card = (props) => {
             <div className={classes.row}>
                 <span className={classes.title}>{props?.title || props?.name}</span>
             </div>
-            {/*<div className={classes.row}>*/}
-            {/*    <span className={classes.price}>{props?.description.slice(0, 35)}...</span>*/}
-            {/*</div>*/}
+
             {props?.vendorCodes?.map((item, index) => (
 
                 <ColorDot key={index} color={item?.color?.hex}/>
             ))}
-            {/*{props?.colors?.length && (<>*/}
-            {/*    <div className={classes.row}>*/}
-            {/*  <span className={classes.colors}>*/}
-            {/*              {props?.vendor_code?.color?.map(({hex}) => (<>*/}
-            {/*                  <ColorDot color={hex}/>*/}
-            {/*              </>))}*/}
-            {/*  </span>*/}
-            {/*    </div>*/}
-            {/*</>)}*/}
+
             <div className={classes.row}>
                 {!props?.discount ?
                     <>
-                        <span className={classes.current}>{props?.vendorCodes?.[0]?.price} ₽</span>
+                        <span className={classes.current}>{props?.vendorCodes?.[0]?.price} руб.</span>
                     </>
                     :
                     <>

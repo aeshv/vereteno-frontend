@@ -26,7 +26,6 @@ export default function Home({products, categories}) {
             <CarouselBanner/>
             <MainPageFeaturesContainer/>
 
-            {console.log(products)}
 
             <SimpleGrid cols={4}
                         spacing="lg" breakpoints={[
