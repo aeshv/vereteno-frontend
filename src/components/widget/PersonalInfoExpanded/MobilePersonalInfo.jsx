@@ -1,31 +1,14 @@
-import React, {useState} from "react";
-import {
-    createStyles,
-    Navbar,
-    Group,
-    Code,
-    getStylesRef,
-    rem,
-    Title, Tooltip,
-} from "@mantine/core";
-import {
-    IconBellRinging,
-    IconFingerprint,
-    IconKey,
-    IconSettings,
-    Icon2fa,
-    IconDatabaseImport,
-    IconReceipt2,
-    IconSwitchHorizontal,
-    IconLogout,
-    IconGardenCart,
-    IconUserCircle,
-} from "@tabler/icons-react";
-import Link from "next/link";
-import {userApi} from "@/api";
+import {useDisclosure} from '@mantine/hooks';
+import {Drawer, Button, Group, Tooltip, Title, createStyles, rem, getStylesRef, Flex} from '@mantine/core';
 import {useDispatch} from "react-redux";
-import {logout} from "@/redux/features/auth/authSlice";
 import {useRouter} from "next/router";
+import React, {useState} from "react";
+import Link from "next/link";
+import {lkMenuLinks} from "@/components/widget/PersonalInfoExpanded/PersonalInfoExpanded";
+import {userApi} from "@/api";
+import {logout} from "@/redux/features/auth/authSlice";
+import {IconLogout} from "@tabler/icons-react";
+
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -50,6 +33,7 @@ const useStyles = createStyles((theme) => ({
         alignItems: "center",
         textDecoration: "none",
         fontSize: theme.fontSizes.sm,
+        gap: theme.spacing.xs,
         color:
             theme.colorScheme === "dark"
                 ? theme.colors.dark[1]
@@ -86,21 +70,6 @@ const useStyles = createStyles((theme) => ({
 
     },
 
-    linkActive: {
-        "&, &:hover": {
-            backgroundColor: theme.fn.variant({
-                variant: "light",
-                color: theme.primaryColor,
-            }).background,
-            color: theme.fn.variant({variant: "light", color: theme.primaryColor})
-                .color,
-            [`& .${getStylesRef("icon")}`]: {
-                color: theme.fn.variant({variant: "light", color: theme.primaryColor})
-                    .color,
-            },
-        },
-    },
-
     hiddenMobile: {
         [theme.fn.smallerThan('sm')]: {
             display: 'none',
@@ -108,23 +77,8 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export const lkMenuLinks = [
-    {link: "/lk", label: "Персональная информация", icon: IconUserCircle},
-    {
-        link: "/lk/orders",
-        label: "Заказы",
-        icon: IconReceipt2,
-    },
-    // {link: "/lk/security", label: "Безопасность", icon: IconFingerprint},
-    {
-        link: "/cart",
-        label: "Корзина",
-        icon: IconGardenCart,
-    },
-    // {link: "/lk/settings", label: "Остальные настройки", icon: IconSettings},
-];
-
-export function PersonalInfoExpanded() {
+export function MobilePersonalInfo() {
+    const [opened, {open, close}] = useDisclosure(false);
     const {classes, cx} = useStyles();
     const dispatch = useDispatch();
     const router = useRouter();
@@ -133,9 +87,7 @@ export function PersonalInfoExpanded() {
     const links = lkMenuLinks.map((item) => (
 
         <Link
-            className={cx(classes.link, {
-                [classes.linkActive]: item.label === active,
-            })}
+            className={cx(classes.link)}
             href={item.link}
             key={item.label}
             onClick={(event) => {
@@ -151,16 +103,14 @@ export function PersonalInfoExpanded() {
 
     ));
 
+
     return (
-        <Navbar zIndex={300} height={700} width={{sm: 300}} p="md">
-            <Navbar.Section grow>
+        <>
+            <Drawer position={'bottom'} opened={opened} onClose={close} withCloseButton={false}>
                 <Group classNames={classes.header} position="apart">
-                    <Title size={"x-large"}>Личный кабинет</Title>
+                    <Title size={"x-large"} mb={'xl'}>Личный кабинет</Title>
                 </Group>
                 {links}
-            </Navbar.Section>
-
-            <Navbar.Section className={classes.footer}>
                 <a
                     href="#"
                     className={classes.link}
@@ -176,7 +126,13 @@ export function PersonalInfoExpanded() {
                     </Tooltip>
                     <span>Выйти</span>
                 </a>
-            </Navbar.Section>
-        </Navbar>
+            </Drawer>
+
+            <Flex sx={{width: '100%'}} direction={'row'} align={'center'} justify={'space-between'} px={'xs'}
+                  position="center">
+                <Title size={"x-large"}>{active}</Title>
+                <Button onClick={open}>Открыть меню</Button>
+            </Flex>
+        </>
     );
 }

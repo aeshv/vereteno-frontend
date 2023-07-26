@@ -7,6 +7,8 @@ import PageHead from "@/components/SEO/PageHead";
 import {MegaHeader} from "@/components/entity/MegaHeader/MegaHeader";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import {MobilePersonalInfo} from "@/components/widget/PersonalInfoExpanded/MobilePersonalInfo";
+import {useViewportSize} from "@mantine/hooks";
 
 const UserPageLayout = ({children}) => {
 
@@ -19,13 +21,18 @@ const UserPageLayout = ({children}) => {
         }
     }, [router, user])
 
+    const {width} = useViewportSize();
+
     return (
         <>
             <Header/>
             <MegaHeader/>
             <div className="content">
-                <Flex direction={"row"} gap={"md"}>
-                    <PersonalInfoExpanded/>
+                <Flex direction={width <= 768 ? 'column' : 'row'} gap={"md"}>
+
+                    {width <= 768 ? <MobilePersonalInfo/> : <PersonalInfoExpanded/>}
+
+
                     <div style={{flexGrow: 1, maxWidth: '100%'}}>
                         {children}
                     </div>

@@ -81,7 +81,7 @@
 }
 
 .title {
-  font-family: "Jost";
+  font-family: "Jost", serif;
   font-style: normal;
   font-weight: 500;
   font-size: 18px;
@@ -91,7 +91,7 @@
 
 .info {
   &_item {
-    font-family: "Jost";
+    font-family: "Jost", serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -105,7 +105,7 @@
 }
 
 .adress {
-  font-family: "Jost";
+  font-family: "Jost", serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -139,6 +139,7 @@
   width: 100%;
   background: #f5f8ff;
   border-radius: 8px;
+  padding-bottom: 1rem;
 }
 
 .link_card {
