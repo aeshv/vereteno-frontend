@@ -6,7 +6,7 @@ import styles from "./NoDataCart.module.scss";
 import BuyingWith from "../../product/blocks/BuyingWith/BuyingWith";
 import Link from "next/link";
 
-const NoDataCart = () => {
+const NoDataCart = ({title = 'ВАША КОРЗИНА ПУСТА', description = 'Добавьте в нее товары из каталога'}) => {
     return (
         <>
             <div>
@@ -14,8 +14,8 @@ const NoDataCart = () => {
                     <div className={styles.image}>
                         <IconMoodEmptyFilled size="85px"/>
                     </div>
-                    <h2>ВАША КОРЗИНА ПУСТА</h2>
-                    <p>Добавьте в нее товары из каталога</p>
+                    <h2>{title}</h2>
+                    <p>{description}</p>
                     <Link href={'/products'}>
                         <button className={styles.button}>Перейти в каталог</button>
                     </Link>

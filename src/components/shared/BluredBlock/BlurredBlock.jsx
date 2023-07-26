@@ -32,36 +32,24 @@ const blurredBlockClasses = createStyles((theme) => ({
 }));
 
 
-const BlurredBlock = ({title = 'Шляпы', link}) => {
+const BlurredBlock = ({title = 'Шляпы', id}) => {
     const {classes} = blurredBlockClasses();
 
-    const router = useRouter()
-    const {query} = router
-
-
-    const onCatalogChange = () => {
-        if (title) {
-            delete router.query.categories
-            router.pathname = '/products'
-
-            router.query.categories = title
-            router.push(router)
-        }
-    }
-
     return (<>
-        <Box mx="auto" className={classes.box} onClick={(e) => onCatalogChange()}>
-            <BackgroundImage
-                src="https://images.unsplash.com/photo-1606343131164-ab932aeffdaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
-                radius="xs"
-                className={classes.link}
-            >
-                <Center p="md" className={classes.content}>
-                    <Text color="#fff">
-                        {title}
-                    </Text>
-                </Center>
-            </BackgroundImage>
+        <Box mx="auto" className={classes.box}>
+            <Link href={`/products?categories[]=${id}`}>
+                <BackgroundImage
+                    src="https://images.unsplash.com/photo-1606343131164-ab932aeffdaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
+                    radius="xs"
+                    className={classes.link}
+                >
+                    <Center p="md" className={classes.content}>
+                        <Text color="#fff">
+                            {title}
+                        </Text>
+                    </Center>
+                </BackgroundImage>
+            </Link>
         </Box>
     </>)
 }

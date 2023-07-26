@@ -2,6 +2,8 @@ import React from 'react'
 import PageHead from "@/components/SEO/PageHead";
 import {Container, createStyles, rem, Tabs} from "@mantine/core";
 import {LegalPageConf} from "@/components/features/LegalPage/LegalPageConf";
+import {LegalPagePayment} from "@/components/features/LegalPage/LegalPagePayment";
+import {LegalPageShipment} from "@/components/features/LegalPage/LegalPageShipment";
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -73,6 +75,8 @@ const Index = () => {
     const {classes, theme, cx} = useStyles();
     const tabs = [
         "Политика конфиденциальности",
+        "Обмен и возврат",
+        "Доставка и оплата",
     ]
 
     const items = tabs.map((tab) => (
@@ -102,6 +106,13 @@ const Index = () => {
                         <LegalPageConf/>
                     </Tabs.Panel>
 
+                    <Tabs.Panel value="Обмен и возврат" pt="0">
+                        <LegalPagePayment/>
+                    </Tabs.Panel>
+
+                    <Tabs.Panel value="Доставка и оплата" pt="0">
+                        <LegalPageShipment/>
+                    </Tabs.Panel>
 
                 </Tabs>
             </Container>

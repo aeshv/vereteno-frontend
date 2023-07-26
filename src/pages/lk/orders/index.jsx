@@ -1,33 +1,10 @@
 import React from "react";
 import UserPageLayout from "@/components/Layouts/UserPageLayout";
 import {Badge, Flex, Group, ScrollArea, Skeleton, Table, Text} from "@mantine/core";
-import {data} from "@/utils/mockdata";
 import {OrderHatPreview} from "@/components/widget/Order/OrderHatPreview";
-import {useCarts} from "@/utils/hooks/useCarts";
 import {useOrders} from "@/utils/hooks/useOrders";
-
-//
-// {
-//     "orderId": 51,
-//     "status": "new",
-//     "total": 2222,
-//     "paymentStatus": "unpaid",
-//     "paymentMethod": "online",
-//     "orderItems": [
-//     {
-//         "id": 101,
-//         "product": {
-//             "id": 4,
-//             "name": "non",
-//             "description": "Deserunt et alias sit ad nostrum. Similique in optio quae nemo aliquam tempora. Eligendi quia ipsam officia ea aliquid iste. Quae et qui et incidunt ut.",
-//             "images": []
-//         },
-//         "price": 2000,
-//         "amount": 2,
-//         "quantity": 33
-//     }
-// ]
-// }
+import NoDataCart from "@/components/features/cart/NoDataCart/NoDataCart";
+import {Enum} from "@/utils/enum";
 
 
 const Index = () => {
@@ -37,6 +14,9 @@ const Index = () => {
     const {isLoading, isError, data, error, refetch} = getUserOrders
 
     const {orders} = data?.data || []
+
+    const OrderStatuses = Enum({new: 'Создан'})
+    const PaymentStatuses = Enum({unpaid: 'Ожидает оплаты'})
 
     const rows = orders?.map((item) => (
         <tr key={item?.orderId}>
@@ -67,7 +47,13 @@ const Index = () => {
             </td>
             <td>{item?.total} ₽</td>
             <td>
-                <Badge fullWidth>{item?.status}</Badge>
+                <Badge fullWidth>{OrderStatuses[item?.status]}</Badge>
+            </td>
+            <td>
+                <Badge fullWidth>{PaymentStatuses[item?.paymentStatus]}</Badge>
+            </td>
+            <td>
+                {item?.paymentMethod}
             </td>
         </tr>
     ));
@@ -88,29 +74,39 @@ const Index = () => {
             </td>
         </tr>
     ));
-
     return (
         <>
-            <ScrollArea>
-                <Table miw={800} verticalSpacing="sm">
-                    <thead>
-                    <tr>
-                        <th>Заказ</th>
-                        <th>Товары</th>
-                        <th>Стоимость</th>
-                        <th>Статус</th>
-                    </tr>
-                    </thead>
-                    {isLoading ?
+            {rows?.length ?
+                <ScrollArea>
+                    <Table verticalSpacing="sm">
+                        <thead>
+                        <tr>
+                            <th>Заказ</th>
+                            <th>Товары</th>
+                            <th>Стоимость</th>
+                            <th>Статус заказа</th>
+                            <th>Статус оплаты</th>
+                            <th>Способ оплаты</th>
+                        </tr>
+                        </thead>
+                        {isLoading ?
 
-                        loadingRows
+                            loadingRows
 
-                        :
-                        rows ? <tbody>{rows}</tbody> : <Text>У вас нет оформленных заказов</Text>
+                            :
+                            <tbody>{rows}</tbody>
 
-                    }
-                </Table>
-            </ScrollArea>
+                        }
+                    </Table>
+                </ScrollArea>
+
+                :
+
+                <>
+                    <NoDataCart title={'ВЫ НИЧЕГО НЕ ЗАКАЗЫВАЛИ'}
+                                description={'Найдите что-нибудь для себя в нашем каталоге'}/>
+                </>
+            }
         </>
     );
 };

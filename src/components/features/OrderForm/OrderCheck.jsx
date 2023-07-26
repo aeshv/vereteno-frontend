@@ -1,22 +1,41 @@
 import {TextInput} from "@mantine/core";
 import {IconAt, IconBuildingSkyscraper, IconCreditCard, IconMapPins, IconTruckDelivery} from "@tabler/icons-react";
 
-export const OrderCheck = ({form, itemsToOrder}) => {
+export const OrderCheck = ({form}) => {
     return (
         <>
+            <TextInput label="Страна"
+                       icon={<IconMapPins/>}
+                       variant="unstyled"
+                       radius="xs"
+                       size="lg"
+                       {...form.getInputProps('country')}
+                       readOnly={true}/>
             <TextInput label="Регион"
                        icon={<IconMapPins/>}
                        variant="unstyled"
                        radius="xs"
                        size="lg"
-                       {...form.getInputProps('regionName')}
+                       {...form.getInputProps('region')}
                        readOnly={true}/>
             <TextInput label="Город"
                        icon={<IconBuildingSkyscraper/>}
                        variant="unstyled"
                        radius="xs"
                        size="lg"
-                       {...form.getInputProps('cityName')} readOnly={true}/>
+                       {...form.getInputProps('city')} readOnly={true}/>
+            <TextInput label="Улица"
+                       icon={<IconBuildingSkyscraper/>}
+                       variant="unstyled"
+                       radius="xs"
+                       size="lg"
+                       {...form.getInputProps('street')} readOnly={true}/>
+            <TextInput label="Почтовый индекс"
+                       icon={<IconBuildingSkyscraper/>}
+                       variant="unstyled"
+                       radius="xs"
+                       size="lg"
+                       {...form.getInputProps('postcode')} readOnly={true}/>
             <TextInput label="Доставка"
                        icon={<IconTruckDelivery/>}
                        variant="unstyled"
@@ -29,7 +48,7 @@ export const OrderCheck = ({form, itemsToOrder}) => {
                        variant="unstyled"
                        radius="xs"
                        size="lg"
-                       {...form.getInputProps('paymentType')}
+                       {...form.getInputProps('paymentMethod')}
                        readOnly={true}/>
         </>
     )

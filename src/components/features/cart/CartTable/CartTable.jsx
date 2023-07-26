@@ -33,10 +33,10 @@ export function CartTable() {
         <>
             {/*<Collapse in={!isOrderFormVisible}>*/}
             <ScrollArea>
-                <Table miw={800} verticalSpacing="sm" highlightOnHover>
+                <Table verticalSpacing="sm" highlightOnHover>
                     <thead>
                     <tr>
-                        <th style={{width: rem(40)}}>
+                        <th>
                             <Checkbox
                                 onChange={toggleAll}
                                 checked={selection.length === items.length}

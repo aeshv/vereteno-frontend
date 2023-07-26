@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react'
-import {ActionIcon, Avatar, Checkbox, createStyles, Group, Menu, Text} from "@mantine/core";
+import {ActionIcon, Avatar, Badge, Checkbox, createStyles, Group, Menu, Stack, Text} from "@mantine/core";
 import {cartApi} from "@/api/cart";
 import {productApi} from "@/api";
 import {IconDots, IconMessages, IconNote, IconPencil, IconReportAnalytics, IconTrash} from "@tabler/icons-react";
@@ -24,7 +24,6 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
         setIsDeleteLoading(true)
         cartApi.removeItemCartById(({id: id})).then(
             result => {
-                console.log('done')
                 refetchCartFunction()
             },
             error => {
@@ -60,14 +59,27 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
             <Group spacing="sm">
                 {/*<Avatar size={26} src={item?.avatar} radius={26}/>*/}
                 <Text size="sm" weight={500}>
-                    {currentItemInfo?.name}
+                    {currentItemInfo?.productName}
+                </Text>
+                <Text size="sm" weight={400} color={"dimmed"}>
+                    арт. {currentItemInfo?.productVendorCodeId}
                 </Text>
             </Group>
         </td>
         <td>
             <QuantityInput current={item.quantity || 1} handleChange={handleChangeItemAmount}/>
         </td>
-        <td>{currentItemInfo?.price}</td>
+        <td>{currentItemInfo?.discount?.discount_coefficient ?
+            <Stack spacing={'xs'}>
+                {(currentItemInfo?.price * currentItemInfo?.discount?.discount_coefficient).toFixed(2)} руб.
+                <Badge variant="gradient" gradient={{
+                    from: 'indigo',
+                    to: 'cyan'
+                }}>Скидка {100 - currentItemInfo?.discount?.discount_coefficient * 100}%</Badge>
+
+            </Stack>
+            : <>{currentItemInfo?.price} руб.</>}
+        </td>
         <td>
             <Group spacing={0} position="right">
                 <ActionIcon variant="light" color="red" loading={isDeleteLoading}

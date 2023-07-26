@@ -115,13 +115,13 @@ const data = [
         label: "Заказы",
         icon: IconReceipt2,
     },
-    {link: "/lk/security", label: "Безопасность", icon: IconFingerprint},
+    // {link: "/lk/security", label: "Безопасность", icon: IconFingerprint},
     {
         link: "/cart",
         label: "Корзина",
         icon: IconGardenCart,
     },
-    {link: "/lk/settings", label: "Остальные настройки", icon: IconSettings},
+    // {link: "/lk/settings", label: "Остальные настройки", icon: IconSettings},
 ];
 
 export function PersonalInfoExpanded() {

@@ -13,8 +13,6 @@ import ProductVendorVariations from "@/components/features/product/ProductVendor
 
 
 const SingleProduct = ({product}) => {
-    console.log('ВСЯ ИНФА О ПРОДУКТЕ:', product)
-
     const [currentVendorIndex, setCurrentVendorIndex] = useState(0);
 
     const vendorIndex = {currentVendorIndex, setCurrentVendorIndex}
@@ -38,8 +36,7 @@ const SingleProduct = ({product}) => {
                                 <ProductVendorVariations/>
                             }
                             <ProductInfo/>
-                            <BuyingWith title={"С этим товаром покупают"}/>
-                            <BuyingWith title={"Похожие товары"}/>
+                            <BuyingWith title={"Товары из этой же категории"} params={{'categories[]': '4'}}/>
                         </div>
                     </div>
                 </div>

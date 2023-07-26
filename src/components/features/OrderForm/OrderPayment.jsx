@@ -8,7 +8,7 @@ export const OrderPayment = ({form}) => {
                 label="Выбирете способ доставки"
                 description=""
                 withAsterisk
-                {...form.getInputProps('paymentType')}
+                {...form.getInputProps('paymentMethod')}
             >
                 <Stack mt="xs">
                     <Radio value="Онлайн - картой любого банка"

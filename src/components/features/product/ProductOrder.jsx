@@ -18,7 +18,6 @@ const ProductOrder = () => {
     const productInfo = product?.vendorCodes?.[vendorIndex.currentVendorIndex]
 
 
-
     return (<>
         <div className={styles.container}>
             {product?.name ? <h1 className={styles.product__title}>{product?.name}</h1> :
@@ -62,7 +61,7 @@ const ProductOrder = () => {
             {/*Цена*/}
             <div className={styles.price}>
 
-                {productInfo?.price ? productInfo?.discount === 1 ?
+                {productInfo?.price ? !productInfo?.discount ?
                         <>
                             <span className={styles.current}>{productInfo?.price} руб.</span>
                         </>

@@ -1,5 +1,5 @@
 import NoDataCart from '@/components/features/cart/NoDataCart/NoDataCart'
-import {Paper} from '@mantine/core'
+import {Loader, Paper} from '@mantine/core'
 import React, {useEffect, useState} from 'react'
 import UserPageLayout from "@/components/Layouts/UserPageLayout";
 import {CartTable} from "@/components/features/cart/CartTable/CartTable";
@@ -17,15 +17,29 @@ const Index = () => {
     const {isLoading, isError, data, error, refetch} = getCart
 
 
+    if (isError) {
+        return (
+            <></>
+        )
+    }
+
+    if (isError) {
+        return (
+            <>
+                <Loader/>
+            </>
+        )
+    }
+
     return (<Paper>
-        {isLoading ? <>Загрузка..</> : <>
-            {data.data.totalCount >= 1 ?
+        <>
+            {data?.data?.totalCount >= 1 ?
                 <CartContext.Provider value={{data: data?.data, refetchCartFunction: refetch}}>
                     <CartPage/>
                 </CartContext.Provider>
 
                 : <NoDataCart/>}
-        </>}
+        </>
     </Paper>)
 }
 

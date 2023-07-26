@@ -46,12 +46,12 @@ export default function Home({products, categories}) {
                 {maxWidth: '36rem', cols: 1, spacing: 'sm'},
             ]}>
                 {categories?.slice(0, 8)?.map((category) => (
-                    <BlurredBlock title={category.name} key={category.id} link={category.name}/>
+                    <BlurredBlock title={category.name} key={category.id} id={category.id}/>
 
                 ))}
             </SimpleGrid>
 
-            <BuyingWith title={"Часто покупают"}/>
+            <BuyingWith title={"Часто покупают"} params={{}}/>
             <FaqWithBg/>
         </main>
     </>);

@@ -1,4 +1,4 @@
-import {Pagination} from "@mantine/core";
+import {Center, Pagination} from "@mantine/core";
 import React, {useMemo} from "react";
 import {useRouter} from "next/router";
 
@@ -9,7 +9,7 @@ export const ProductsPagination = ({total}) => {
     const [activePage, setPage] = React.useState(query.page ? query.page : 1)
 
     const ITEMSONPAGE = 10
-    const totalPageAmount = useMemo(()=>total / ITEMSONPAGE , [total])
+    const totalPageAmount = useMemo(() => total / ITEMSONPAGE, [total])
 
     const onPageChanged = (e) => {
         if (e > 1) {
@@ -28,7 +28,9 @@ export const ProductsPagination = ({total}) => {
 
     return (
         <>
-            <Pagination value={activePage} onChange={onPageChanged} total={totalPageAmount}/>
+            <Center>
+                <Pagination mt={'xl'} value={activePage} onChange={onPageChanged} total={totalPageAmount}/>
+            </Center>
         </>
     )
 }
