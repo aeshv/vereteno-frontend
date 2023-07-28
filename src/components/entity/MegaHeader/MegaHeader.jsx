@@ -283,6 +283,15 @@ export function MegaHeader() {
                 <Link href="/reviews" className={classes.link} onClick={() => closeDrawer()}>
                     Отзывы
                 </Link>
+                <Link href="/products" className={classes.link} onClick={() => closeDrawer()}>
+                    Продукты
+                </Link>
+                <Link href="/legal" className={classes.link} onClick={() => closeDrawer()}>
+                    Правовая информация
+                </Link>
+                <Link href="/info" className={classes.link} onClick={() => closeDrawer()}>
+                    Как узнать размер
+                </Link>
 
                 <Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
 

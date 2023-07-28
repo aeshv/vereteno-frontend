@@ -1,12 +1,12 @@
 {
   "name": "vereteno-frontend",
-  "version": "0.8.9",
+  "version": "0.9.0",
   "private": true,
-  "author": "Alexey Vlasov from aeshv.ru",
+  "author": "Alexey Vlasov and Elizabeth Shevchenko from aeshv.ru",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 8000",
     "lint": "next lint"
   },
   "dependencies": {

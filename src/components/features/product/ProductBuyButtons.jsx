@@ -43,7 +43,7 @@ const ProductBuyButtons = () => {
     const handlePlaceToCart = () => {
         setIsLoading((prevState) => !prevState)
 
-        cartApi.updateCartById({productVendorCodeId: currentVendorCodeId}).then((response) => {
+        cartApi.updateCartById({productVendorCodeId: currentVendorCodeId, quantity: 1}).then((response) => {
             switch (response && response.statusText) {
                 case 'Created':
                     handleSuccessAddToCard();
