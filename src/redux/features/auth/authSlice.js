@@ -35,7 +35,7 @@ export const loginUser = createAsyncThunk(
 );
 
 export const getMe = createAsyncThunk(
-    'auth/by-token',
+    'auth/user',
     buildApiThunk(userApi.loginByToken)
 );
 
@@ -83,7 +83,7 @@ export const authSlice = createSlice({
         [getMe.fulfilled]: (state, action) => {
             state.isLoading = false;
             state.status = null;
-            state.user = action.payload?.user;
+            state.user = action.payload
             state.token = getCookie("token");
         },
         [getMe.rejectWithValue]: (state, action) => {

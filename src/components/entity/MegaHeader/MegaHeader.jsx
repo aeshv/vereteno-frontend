@@ -166,8 +166,8 @@ export function MegaHeader() {
         }
     }
 
-    const catalogLinks = firstGradeCategories.map((item) => (
-        <UnstyledButton className={classes.subLink} key={item.title}>
+    const catalogLinks = firstGradeCategories.map((item, index) => (
+        <UnstyledButton className={classes.subLink} key={index}>
             <Stack align="flex-start" spacing="xs" onClick={() => handlePageChange(item.name)}>
                 <Text size="sm" fw={500} pl={'xs'}>
                     {item.name}
