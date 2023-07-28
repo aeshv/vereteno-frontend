@@ -72,7 +72,7 @@ export const ProfileEdit = () => {
 
     return (
         <>
-            <Flex direction={"column"} gap={'sm'}>
+            <Flex p={'xs'} direction={"column"} gap={'sm'}>
                 <Title>Редактирование профиля</Title>
                 <form onSubmit={form.onSubmit((fullFormData) => {
                     handleEditProfile(fullFormData)

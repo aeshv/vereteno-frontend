@@ -1,0 +1,10 @@
+# docker-compose.yml
+version: '3'
+services:
+  frontend:
+    build:
+      dockerfile: Dockerfile
+    expose:
+      - 3000
+    env_file:
+      - .env

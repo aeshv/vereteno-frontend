@@ -9,6 +9,7 @@ import {CartPage} from "@/components/features/cart/CartPage";
 import {useProducts} from "@/utils/hooks/useProducts";
 import {useCarts} from "@/utils/hooks/useCarts";
 import {CartContext} from "@/components/shared/Contexts/CartContext";
+import PageHead from "@/components/SEO/PageHead";
 
 const Index = () => {
     const {user} = useSelector((state) => state.auth)
@@ -33,6 +34,7 @@ const Index = () => {
 
     return (<Paper>
         <>
+            <PageHead title={'Корзина'}/>
             {data?.data?.totalCount >= 1 ?
                 <CartContext.Provider value={{data: data?.data, refetchCartFunction: refetch}}>
                     <CartPage/>

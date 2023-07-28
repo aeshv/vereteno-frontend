@@ -5,6 +5,7 @@ import {OrderHatPreview} from "@/components/widget/Order/OrderHatPreview";
 import {useOrders} from "@/utils/hooks/useOrders";
 import NoDataCart from "@/components/features/cart/NoDataCart/NoDataCart";
 import {Enum} from "@/utils/enum";
+import PageHead from "@/components/SEO/PageHead";
 
 
 const Index = () => {
@@ -76,6 +77,7 @@ const Index = () => {
     ));
     return (
         <>
+          <PageHead title={'Ваши заказы'}/>
             {rows?.length ?
                 <ScrollArea>
                     <Table verticalSpacing="sm">

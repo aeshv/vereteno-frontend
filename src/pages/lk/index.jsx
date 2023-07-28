@@ -40,7 +40,7 @@ const Index = ({name, email, phone}) => {
                         <Tabs.Tab value="edit">Редактировать</Tabs.Tab>
                     </Tabs.List>
                     <Tabs.Panel value={'profile'}>
-                        <Flex direction={"column"} gap={'sm'}>
+                        <Flex p={'xs'} direction={"column"} gap={'sm'}>
                             <Group noWrap>
                                 <Avatar src={user?.profile_image || noimage} size={94} radius="md"/>
                                 <div>

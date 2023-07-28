@@ -12,34 +12,36 @@ import {useViewportSize} from "@mantine/hooks";
 
 const UserPageLayout = ({children}) => {
 
-    // Проверка авторизации
-    const router = useRouter()
-    const {user} = useSelector((state) => state.auth)
-    useEffect(() => {
-        if (!user) {
-            router.push('/auth')
-        }
-    }, [router, user])
+	// Проверка авторизации
+	const router = useRouter()
+	const {user} = useSelector((state) => state.auth)
+	useEffect(() => {
+		if (!user) {
+			router.push('/auth')
+		}
+	}, [router, user])
 
-    const {width} = useViewportSize();
-
-    return (
-        <>
-            <Header/>
-            <MegaHeader/>
-            <div className="content">
-                <Flex direction={width <= 768 ? 'column' : 'row'} gap={"md"}>
-
-                    {width <= 768 ? <MobilePersonalInfo/> : <PersonalInfoExpanded/>}
+	const {width} = useViewportSize();
 
 
-                    <div style={{flexGrow: 1, maxWidth: '100%'}}>
-                        {children}
-                    </div>
-                </Flex>
-            </div>
-            <Footer/>
-        </>
-    );
+	return (
+		<>
+			<Header/>
+			<MegaHeader/>
+			<PageHead title={'Личный кабинет'}/>
+			<div className="content">
+				<Flex direction={width <= 768 ? 'column' : 'row'} gap={"md"}>
+
+					{width <= 768 ? <MobilePersonalInfo/> : <PersonalInfoExpanded/>}
+
+
+					<div style={{flexGrow: 1, maxWidth: '100%'}}>
+						{children}
+					</div>
+				</Flex>
+			</div>
+			<Footer/>
+		</>
+	);
 };
 export default UserPageLayout;
