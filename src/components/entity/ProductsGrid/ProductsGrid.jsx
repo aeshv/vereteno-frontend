@@ -31,7 +31,7 @@ export const ProductsGrid = () => {
                 <SimpleGrid cols={3}
                             spacing="lg" breakpoints={[
                     {maxWidth: '68rem', cols: 2, spacing: 'md'},
-                    {maxWidth: '48rem', cols: 1, spacing: 'sm'},
+                    {maxWidth: '34rem', cols: 1, spacing: 'sm'},
                 ]}>
 
                     {data?.data?.products?.map((product) => (
