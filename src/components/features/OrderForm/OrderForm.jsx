@@ -12,7 +12,7 @@ import {notifications} from "@mantine/notifications";
 export const OrderForm = ({itemsToOrder}) => {
 
     const [active, setActive] = useState(0);
-
+    const itemsIds = itemsToOrder.map((item) => item.id)
     const prevStep = () => setActive((current) => (current > 0 ? current - 1 : current));
     const nextStep = () =>
         setActive((current) => {
@@ -34,9 +34,10 @@ export const OrderForm = ({itemsToOrder}) => {
                 title: "Произошла ошибка", message: 'Попробуйте позже', color: 'red'
             })
         }
+        form.setValues((prevState) => ({...prevState, cartItemIds: itemsIds}))
+        console.log()
 
-
-        orderApi.createOrder(data).then((response) => {
+        orderApi.createOrder({data}).then((response) => {
             switch (response && response.statusText) {
                 case 'Created':
                     handleSuccessAddToCard();
@@ -46,10 +47,21 @@ export const OrderForm = ({itemsToOrder}) => {
                     break;
 
             }
-        })
+        }, (e) => console.log(e))
 
     }
 
+    // {
+    //     "status": [
+    //     "The status field is required."
+    // ],
+    //     "paymentStatus": [
+    //     "The payment status field is required."
+    // ],
+    //     "paymentMethod": [
+    //     "The selected payment method is invalid."
+    // ]
+    // }
     const form = useForm({
         initialValues: {
             country: '',
@@ -59,9 +71,7 @@ export const OrderForm = ({itemsToOrder}) => {
             paymentMethod: '',
             street: '',
             postcode: '',
-            products: itemsToOrder?.map((item) =>
-                item.id
-            ) || []
+            cartItemIds: itemsIds
         },
 
         validate: (values) => {

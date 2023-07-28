@@ -46,9 +46,19 @@ export const userApi = {
     async loginByToken() {
         const res = await api({
             method: 'get',
-            url: 'auth/by-token/',
+            url: 'user',
         });
 
+
+        return res;
+    },
+
+    async patchUserData({data}) {
+        const res = await api({
+            method: 'patch',
+            url: 'user',
+            data
+        });
 
         return res;
     },
@@ -65,29 +75,4 @@ export const userApi = {
         return res;
     },
 
-    updateUserData({login, email, firstName, lastName, middleName, smevLogin, smevPassword}) {
-        return api({
-            method: 'PUT',
-            url: 'api/auth-token/user/',
-            data: {
-                login,
-                email,
-                first_name: firstName,
-                last_name: lastName,
-                middle_name: middleName,
-                smev_login: smevLogin,
-                smev_password: smevPassword,
-            },
-        });
-    },
-    updateUserPassword({oldPassword, newPassword}) {
-        return api({
-            method: 'PUT',
-            url: 'api/auth-token/user/update_password/',
-            data: {
-                old_password: oldPassword,
-                new_password: newPassword,
-            },
-        });
-    },
 };

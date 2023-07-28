@@ -9,7 +9,7 @@ export function useProductsBanner(params) {
         limit: 8,
         offset: 0,
     }
-
+    
     return useQuery(
         ['productBanner'],
         () =>

@@ -35,11 +35,11 @@ const BreadcrumbsStyles = createStyles((theme) => ({
 export const ProductBreadcrumbs = () => {
     const {product} = useContext(ProductInfoContext)
     const {classes} = BreadcrumbsStyles();
-
+    console.log(product)
     const links = [
         {title: 'Главная', href: '/'},
         {title: 'Каталог', href: '/products'},
-        {title: product?.category?.name, href: `/products?categories[]=${product?.category?.name}`},
+        {title: product?.category?.name, href: `/products?categories[]=${product?.category?.id}`},
         {title: product?.name, href: null},
     ]
 

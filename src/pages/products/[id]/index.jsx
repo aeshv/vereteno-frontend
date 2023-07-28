@@ -16,7 +16,7 @@ const SingleProduct = ({product}) => {
     const [currentVendorIndex, setCurrentVendorIndex] = useState(0);
 
     const vendorIndex = {currentVendorIndex, setCurrentVendorIndex}
-
+    console.log('GHJLERN', product)
     return (
 
         <ProductInfoContext.Provider value={{product: {...product}, vendorIndex}}>
@@ -36,7 +36,8 @@ const SingleProduct = ({product}) => {
                                 <ProductVendorVariations/>
                             }
                             <ProductInfo/>
-                            <BuyingWith title={"Товары из этой же категории"} params={{'categories[]': '4'}}/>
+                            <BuyingWith title={`Товары из этой же категории ${product?.category?.id}`}
+                                        params={{'categories[]': product?.category?.id}}/>
                         </div>
                     </div>
                 </div>

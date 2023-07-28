@@ -21,6 +21,7 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
     const {refetchCartFunction} = cartContext
     const handleDeleteItemFromCart = () => {
         let id = item.id
+
         setIsDeleteLoading(true)
         cartApi.removeItemCartById(({id: id})).then(
             result => {
@@ -42,6 +43,7 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
 
     const handleChangeItemAmount = (amount) => {
         let id = item.id
+        console.log(item)
         cartApi.updateItemById({id: id, quantity: amount})
     }
 

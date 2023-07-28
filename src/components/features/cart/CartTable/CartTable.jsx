@@ -17,7 +17,6 @@ export function CartTable() {
     const cartContext = useContext(CartContext)
     const {refetchCartFunction} = cartContext
     const items = cartContext?.data.items || []
-
     const {classes, cx} = useStyles();
     const [selection, setSelection] = useState([]);
     const toggleRow = (newItem) => setSelection((current) => current.includes(newItem) ? current.filter((item) => item.id !== newItem.id) : [...current, newItem]);

@@ -1,9 +1,10 @@
-import {Avatar, createStyles, Flex, Group, Paper, Text} from "@mantine/core";
+import {Avatar, createStyles, Flex, Group, Paper, Tabs, Text} from "@mantine/core";
 import React from "react";
 import UserPageLayout from "@/components/Layouts/UserPageLayout";
-import {IconAt, IconMapPin, IconPhoneCall} from "@tabler/icons-react";
+import {IconAt, IconMapPin, IconPhoneCall, IconUserSearch} from "@tabler/icons-react";
 import noimage from "../../../public/noimage.png";
 import {useSelector} from "react-redux";
+import {ProfileEdit} from "@/components/entity/ProfileEdit/ProfileEdit";
 
 const useStyles = createStyles((theme) => ({
     icon: {
@@ -28,39 +29,62 @@ const Index = ({name, email, phone}) => {
         return result.length > 3 ? result : noName
     }
 
+    console.log(user)
+
     return (
         <>
             <Paper>
-                <Flex direction={"column"} gap={'sm'}>
-                    <Group noWrap>
-                        <Avatar src={user?.profile_image || noimage} size={94} radius="md"/>
-                        <div>
-                            <Text fz="lg" fw={500} className={classes.name}>
-                                {getFullUserName()}
-                            </Text>
-                        </div>
-                    </Group>
-                    <Group noWrap spacing={10} mt={3}>
-                        <IconAt stroke={1.5} size="2rem" className={classes.icon}/>
-                        <Text fz="sm" c="dimmed">
-                            {user?.email ? user?.email : 'Почта не указана'}
-                        </Text>
-                    </Group>
+                <Tabs defaultValue="profile">
+                    <Tabs.List grow>
+                        <Tabs.Tab value="profile">Профиль</Tabs.Tab>
+                        <Tabs.Tab value="edit">Редактировать</Tabs.Tab>
+                    </Tabs.List>
+                    <Tabs.Panel value={'profile'}>
+                        <Flex direction={"column"} gap={'sm'}>
+                            <Group noWrap>
+                                <Avatar src={user?.profile_image || noimage} size={94} radius="md"/>
+                                <div>
+                                    <Text fz="lg" fw={500} className={classes.name}>
+                                        {getFullUserName()}
+                                    </Text>
+                                </div>
+                            </Group>
+                            <Group noWrap spacing={10} mt={3}>
+                                <IconAt stroke={1.5} size="2rem" className={classes.icon}/>
+                                <Text fz="sm" c="dimmed">
+                                    Эл. Почта
+                                </Text>
+                                <Text fz="sm">
+                                    {user?.email ? user?.email : 'Почта не указана'}
+                                </Text>
+                            </Group>
 
-                    <Group noWrap spacing={10} mt={5}>
-                        <IconPhoneCall stroke={1.5} size="2rem" className={classes.icon}/>
-                        <Text fz="sm" c="dimmed">
-                            {user?.phone ? user?.phone : 'Номер не указан'}
-                        </Text>
-                    </Group>
+                            <Group noWrap spacing={10} mt={5}>
+                                <IconPhoneCall stroke={1.5} size="2rem" className={classes.icon}/>
+                                <Text fz="sm" c="dimmed">
+                                    Номер телефона
+                                </Text>
+                                <Text fz="sm">
+                                    {user?.phone ? user?.phone : 'Номер не указан'}
+                                </Text>
+                            </Group>
+                            <Group noWrap spacing={10} mt={5}>
+                                <IconUserSearch stroke={1.5} size="2rem" className={classes.icon}/>
+                                <Text fz="sm" c="dimmed">
+                                    Логин
+                                </Text>
+                                <Text fz="sm">
+                                    {user?.login ? user?.login : 'Логин не указан'}
+                                </Text>
+                            </Group>
 
-                    {/*<Group noWrap spacing={10} mt={5}>*/}
-                    {/*	<IconMapPin stroke={1.5} size="2rem" className={classes.icon}/>*/}
-                    {/*	<Text fz="sm" c="dimmed">*/}
-                    {/*		{user?.phone ? user?.phone : 'Адрес не указан'}*/}
-                    {/*	</Text>*/}
-                    {/*</Group>*/}
-                </Flex>
+                        </Flex>
+                    </Tabs.Panel>
+                    <Tabs.Panel value={'edit'}>
+                        <ProfileEdit/>
+                    </Tabs.Panel>
+                </Tabs>
+
             </Paper>
         </>
     );
