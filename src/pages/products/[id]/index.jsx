@@ -36,7 +36,7 @@ const SingleProduct = ({product}) => {
                                 <ProductVendorVariations/>
                             }
                             <ProductInfo/>
-                            <BuyingWith title={`Товары из этой же категории ${product?.category?.id}`}
+                            <BuyingWith title={`Товары из этой же категории`}
                                         params={{'categories[]': product?.category?.id}}/>
                         </div>
                     </div>
@@ -73,5 +73,6 @@ export const getStaticProps = async ({params}) => {
         props: {
             product,
         },
+        revalidate: 60,
     };
 }
