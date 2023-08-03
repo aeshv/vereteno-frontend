@@ -10,7 +10,6 @@ import CatalogMenu from "@/components/features/catalogMenu/CatalogMenu";
 import {useSelector} from "react-redux";
 
 const Header = () => {
-    const isLoggedIn = useSelector((state) => !!state.auth.token)
     return (<>
         <header className={styles.container}>
             <div className={styles.top}>
@@ -19,7 +18,7 @@ const Header = () => {
                         <Link href="/about">О Нас</Link>
                         <Link href="/reviews">Отзывы</Link>
                         <Link href="/lk">Личный кабинет</Link>
-                        <Link href="/products">Продукты</Link>
+                        {/*<Link href="/products">Продукты</Link>*/}
                         <Link href="/legal">Правовая информация</Link>
                         <Link href="/info">Как узнать размер</Link>
                     </ul>
@@ -30,26 +29,6 @@ const Header = () => {
                 </div>
             </div>
 
-            {/*<div className={styles.main}>*/}
-            {/*	<Link href="/">*/}
-            {/*		<div className="logo">LOGO</div>*/}
-            {/*	</Link>*/}
-            {/*	<div className={styles.catalog}>*/}
-
-            {/*		<CatalogMenu/>*/}
-            {/*	</div>*/}
-            {/*	<Search/>*/}
-            {/*	<Link href="/cart">*/}
-            {/*		<Icon icon={<IconShoppingCart stroke="black"/>}/>*/}
-            {/*	</Link>*/}
-
-            {/*	{isLoggedIn ? <Link href="/lk">*/}
-            {/*		<Icon icon={<IconUser stroke="black"/>}/>*/}
-            {/*	</Link> : <Link href="/auth">*/}
-            {/*		<Icon icon={<IconLogin stroke="black"/>}/>*/}
-            {/*	</Link>}*/}
-
-            {/*</div>*/}
         </header>
     </>);
 };
