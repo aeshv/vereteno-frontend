@@ -20,7 +20,7 @@ const SingleProduct = ({product}) => {
 
         <ProductInfoContext.Provider value={{product: {...product}, vendorIndex}}>
             <PageHead title={product?.name || 'Загрузка'}/>
-            <Paper shadow="xl" radius="xl" p="xl">
+            <Paper shadow="md" radius="xl" p="xl" mb={'xl'}>
                 <div className={styles.container}>
                     <div className={styles.top}>
                         <ProductBreadcrumbs/>

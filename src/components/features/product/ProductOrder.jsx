@@ -14,7 +14,6 @@ const ProductOrder = () => {
     const ctx = useContext(ProductInfoContext)
     const {product, vendorIndex} = ctx
     const clipboard = useClipboard({timeout: 1400});
-
     const productInfo = product?.vendorCodes?.[vendorIndex.currentVendorIndex]
 
 
@@ -31,8 +30,6 @@ const ProductOrder = () => {
 
             </div>
             <div className={styles.shopinfo}>
-
-
                 {/*Наличие*/}
                 {productInfo?.quantity > 0 ? (
                         <div className={styles.shop__item}>
