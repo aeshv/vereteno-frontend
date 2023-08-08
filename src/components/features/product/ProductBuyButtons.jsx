@@ -75,8 +75,7 @@ const ProductBuyButtons = () => {
     }
 
 
-    return (
-
+    if (user) return (
         <div className={classes.buyContainer}>
             <Button className={classes.button} loading={isLoading} leftIcon={<IconShoppingCart/>}
                     onClick={(e) => handlePlaceToCart(e)}>
