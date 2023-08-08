@@ -9,8 +9,7 @@ export const ProductsPagination = ({total}) => {
     const [activePage, setPage] = React.useState(query.page ? query.page : 1)
 
     const ITEMSONPAGE = 10
-    const totalPageAmount = useMemo(() => total / ITEMSONPAGE, [total])
-
+    const totalPageAmount = useMemo(() => total / ITEMSONPAGE < 1 ? 1 : total / ITEMSONPAGE, [total])
     const onPageChanged = (e) => {
         if (e > 1) {
             //Значение поиска

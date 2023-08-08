@@ -18,7 +18,7 @@ const Header = () => {
                         <Link href="/about">О Нас</Link>
                         <Link href="/reviews">Отзывы</Link>
                         <Link href="/lk">Личный кабинет</Link>
-                        {/*<Link href="/products">Продукты</Link>*/}
+                        <Link href="/cart">Корзина</Link>
                         <Link href="/legal">Правовая информация</Link>
                         <Link href="/info">Как узнать размер</Link>
                     </ul>

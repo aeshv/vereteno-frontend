@@ -23,9 +23,10 @@ import {
 } from "@tabler/icons-react";
 import Link from "next/link";
 import {userApi} from "@/api";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {logout} from "@/redux/features/auth/authSlice";
 import {useRouter} from "next/router";
+import {Enum} from "@/utils/enum";
 
 const useStyles = createStyles((theme) => ({
     header: {
@@ -111,45 +112,50 @@ const useStyles = createStyles((theme) => ({
 export const lkMenuLinks = [
     {link: "/lk", label: "Персональная информация", icon: IconUserCircle},
     {
-        link: "/lk/orders",
+        link: "/orders",
         label: "Заказы",
         icon: IconReceipt2,
+        protected: true,
     },
-    // {link: "/lk/security", label: "Безопасность", icon: IconFingerprint},
     {
         link: "/cart",
         label: "Корзина",
         icon: IconGardenCart,
+        protected: false,
     },
-    // {link: "/lk/settings", label: "Остальные настройки", icon: IconSettings},
 ];
 
 export function PersonalInfoExpanded() {
     const {classes, cx} = useStyles();
     const dispatch = useDispatch();
     const router = useRouter();
+    const {user} = useSelector((state) => state.auth)
+    const routeToActiveTab = Enum({lk: 'Персональная информация', orders: 'Заказы', cart: 'Корзина'},
+    )
 
-    const [active, setActive] = useState("Персональная информация");
-    const links = lkMenuLinks.map((item) => (
+    const [active, setActive] = useState(routeToActiveTab[router.pathname.substring(1)]);
+    const links = lkMenuLinks.map((item) => {
 
-        <Link
-            className={cx(classes.link, {
-                [classes.linkActive]: item.label === active,
-            })}
-            href={item.link}
-            key={item.label}
-            onClick={(event) => {
-                // event.preventDefault();
-                setActive(item.label);
-            }}
-        >
-            <Tooltip label={item.label}>
-                <item.icon className={classes.linkIcon} stroke={1.5}/>
-            </Tooltip>
-            <span>{item.label}</span>
-        </Link>
+        if (!user && !item.protected || user) return (
+            <Link
+                className={cx(classes.link, {
+                    [classes.linkActive]: item.label === active,
+                })}
+                href={item.link}
+                key={item.label}
+                onClick={(event) => {
+                    // event.preventDefault();
+                    setActive(item.label);
+                }}
+            >
+                <Tooltip label={item.label}>
+                    <item.icon className={classes.linkIcon} stroke={1.5}/>
+                </Tooltip>
+                <span>{item.label}</span>
+            </Link>
+        )
 
-    ));
+    });
 
     return (
         <Navbar zIndex={300} height={700} width={{sm: 300}} p="md">

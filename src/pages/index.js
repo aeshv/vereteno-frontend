@@ -46,7 +46,7 @@ export default function Home({products, categories}) {
                 {maxWidth: '36rem', cols: 1, spacing: 'sm'},
             ]}>
                 {categories?.slice(0, 8)?.map((category) => (
-                    <BlurredBlock title={category.name} key={category.id} id={category.id}/>
+                    <BlurredBlock title={category.name} key={category.id} id={category.id} {...category}/>
 
                 ))}
             </SimpleGrid>

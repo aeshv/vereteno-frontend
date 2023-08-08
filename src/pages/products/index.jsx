@@ -18,7 +18,7 @@ const Products = () => {
                 <div className={styles.promo_banner}></div>
                 <div className={styles.content}>
                     <div className={styles.filters}>
-                        <h2>Фильтры</h2>
+                        <h2 style={{marginBottom: '0.5rem'}}>Фильтры</h2>
                         <HatFilter/>
                     </div>
                     <div className={styles.store}>

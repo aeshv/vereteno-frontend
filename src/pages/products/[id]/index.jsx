@@ -16,7 +16,6 @@ const SingleProduct = ({product}) => {
     const [currentVendorIndex, setCurrentVendorIndex] = useState(0);
 
     const vendorIndex = {currentVendorIndex, setCurrentVendorIndex}
-    console.log('GHJLERN', product)
     return (
 
         <ProductInfoContext.Provider value={{product: {...product}, vendorIndex}}>

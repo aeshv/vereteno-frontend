@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from "next/image";
 import noImage from '../../../../public/noimage.png'
-import {BackgroundImage, Box, Center, createStyles, Group, rem, Text} from "@mantine/core";
+import {BackgroundImage, Box, Center, createStyles, getStylesRef, Group, rem, Text} from "@mantine/core";
 import Link from "next/link";
 import {useRouter} from "next/router";
 
@@ -14,9 +14,7 @@ const blurredBlockClasses = createStyles((theme) => ({
         overflow: 'hidden',
         transition: 'all 0.2s ease-in-out',
         cursor: 'pointer',
-        '&:hover': {
-            opacity: 0.9
-        },
+
     }, link: {
         width: '100%',
         height: '100%',
@@ -26,15 +24,28 @@ const blurredBlockClasses = createStyles((theme) => ({
         justifyContent: 'flex-end',
         padding: '18px',
         borderRadius: '22px',
+        transition: 'all 0.3s ease-in-out',
+        '&:hover': {
+            [`.${getStylesRef('textRef')}`]: {
+                scale: '1.1',
+            },
+            boxShadow: theme.shadows.sm,
+            transform: 'scale(0.99)',
+        },
     }, content: {
-        background: ' rgba(0, 0, 0, 0.2)', backdropFilter: ' blur(5px)', borderRadius: ' 10px', width: '100%',
+        ref: getStylesRef('contentRef'),
+        transition: 'all 0.3s ease-in-out',
+        background: ' rgba(0, 0, 0, 0.2)', borderRadius: ' 10px', width: '100%',
+    },
+    text: {
+        ref: getStylesRef('textRef'),
+        transition: 'all 0.3s ease-in-out',
     }
 }));
 
 
-const BlurredBlock = ({title = 'Шляпы', id}) => {
+const BlurredBlock = ({title = 'Шляпы', id, ...other}) => {
     const {classes} = blurredBlockClasses();
-
     return (<>
         <Box mx="auto" className={classes.box}>
             <Link href={`/products?categories[]=${id}`}>
@@ -44,7 +55,7 @@ const BlurredBlock = ({title = 'Шляпы', id}) => {
                     className={classes.link}
                 >
                     <Center p="md" className={classes.content}>
-                        <Text color="#fff">
+                        <Text color="#fff" className={classes.text}>
                             {title}
                         </Text>
                     </Center>

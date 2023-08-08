@@ -5,6 +5,8 @@ import {notifications} from "@mantine/notifications";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import {cartApi} from "@/api/cart";
 import {useSelector} from "react-redux";
+import {getCookie, setCookie} from "cookies-next";
+import {getNextMonth} from "@/utils/getNextMonth";
 
 const CatalogButtonStyles = createStyles(() => ({
     button: {
@@ -42,18 +44,17 @@ const ProductBuyButtons = () => {
 
     const handlePlaceToCart = () => {
         setIsLoading((prevState) => !prevState)
+        if (!user) {
+            setCookie("guestCart", [{
+                productVendorCodeId: currentVendorCodeId,
+                quantity: 1
+            }], {expires: getNextMonth()});
+        }
+        cartApi.updateCartById({
+            productVendorCodeId: currentVendorCodeId,
+            quantity: 1
+        }).then(handleSuccessAddToCard, handleErrorAddToCard)
 
-        cartApi.updateCartById({productVendorCodeId: currentVendorCodeId, quantity: 1}).then((response) => {
-            switch (response && response.statusText) {
-                case 'Created':
-                    handleSuccessAddToCard();
-                    break;
-                default:
-                    handleErrorAddToCard();
-                    break;
-
-            }
-        })
     }
 
     const handleSuccessAddToCard = () => {
@@ -62,6 +63,7 @@ const ProductBuyButtons = () => {
             title: "Успешно добавлено в корзину", message: 'Продолжите покупки или проверьте корзину', color: 'green'
         })
         setCurrentButtonStatus('Добавить еще')
+
     }
 
     const handleErrorAddToCard = () => {
@@ -72,21 +74,18 @@ const ProductBuyButtons = () => {
         setCurrentButtonStatus('В корзину')
     }
 
-    if (user) {
 
-        return (
+    return (
 
-            <div className={classes.buyContainer}>
-                <Button className={classes.button} loading={isLoading} leftIcon={<IconShoppingCart/>}
-                        onClick={(e) => handlePlaceToCart(e)}>
-                    {currentButtonStatus}
-                </Button>
-            </div>
+        <div className={classes.buyContainer}>
+            <Button className={classes.button} loading={isLoading} leftIcon={<IconShoppingCart/>}
+                    onClick={(e) => handlePlaceToCart(e)}>
+                {currentButtonStatus}
+            </Button>
+        </div>
 
-        )
-    } else {
-        <></>
-    }
+    )
+
 }
 export default ProductBuyButtons
 
