@@ -29,7 +29,6 @@ const Index = ({name, email, phone}) => {
         return result.length > 3 ? result : noName
     }
 
-    console.log(user)
 
     return (
         <>

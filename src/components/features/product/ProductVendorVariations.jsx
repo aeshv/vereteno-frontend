@@ -51,11 +51,11 @@ const ProductVendorVariations = () => {
             <Center>
                 <Flex gap={'xs'}>
                     {vendorCodes?.map((vendor, index) => (
-                        <>
-                            <VendorCard handleChangeVendor={() => setCurrentVendorIndex(index)}
+
+                            <VendorCard key={index} handleChangeVendor={() => setCurrentVendorIndex(index)}
                                         material={vendor?.material}
                                         size={vendor?.size} color={vendor?.color}/>
-                        </>
+
                     ))}
                 </Flex>
             </Center>

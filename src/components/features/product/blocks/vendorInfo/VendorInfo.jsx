@@ -2,6 +2,7 @@ import {Box, Card, createStyles, Flex, Stack, Text, Title} from "@mantine/core";
 import {useContext} from "react";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import ColorDot from "@/components/shared/ColorDot/ColorDot";
+import {SizeSelectorOrder} from "@/components/features/product/blocks/vendorInfo/SizeSelector";
 
 const VendorStyles = createStyles((theme) => ({
     card: {
@@ -30,7 +31,7 @@ export const VendorInfo = () => {
     const {classes} = VendorStyles();
     const {vendorCodes} = ctx.product || []
 
-    const {color, material, size} = vendorCodes?.[ctx.vendorIndex.currentVendorIndex] || []
+    const {color, material, sizes} = vendorCodes?.[ctx.vendorIndex.currentVendorIndex] || []
 
 
     return (
@@ -57,8 +58,9 @@ export const VendorInfo = () => {
                     {/*Размер*/}
                     <Box>
                         <Title className={classes.title} size={'xs'} color="dimmed" weight={400}>Размер</Title>
+                        <SizeSelectorOrder sizes={sizes}/>
                         <Flex align={'center'} gap={'xs'}>
-                            <Text className={classes.text} size={'md'}>{size}</Text>
+                            <Text className={classes.text} size={'md'}></Text>
                         </Flex>
                     </Box>
                 </Stack>

@@ -35,8 +35,6 @@ export const OrderForm = ({itemsToOrder}) => {
             })
         }
         form.setValues((prevState) => ({...prevState, cartItemIds: itemsIds}))
-        console.log()
-
         orderApi.createOrder({data}).then((response) => {
             switch (response && response.statusText) {
                 case 'Created':

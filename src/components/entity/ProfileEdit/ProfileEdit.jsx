@@ -54,9 +54,7 @@ export const ProfileEdit = () => {
             })
         }
 
-        console.log(data)
         userApi.patchUserData({data}).then((response) => {
-            console.log('Результат изменения:', response)
             switch (response && response.statusText) {
                 case 'OK':
                     successEdit();

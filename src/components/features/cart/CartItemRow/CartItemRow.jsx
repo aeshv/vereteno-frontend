@@ -43,7 +43,6 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
 
     const handleChangeItemAmount = (amount) => {
         let id = item.id
-        console.log(item)
         cartApi.updateItemById({id: id, quantity: amount})
     }
 
