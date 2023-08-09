@@ -5,6 +5,7 @@ import {IconAt, IconMapPin, IconPhoneCall, IconUserSearch} from "@tabler/icons-r
 import noimage from "../../../public/noimage.png";
 import {useSelector} from "react-redux";
 import {ProfileEdit} from "@/components/entity/ProfileEdit/ProfileEdit";
+import NoDataCart from "@/components/features/cart/NoDataCart/NoDataCart";
 
 const useStyles = createStyles((theme) => ({
     icon: {
@@ -29,55 +30,59 @@ const Index = ({name, email, phone}) => {
         return result.length > 3 ? result : noName
     }
 
-
     return (
         <>
             <Paper>
                 <Tabs defaultValue="profile">
                     <Tabs.List grow>
                         <Tabs.Tab value="profile">Профиль</Tabs.Tab>
-                        <Tabs.Tab value="edit">Редактировать</Tabs.Tab>
+                        {user &&
+                            <Tabs.Tab value="edit">Редактировать</Tabs.Tab>
+                        }
                     </Tabs.List>
                     <Tabs.Panel value={'profile'}>
-                        <Flex p={'xs'} direction={"column"} gap={'sm'}>
-                            <Group noWrap>
-                                <Avatar src={user?.profile_image || noimage} size={94} radius="md"/>
-                                <div>
-                                    <Text fz="lg" fw={500} className={classes.name}>
-                                        {getFullUserName()}
+                        {user ? <Flex p={'xs'} direction={"column"} gap={'sm'}>
+                                <Group noWrap>
+                                    <Avatar src={user?.profile_image || noimage} size={94} radius="md"/>
+                                    <div>
+                                        <Text fz="lg" fw={500} className={classes.name}>
+                                            {getFullUserName()}
+                                        </Text>
+                                    </div>
+                                </Group>
+                                <Group noWrap spacing={10} mt={3}>
+                                    <IconAt stroke={1.5} size="2rem" className={classes.icon}/>
+                                    <Text fz="sm" c="dimmed">
+                                        Эл. Почта
                                     </Text>
-                                </div>
-                            </Group>
-                            <Group noWrap spacing={10} mt={3}>
-                                <IconAt stroke={1.5} size="2rem" className={classes.icon}/>
-                                <Text fz="sm" c="dimmed">
-                                    Эл. Почта
-                                </Text>
-                                <Text fz="sm">
-                                    {user?.email ? user?.email : 'Почта не указана'}
-                                </Text>
-                            </Group>
+                                    <Text fz="sm">
+                                        {user?.email ? user?.email : 'Почта не указана'}
+                                    </Text>
+                                </Group>
 
-                            <Group noWrap spacing={10} mt={5}>
-                                <IconPhoneCall stroke={1.5} size="2rem" className={classes.icon}/>
-                                <Text fz="sm" c="dimmed">
-                                    Номер телефона
-                                </Text>
-                                <Text fz="sm">
-                                    {user?.phone ? user?.phone : 'Номер не указан'}
-                                </Text>
-                            </Group>
-                            <Group noWrap spacing={10} mt={5}>
-                                <IconUserSearch stroke={1.5} size="2rem" className={classes.icon}/>
-                                <Text fz="sm" c="dimmed">
-                                    Логин
-                                </Text>
-                                <Text fz="sm">
-                                    {user?.login ? user?.login : 'Логин не указан'}
-                                </Text>
-                            </Group>
+                                <Group noWrap spacing={10} mt={5}>
+                                    <IconPhoneCall stroke={1.5} size="2rem" className={classes.icon}/>
+                                    <Text fz="sm" c="dimmed">
+                                        Номер телефона
+                                    </Text>
+                                    <Text fz="sm">
+                                        {user?.phone ? user?.phone : 'Номер не указан'}
+                                    </Text>
+                                </Group>
+                                <Group noWrap spacing={10} mt={5}>
+                                    <IconUserSearch stroke={1.5} size="2rem" className={classes.icon}/>
+                                    <Text fz="sm" c="dimmed">
+                                        Логин
+                                    </Text>
+                                    <Text fz="sm">
+                                        {user?.login ? user?.login : 'Логин не указан'}
+                                    </Text>
+                                </Group>
 
-                        </Flex>
+                            </Flex> :
+                            <NoDataCart title={'Вы не авторизованы'}
+                                        description={'Вы можете совершать покупки, но для удобного доступа - авторизуйтесь или зарегистрируйтесь'}
+                                        btnText={'На страницу авторизации'} link={'/auth'}/>}
                     </Tabs.Panel>
                     <Tabs.Panel value={'edit'}>
                         <ProfileEdit/>

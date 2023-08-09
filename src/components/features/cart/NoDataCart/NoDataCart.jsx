@@ -6,7 +6,13 @@ import styles from "./NoDataCart.module.scss";
 import BuyingWith from "../../product/blocks/BuyingWith/BuyingWith";
 import Link from "next/link";
 
-const NoDataCart = ({title = 'ВАША КОРЗИНА ПУСТА', description = 'Добавьте в нее товары из каталога'}) => {
+const NoDataCart = ({
+                        title = 'ВАША КОРЗИНА ПУСТА',
+                        description = 'Добавьте в нее товары из каталога',
+                        link = '/products',
+                        btnText = 'Перейти к каталог',
+                        hideButton = false
+                    }) => {
     return (
         <>
             <div>
@@ -16,9 +22,11 @@ const NoDataCart = ({title = 'ВАША КОРЗИНА ПУСТА', description =
                     </div>
                     <h2>{title}</h2>
                     <p>{description}</p>
-                    <Link href={'/products'}>
-                        <button className={styles.button}>Перейти в каталог</button>
-                    </Link>
+                    {!hideButton &&
+                        <Link href={link}>
+                            <button className={styles.button}>{btnText}</button>
+                        </Link>
+                    }
                 </div>
             </div>
 

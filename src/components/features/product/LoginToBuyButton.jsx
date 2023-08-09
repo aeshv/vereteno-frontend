@@ -62,8 +62,6 @@ const LoginToBuyButton = () => {
                 Авторизоваться
             </Button>
         </div>)
-    } else {
-        <></>
     }
 }
 export default LoginToBuyButton

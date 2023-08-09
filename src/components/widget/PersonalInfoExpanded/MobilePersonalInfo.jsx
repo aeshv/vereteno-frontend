@@ -1,6 +1,6 @@
 import {useDisclosure} from '@mantine/hooks';
 import {Drawer, Button, Group, Tooltip, Title, createStyles, rem, getStylesRef, Flex} from '@mantine/core';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
 import React, {useState} from "react";
 import Link from "next/link";
@@ -82,26 +82,29 @@ export function MobilePersonalInfo() {
     const {classes, cx} = useStyles();
     const dispatch = useDispatch();
     const router = useRouter();
-
+    const {user} = useSelector((state) => state.auth)
     const [active, setActive] = useState("Персональная информация");
-    const links = lkMenuLinks.map((item) => (
 
-        <Link
-            className={cx(classes.link)}
-            href={item.link}
-            key={item.label}
-            onClick={(event) => {
-                // event.preventDefault();
-                setActive(item.label);
-            }}
-        >
-            <Tooltip label={item.label}>
-                <item.icon className={classes.linkIcon} stroke={1.5}/>
-            </Tooltip>
-            <span>{item.label}</span>
-        </Link>
 
-    ));
+    const links = lkMenuLinks.map((item) => {
+        if (!user && !item.protected || user) return (
+            <Link
+                className={cx(classes.link)}
+                href={item.link}
+                key={item.label}
+                onClick={(event) => {
+                    // event.preventDefault();
+                    setActive(item.label);
+                }}
+            >
+                <Tooltip label={item.label}>
+                    <item.icon className={classes.linkIcon} stroke={1.5}/>
+                </Tooltip>
+                <span>{item.label}</span>
+            </Link>
+
+        )
+    });
 
 
     return (
