@@ -19,6 +19,9 @@ const SingleProduct = ({product}) => {
     const vendorIndex = {currentVendorIndex, setCurrentVendorIndex}
     const sizeControl = {selectedSize, setSelectedSize}
 
+
+    console.log('product', product)
+
     useEffect(()=>{
         setSelectedSize(product?.vendorCodes?.[currentVendorIndex]?.sizes[0]?.id)
     }, [currentVendorIndex, product])

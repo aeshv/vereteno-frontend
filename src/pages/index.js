@@ -16,6 +16,7 @@ import PageHead from "@/components/SEO/PageHead";
 
 
 export default function Home({products, categories}) {
+    console.log('categories', categories)
     return (<>
         <PageHead title={'Главная'}/>
         <main

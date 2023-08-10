@@ -3,7 +3,7 @@ import Image from "next/image";
 import noImage from '../../../../public/noimage.png'
 import {BackgroundImage, Box, Center, createStyles, getStylesRef, Group, rem, Text} from "@mantine/core";
 import Link from "next/link";
-import {useRouter} from "next/router";
+import categoryPlaceholder from '@/components/shared/BluredBlock/categoryPlaceholder.png'
 
 const blurredBlockClasses = createStyles((theme) => ({
     box: {
@@ -46,11 +46,13 @@ const blurredBlockClasses = createStyles((theme) => ({
 
 const BlurredBlock = ({title = 'Шляпы', id, ...other}) => {
     const {classes} = blurredBlockClasses();
+    // console.log('sss', other)
+
     return (<>
         <Box mx="auto" className={classes.box}>
             <Link href={`/products?categories[]=${id}`}>
                 <BackgroundImage
-                    src="https://images.unsplash.com/photo-1606343131164-ab932aeffdaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80"
+                    src={`${process.env.NEXT_PUBLIC_IMAGE}/${other.image}`}
                     radius="xs"
                     className={classes.link}
                 >
