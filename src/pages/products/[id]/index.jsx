@@ -14,11 +14,18 @@ import ProductVendorVariations from "@/components/features/product/ProductVendor
 
 const SingleProduct = ({product}) => {
     const [currentVendorIndex, setCurrentVendorIndex] = useState(0);
+    const [selectedSize, setSelectedSize] = useState(product?.vendorCodes?.[currentVendorIndex]?.sizes[0]?.id);
 
     const vendorIndex = {currentVendorIndex, setCurrentVendorIndex}
+    const sizeControl = {selectedSize, setSelectedSize}
+
+    useEffect(()=>{
+        setSelectedSize(product?.vendorCodes?.[currentVendorIndex]?.sizes[0]?.id)
+    }, [currentVendorIndex, product])
+
     return (
 
-        <ProductInfoContext.Provider value={{product: {...product}, vendorIndex}}>
+        <ProductInfoContext.Provider value={{product: {...product}, vendorIndex, sizeControl}}>
             <PageHead title={product?.name || 'Загрузка'}/>
             <Paper shadow="md" radius="xl" p="xl" mb={'xl'}>
                 <div className={styles.container}>

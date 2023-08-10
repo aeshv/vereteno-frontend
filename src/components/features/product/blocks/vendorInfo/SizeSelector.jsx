@@ -1,5 +1,5 @@
 import {createStyles, SegmentedControl} from "@mantine/core";
-import {useContext, useMemo, useState} from "react";
+import {useContext, useEffect, useMemo, useState} from "react";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 
@@ -17,11 +17,17 @@ const segmentSizeSelectorStyles = createStyles((theme) => ({
 
 
 export const SizeSelectorOrder = ({sizes}) => {
-	const {sizeControl} = useContext(ProductInfoContext)
+	const {sizeControl, vendorIndex, product} = useContext(ProductInfoContext)
 	const serializedSizes = useMemo(() => sizes?.map((item) => ({value: item.id, label: item.size})), [sizes]);
-
 	const [value, setValue] = useState(sizeControl?.selectedSize || '');
 	const {classes} = segmentSizeSelectorStyles();
+
+	//Установка первого размера при смене вендоркода
+	useEffect(() =>
+		{
+			setValue(sizeControl?.selectedSize)
+		}
+		, [product, sizeControl, vendorIndex])
 
 	const handleChangeSize = (e) => {
 		setValue(e)
