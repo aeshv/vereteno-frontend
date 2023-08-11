@@ -14,9 +14,8 @@ const useStyles = createStyles((theme) => ({
 }));
 const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
     const {classes, cx} = useStyles();
-    const currentItemInfo = item.product;
+    const currentItemInfo = item;
     const [isDeleteLoading, setIsDeleteLoading] = useState(false);
-
     const cartContext = useContext(CartContext)
     const {refetchCartFunction} = cartContext
     const handleDeleteItemFromCart = () => {
@@ -43,7 +42,14 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
 
     const handleChangeItemAmount = (amount) => {
         let id = item.id
-        cartApi.updateItemById({id: id, quantity: amount})
+        cartApi.updateItemById({id: id, quantity: amount}).then(
+            result => {
+                refetchCartFunction()
+            },
+            error => {
+                console.log('error')
+            }
+        )
     }
 
 
@@ -62,27 +68,39 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
                 <Text size="sm" weight={500}>
                     {currentItemInfo?.productName}
                 </Text>
-                <Text size="sm" weight={400} color={"dimmed"}>
-                    арт. {currentItemInfo?.productVendorCodeId}
-                </Text>
+                {/*<Text size="sm" weight={400} color={"dimmed"}>*/}
+                {/*    арт. {currentItemInfo?.productVendorCodeId}*/}
+                {/*</Text>*/}
             </Group>
         </td>
         <td>
-            <QuantityInput current={item.quantity || 1} handleChange={handleChangeItemAmount}/>
+
+            <Text size="sm" weight={500}>
+                {currentItemInfo?.size?.number}
+            </Text>
+
+        </td>
+        <td>
+            <QuantityInput disabled={isSelected} current={item.quantity || 1} handleChange={handleChangeItemAmount}/>
         </td>
         <td>{currentItemInfo?.discount?.discount_coefficient ?
+            // Со скидкой
             <Stack spacing={'xs'}>
-                {(currentItemInfo?.price * currentItemInfo?.discount?.discount_coefficient).toFixed(2)} руб.
+                d руб.
                 <Badge variant="gradient" gradient={{
                     from: 'indigo',
                     to: 'cyan'
                 }}>Скидка {100 - currentItemInfo?.discount?.discount_coefficient * 100}%</Badge>
-
             </Stack>
-            : <>{currentItemInfo?.price} руб.</>}
+            :
+            // Без скидки
+            <Stack spacing="xs">
+                <Text>1 шт. - <b>{currentItemInfo?.originalPrice}</b> руб.</Text>
+                <Text>Всего - <b>{currentItemInfo?.originalTotalPrice}</b> руб.</Text>
+            </Stack>}
         </td>
         <td>
-            <Group spacing={0} position="right">
+            <Group spacing={0} position="center">
                 <ActionIcon variant="light" color="red" loading={isDeleteLoading}
                             onClick={() => handleDeleteItemFromCart(item.id)}>
                     <IconTrash size="1rem" stroke={1.5}/>

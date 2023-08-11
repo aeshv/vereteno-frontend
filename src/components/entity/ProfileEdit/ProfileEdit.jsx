@@ -35,8 +35,8 @@ export const ProfileEdit = () => {
         validate: (values) => ({
             name: values.name.length < 2 ? 'Имя слишком короткое' : null,
             surname: values.surname.length < 2 ? 'Фамилия слишком короткое' : null,
-            login: values.login.length < 2 ? 'Логин слишком короткий' : null,
-            email: /^\S+@\S+$/.test(values.email) ? null : 'Неверный вид электронной почты',
+            login: values.login.length < 2 && values.login.length !== 0 ? 'Логин слишком короткий' : null,
+            // email: /^\S+@\S+$/.test(values.email) && values.email.length !== 0 ? null : 'Неверный вид электронной почты',
             phone: values.phone.length < 2 ? 'Номер телефона слишком коротки' : null,
 
         }),
@@ -45,7 +45,7 @@ export const ProfileEdit = () => {
     const handleEditProfile = (data) => {
         const successEdit = () => {
             notifications.show({
-                title: "Данные изменены", message: '', color: 'green'
+                title: "Данные изменены", message: 'Перезагрузите страницу, для актуализации данных', color: 'green'
             })
         }
         const errorEdit = (message = 'Попробуйте позже') => {
@@ -77,26 +77,26 @@ export const ProfileEdit = () => {
                 })}>
                     <TextInput mb="md" label="Фамилия"
                                placeholder="Введите вашу фамилию" {...form.getInputProps('surname')}
-                               withAsterisk/>
+                    />
                     <TextInput mb="md" label="Имя"
                                placeholder="Введите ваше имя" {...form.getInputProps('name')}
-                               withAsterisk/>
+                    />
                     <TextInput mb="md" label="Отчество"
                                placeholder="Введите ваше отчество" {...form.getInputProps('patronymic')}
                     />
 
                     <TextInput mb="md" label="Логин"
                                placeholder="Введите желаемый логин" {...form.getInputProps('login')}
-                               withAsterisk/>
+                    />
                     <TextInput mb="md" label="Эл. Почта"
                                description={user?.email_verified_at !== null && 'Вы не можете изменить подтвержденную электронную почту'}
                                placeholder="Введите вашу электронную почту" {...form.getInputProps('email')}
-                               withAsterisk
+
                                disabled={user?.email_verified_at !== null}
                     />
                     <TextInput mb="md" label="Телефон"
                                placeholder="Введите ваш номер телефона" {...form.getInputProps('phone')}
-                               withAsterisk/>
+                    />
 
                     <Divider my={'xl'}/>
 

@@ -5,7 +5,7 @@ export const OrderShipment = ({form}) => {
         <>
             <Radio.Group
                 name="shipmentType"
-                label="Выбирете способ доставки"
+                label="Выберете способ доставки"
                 description=""
                 withAsterisk
                 {...form.getInputProps('shipmentType')}

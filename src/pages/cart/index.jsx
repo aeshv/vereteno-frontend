@@ -1,5 +1,5 @@
 import NoDataCart from '@/components/features/cart/NoDataCart/NoDataCart'
-import {Loader, Paper} from '@mantine/core'
+import {Center, Loader, Paper} from '@mantine/core'
 import React, {useEffect, useState} from 'react'
 import UserPageLayout from "@/components/Layouts/UserPageLayout";
 import {CartTable} from "@/components/features/cart/CartTable/CartTable";
@@ -20,15 +20,15 @@ const Index = () => {
 
     if (isError) {
         return (
-            <></>
+            <>Ошибка загрузки</>
         )
     }
 
-    if (isError) {
+    if (isLoading) {
         return (
-            <>
+            <Center mt={'xl'}>
                 <Loader/>
-            </>
+            </Center>
         )
     }
 

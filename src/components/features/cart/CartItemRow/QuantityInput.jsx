@@ -40,9 +40,10 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-export function QuantityInput({min = 1, max = 10, current, handleChange}) {
+export function QuantityInput({min = 1, max = 10, current, handleChange, disabled}) {
     const {classes} = useStyles();
     const [value, setValue] = useState(current);
+
 
     const onClickChange = (value) => {
         handleChange(value)
@@ -65,7 +66,7 @@ export function QuantityInput({min = 1, max = 10, current, handleChange}) {
                 size={28}
                 variant={"transparent"}
                 onClick={(e) => onDecrement(e)}
-                disabled={value === min}
+                disabled={value === min || disabled}
                 className={classes.control}
                 onMouseDown={(event) => event.preventDefault()}
             >
@@ -79,13 +80,14 @@ export function QuantityInput({min = 1, max = 10, current, handleChange}) {
                 value={value}
                 onChange={onClickChange}
                 classNames={{input: classes.input}}
+                readOnly={disabled}
             />
 
             <ActionIcon
                 size={28}
                 variant="transparent"
                 onClick={() => onIncrement()}
-                disabled={value === max}
+                disabled={value === max || disabled}
                 className={classes.control}
                 onMouseDown={(event) => event.preventDefault()}
             >

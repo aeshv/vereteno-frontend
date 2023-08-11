@@ -3,7 +3,14 @@ import {useState} from "react";
 import {Badge, Button, Center, Chip, Collapse, Divider, Group, Paper, Stack, Text} from "@mantine/core";
 
 export const CartFooter = ({selectedItems, isOrderFormVisible, setIsOrderFormVisible}) => {
-    const totalPrice = selectedItems.reduce((acc, obj) => acc + obj?.product?.price * obj?.product?.discount?.discount_coefficient, 0);
+    const totalPrice = selectedItems.reduce((acc, obj) => {
+        const temp = obj?.discountTotalPrice !== null
+            ? obj?.discountTotalPrice : obj?.originalTotalPrice
+
+        return (
+            acc + temp
+        )
+    }, 0);
 
 
     return (
@@ -16,7 +23,7 @@ export const CartFooter = ({selectedItems, isOrderFormVisible, setIsOrderFormVis
                         from: 'teal',
                         to: 'lime',
                         deg: 105
-                    }}>{totalPrice.toFixed(2)} руб.</Badge>
+                    }}>{totalPrice} руб.</Badge>
                     </Group>
 
                     {!isOrderFormVisible &&

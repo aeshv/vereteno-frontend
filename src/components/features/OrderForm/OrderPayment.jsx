@@ -5,7 +5,7 @@ export const OrderPayment = ({form}) => {
         <>
             <Radio.Group
                 name="paymentType"
-                label="Выбирете способ доставки"
+                label="Выберете способ доставки"
                 description=""
                 withAsterisk
                 {...form.getInputProps('paymentMethod')}

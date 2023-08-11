@@ -34,20 +34,8 @@ const useStyles = createStyles((theme) => ({
         },
     },
 
-    burger: {
-        [theme.fn.largerThan('xs')]: {
-            display: 'none',
-        },
-    },
-
     userActive: {
         backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
-    },
-
-    tabs: {
-        [theme.fn.smallerThan('sm')]: {
-            display: 'none',
-        },
     },
 
     tabsList: {

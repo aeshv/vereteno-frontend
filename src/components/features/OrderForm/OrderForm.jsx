@@ -114,7 +114,7 @@ export const OrderForm = ({itemsToOrder}) => {
                 handlePurchase(fullFormData)
             })}>
 
-                <Stepper active={active} breakpoint="sm" onStepClick={setActive} iconPosition="right">
+                <Stepper active={active} breakpoint="sm" iconPosition="right">
                     <Stepper.Step icon={<IconHome2 size="1.1rem"/>} label="Шаг 1" description="Адрес">
                         <OrderAdress form={form}/>
                     </Stepper.Step>

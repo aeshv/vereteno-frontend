@@ -19,7 +19,7 @@ export const OrderAdress = ({form}) => {
                 mb="md"
                 data={countries}
                 nothingFound="Ничего не найдено"
-                placeholder="Выбирете Страну"
+                placeholder="Выберете Страну"
                 label="Страна"
                 withAsterisk
                 {...form.getInputProps('country', {type: 'select'})}
@@ -28,7 +28,7 @@ export const OrderAdress = ({form}) => {
                 mb="md"
                 data={regions}
                 nothingFound="Ничего не найдено"
-                placeholder="Выбирете регион доставки"
+                placeholder="Выберете регион доставки"
                 label="Регион"
                 withAsterisk
                 {...form.getInputProps('region', {type: 'select'})}

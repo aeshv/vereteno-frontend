@@ -45,6 +45,7 @@ export function CartTable() {
                             />
                         </th>
                         <th>Название</th>
+                        <th>Размер</th>
                         <th>Количество</th>
                         <th>Цена</th>
                         <th>Действия</th>
