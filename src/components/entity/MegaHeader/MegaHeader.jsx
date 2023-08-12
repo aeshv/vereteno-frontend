@@ -48,7 +48,7 @@ import {useRouter} from "next/router";
 import {useOrders} from "@/utils/hooks/useOrders";
 import {useCategories} from "@/utils/hooks/useCategories";
 import MainLogo from "@/assets/icons/MainLogo";
-import {Main} from "next/document";
+
 
 
 const useStyles = createStyles((theme) => ({
