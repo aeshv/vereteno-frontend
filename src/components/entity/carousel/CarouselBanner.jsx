@@ -6,7 +6,7 @@ import {
     Button,
     getStylesRef,
     rem,
-    Grid, Center, Loader,
+    Grid, Center, Loader, Space,
 } from "@mantine/core";
 import {Carousel} from "@mantine/carousel";
 import styles from "./CarouselBanner.module.scss";
@@ -138,6 +138,8 @@ export function CarouselBanner() {
     if (isError) {
         return <div/>
     }
+
+    if (!bannerData?.length) return <Space/>
 
     return (
         <div

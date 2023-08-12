@@ -11,14 +11,15 @@ const NoDataCart = ({
                         description = 'Добавьте в нее товары из каталога',
                         link = '/products',
                         btnText = 'Перейти к каталог',
-                        hideButton = false
+                        hideButton = false,
+                        icon = <IconMoodEmptyFilled size="85px"/>,
                     }) => {
     return (
         <>
             <div>
                 <div className={styles.container}>
                     <div className={styles.image}>
-                        <IconMoodEmptyFilled size="85px"/>
+                      {icon}
                     </div>
                     <h2>{title}</h2>
                     <p>{description}</p>

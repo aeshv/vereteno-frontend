@@ -28,6 +28,13 @@ export const orderApi = {
         });
     },
 
+    createCustomOrder({data}) {
+        return api({
+            method: "POST",
+            url: `/order/custom/`,
+            data
+        });
+    },
 
     // removeItemCartById({id, ...data}) {
     //     return api({

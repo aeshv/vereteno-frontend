@@ -21,6 +21,7 @@ const Header = () => {
                         <Link href="/cart">Корзина</Link>
                         <Link href="/legal">Правовая информация</Link>
                         <Link href="/info">Как узнать размер</Link>
+                        <Link href="/custom">Персональный заказ</Link>
                     </ul>
                 </div>
 

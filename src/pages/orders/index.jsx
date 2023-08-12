@@ -6,6 +6,7 @@ import {useOrders} from "@/utils/hooks/useOrders";
 import NoDataCart from "@/components/features/cart/NoDataCart/NoDataCart";
 import {Enum} from "@/utils/enum";
 import PageHead from "@/components/SEO/PageHead";
+import {IconGardenCartOff, IconPaperBagOff} from "@tabler/icons-react";
 
 
 const Index = () => {
@@ -106,7 +107,9 @@ const Index = () => {
 
                 <>
                     <NoDataCart title={'ВЫ НИЧЕГО НЕ ЗАКАЗЫВАЛИ'}
-                                description={'Найдите что-нибудь для себя в нашем каталоге'}/>
+                                description={'Найдите что-нибудь для себя в нашем каталоге'}
+                                icon={<IconPaperBagOff size="85px"/>}
+                    />
                 </>
             }
         </>

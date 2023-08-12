@@ -1,15 +1,13 @@
 import NoDataCart from '@/components/features/cart/NoDataCart/NoDataCart'
 import {Center, Loader, Paper} from '@mantine/core'
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import UserPageLayout from "@/components/Layouts/UserPageLayout";
-import {CartTable} from "@/components/features/cart/CartTable/CartTable";
 import {useSelector} from "react-redux";
-import {cartApi} from "@/api/cart";
 import {CartPage} from "@/components/features/cart/CartPage";
-import {useProducts} from "@/utils/hooks/useProducts";
 import {useCarts} from "@/utils/hooks/useCarts";
 import {CartContext} from "@/components/shared/Contexts/CartContext";
 import PageHead from "@/components/SEO/PageHead";
+import {IconGardenCartOff} from "@tabler/icons-react";
 
 const Index = () => {
     const {user} = useSelector((state) => state.auth)
@@ -40,7 +38,7 @@ const Index = () => {
                     <CartPage/>
                 </CartContext.Provider>
 
-                : <NoDataCart/>}
+                : <NoDataCart icon={<IconGardenCartOff size="85px"/>}/>}
         </>
     </Paper>)
 }

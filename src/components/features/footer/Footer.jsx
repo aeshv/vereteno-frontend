@@ -4,6 +4,7 @@ import Link from "next/link";
 import DefaultButton from "@/components/shared/buttons/DefaultButton/DefaultButton";
 import {IconBrandTelegram, IconBrandVk, IconPhone} from "@tabler/icons-react";
 import {WebAuthors} from "@/components/shared/WebAuthors/WebAuthors";
+import MainLogo from "@/assets/icons/MainLogo";
 
 const Footer = ({footerColor = "white"}) => {
     return (
@@ -16,7 +17,7 @@ const Footer = ({footerColor = "white"}) => {
                                 <div className={styles.wrapper_left}>
                                     <div className={styles.row}>
                                         <div className={styles.image_wrapper}>
-                                            {/* <Image src={images.rsoColored} width={80} height={84} /> */}
+                                             <MainLogo width={80} height={84} />
                                         </div>
                                         <div className={styles.header_right}>
                                             <span className={styles.title}>Шляпы веретено</span>
