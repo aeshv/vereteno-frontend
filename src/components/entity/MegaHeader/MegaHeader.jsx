@@ -302,7 +302,7 @@ export function MegaHeader() {
 					Как узнать размер
 				</Link>
 				<Link href="/custom" className={classes.link} onClick={() => closeDrawer()}>
-					Персональный заказ
+					Пошив на заказ
 				</Link>
 
 				<Divider my="sm" color={theme.colorScheme === 'dark' ? 'dark.5' : 'gray.1'}/>
