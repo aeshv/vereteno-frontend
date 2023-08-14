@@ -3,7 +3,7 @@ import UserPageLayout from "@/components/Layouts/UserPageLayout";
 import {Badge, Flex, Group, ScrollArea, Skeleton, Table, Text} from "@mantine/core";
 import {OrderHatPreview} from "@/components/widget/Order/OrderHatPreview";
 import {useOrders} from "@/utils/hooks/useOrders";
-import NoDataCart from "@/components/features/cart/NoDataCart/NoDataCart";
+import NoDataBlock from "@/components/features/cart/NoDataCart/NoDataBlock";
 import {Enum} from "@/utils/enum";
 import PageHead from "@/components/SEO/PageHead";
 import {IconGardenCartOff, IconPaperBagOff} from "@tabler/icons-react";
@@ -106,9 +106,9 @@ const Index = () => {
                 :
 
                 <>
-                    <NoDataCart title={'ВЫ НИЧЕГО НЕ ЗАКАЗЫВАЛИ'}
-                                description={'Найдите что-нибудь для себя в нашем каталоге'}
-                                icon={<IconPaperBagOff size="85px"/>}
+                    <NoDataBlock title={'ВЫ НИЧЕГО НЕ ЗАКАЗЫВАЛИ'}
+																 description={'Найдите что-нибудь для себя в нашем каталоге'}
+																 icon={<IconPaperBagOff size="85px"/>}
                     />
                 </>
             }

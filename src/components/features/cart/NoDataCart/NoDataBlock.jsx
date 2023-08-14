@@ -6,7 +6,7 @@ import styles from "./NoDataCart.module.scss";
 import BuyingWith from "../../product/blocks/BuyingWith/BuyingWith";
 import Link from "next/link";
 
-const NoDataCart = ({
+const NoDataBlock = ({
                         title = 'ВАША КОРЗИНА ПУСТА',
                         description = 'Добавьте в нее товары из каталога',
                         link = '/products',
@@ -36,4 +36,4 @@ const NoDataCart = ({
     );
 };
 
-export default NoDataCart;
+export default NoDataBlock;

@@ -7,6 +7,8 @@ import {cartApi} from "@/api/cart";
 import {useSelector} from "react-redux";
 import {getCookie, setCookie} from "cookies-next";
 import {getNextMonth} from "@/utils/getNextMonth";
+import {useCookieCart} from "@/utils/CookieCart";
+import {useId} from "@mantine/hooks";
 
 const CatalogButtonStyles = createStyles(() => ({
 	button: {
@@ -41,22 +43,16 @@ const ProductBuyButtons = () => {
 	const [isLoading, setIsLoading] = useState(false)
 	const [currentButtonStatus, setCurrentButtonStatus] = useState('В корзину');
 
+	//Работа с куками для гостей
+	const [getCurrentCart, pushToCart, clearAllCart] = useCookieCart()
 
 	const handlePlaceToCart = () => {
 		setIsLoading((prevState) => !prevState)
-		if (!user) {
-			setCookie("guestCart", [{
-				productVendorCodeId: currentVendorCodeId,
-				quantity: 1,
-				sizeId: selectedSize
-			}], {expires: getNextMonth()});
-		}
-		cartApi.updateCartById({
-			productVendorCodeId: currentVendorCodeId,
-			quantity: 1,
-			sizeId: selectedSize
+		cartApi.addToCart({
+			productVendorCodeIds: [currentVendorCodeId],
+			quantity: [1],
+			sizeIds: [1],
 		}).then(handleSuccessAddToCard, handleErrorAddToCard)
-
 	}
 
 	const handleSuccessAddToCard = () => {

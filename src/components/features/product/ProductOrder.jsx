@@ -5,7 +5,7 @@ import ProductBuyButtons from "@/components/features/product/ProductBuyButtons";
 import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import {useClipboard} from "@mantine/hooks";
 import {useRouter} from "next/router";
-import LoginToBuyButton from "@/components/features/product/LoginToBuyButton";
+import GuestBuyButton from "@/components/features/product/GuestBuyButton";
 import {Skeleton} from "@mantine/core";
 import {VendorInfo} from "@/components/features/product/blocks/vendorInfo/VendorInfo";
 
@@ -73,7 +73,7 @@ const ProductOrder = () => {
 			</div>
 
 			<ProductBuyButtons/>
-			<LoginToBuyButton/>
+			<GuestBuyButton/>
 		</div>
 	</>);
 };

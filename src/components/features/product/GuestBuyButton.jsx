@@ -6,6 +6,7 @@ import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import {cartApi} from "@/api/cart";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import {useCookieCart} from "@/utils/CookieCart";
 
 const CatalogButtonStyles = createStyles(() => ({
     button: {
@@ -41,28 +42,39 @@ const CatalogButtonStyles = createStyles(() => ({
     }
 }));
 
-const LoginToBuyButton = () => {
+const GuestBuyButton = () => {
 
     const {user} = useSelector((state) => state.auth)
-    const router = useRouter()
     const {classes} = CatalogButtonStyles();
+    const [pushToCart] = useCookieCart()
 
 
-    const handleRedirectToAuth = () => {
-        router.push('/auth')
+    const {product, vendorIndex, sizeControl} = useContext(ProductInfoContext)
+    const currentVendorCodeId = product?.vendorCodes?.[vendorIndex.currentVendorIndex]?.productVendorCodeId
+    const {selectedSize} = sizeControl
+
+    const handlePlaceToCart = () => {
+        pushToCart({
+            productVendorCodeIds: currentVendorCodeId,
+            quantity: 1,
+            sizeIds: selectedSize,
+        })
+        notifications.show({
+            title: "Успешно добавлено в корзину", message: 'Продолжите покупки или проверьте корзину', color: 'green'
+        })
     }
 
     if (!user) {
         return (<div className={classes.buyContainer}>
-            <Text className={classes.text}>
-                Для покупки на сайте необходимо зарегистрироваться или авторизоваться под своим профилем
-            </Text>
-            <Button className={classes.button} leftIcon={<IconExternalLink/>}
-                    onClick={(e) => handleRedirectToAuth(e)}>
-                Авторизоваться
+            {/*<Text className={classes.text}>*/}
+            {/*    Для покупки на сайте необходимо зарегистрироваться или авторизоваться под своим профилем*/}
+            {/*</Text>*/}
+            <Button className={classes.button} leftIcon={<IconShoppingCart/>}
+                    onClick={(e) => handlePlaceToCart(e)}>
+                В корзину (Гость)
             </Button>
         </div>)
     }
 }
-export default LoginToBuyButton
+export default GuestBuyButton
 

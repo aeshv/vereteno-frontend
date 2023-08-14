@@ -5,7 +5,7 @@ import {IconAt, IconMapPin, IconPhoneCall, IconUserSearch} from "@tabler/icons-r
 import noimage from "../../../public/noimage.png";
 import {useSelector} from "react-redux";
 import {ProfileEdit} from "@/components/entity/ProfileEdit/ProfileEdit";
-import NoDataCart from "@/components/features/cart/NoDataCart/NoDataCart";
+import NoDataBlock from "@/components/features/cart/NoDataCart/NoDataBlock";
 
 const useStyles = createStyles((theme) => ({
     icon: {
@@ -80,9 +80,9 @@ const Index = ({name, email, phone}) => {
                                 </Group>
 
                             </Flex> :
-                            <NoDataCart title={'Вы не авторизованы'}
-                                        description={'Вы можете совершать покупки, но для удобного доступа - авторизуйтесь или зарегистрируйтесь'}
-                                        btnText={'На страницу авторизации'} link={'/auth'}/>}
+                            <NoDataBlock title={'Вы не авторизованы'}
+																				 description={'Вы можете совершать покупки, но для удобного доступа - авторизуйтесь или зарегистрируйтесь'}
+																				 btnText={'На страницу авторизации'} link={'/auth'}/>}
                     </Tabs.Panel>
                     <Tabs.Panel value={'edit'}>
                         <ProfileEdit/>

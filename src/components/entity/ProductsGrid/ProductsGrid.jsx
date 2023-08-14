@@ -3,7 +3,7 @@ import Card from "@/components/entity/card/Card";
 import React from "react";
 import {useProducts} from "@/utils/hooks/useProducts";
 import {ProductsPagination} from "@/components/entity/ProductsGrid/ProductsPagination";
-import NoDataCart from "@/components/features/cart/NoDataCart/NoDataCart";
+import NoDataBlock from "@/components/features/cart/NoDataCart/NoDataBlock";
 
 export const ProductsGrid = () => {
 
@@ -22,8 +22,8 @@ export const ProductsGrid = () => {
     }
 
     if (data?.data?.products?.length <= 0) {
-        return <NoDataCart title={'Ничего не найдено'}
-                           description={'Попробуйте уточнить фильтры или изменить поисковый запрос'} hideButton/>;
+        return <NoDataBlock title={'Ничего не найдено'}
+														description={'Попробуйте уточнить фильтры или изменить поисковый запрос'} hideButton/>;
     }
 
 

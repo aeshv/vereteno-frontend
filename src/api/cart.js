@@ -8,12 +8,15 @@ export const cartApi = {
             params,
         });
     },
-    updateCartById({productVendorCodeId, ...data}) {
+    addToCart({productVendorCodeIds,quantity,sizeIds}) {
         return api({
             method: "POST",
             url: `/cart-item/`,
             data: {
-                productVendorCodeId, ...data
+                productVendorCodeIds,
+                quantity,
+                sizeIds
+
             }
         });
     },
