@@ -44,52 +44,6 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 
-const content = [
-    {
-        id: 1,
-        image_src:
-            "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
-        title: "ОСЕНЬ / ЗИМА",
-        subtitle: "Коллекция",
-        buttonText: "Перейти",
-        buttonLink: "/",
-    },
-    {
-        id: 2,
-        image_src:
-            "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
-        title: "Новое поступление",
-        subtitle: "Успей купить прямо сейчас",
-    },
-    {
-        id: 3,
-        image_src:
-            "https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
-        title: "Скоро открытие",
-        subtitle: "Новый магазин в ТЦ Мытыщи",
-        buttonText: "Посмотреть на карте",
-        buttonLink: "/",
-    },
-    {
-        id: 4,
-        image_src:
-            "https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
-        title: "Финальная распродажа",
-        subtitle: "Купи со скидками до -50%",
-    },
-    {
-        id: 5,
-        image_src:
-            "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1080&q=80",
-        title: "Гарантия 2 года",
-        subtitle:
-            "На любую продукцию нашего веселого магазина, от производителя, длинный текст",
-        buttonText: "Перейти",
-        buttonLink: "/",
-        label: "green",
-    },
-];
-
 export function CarouselBanner() {
     const {classes} = useStyles();
     const getBanner = useBanners();

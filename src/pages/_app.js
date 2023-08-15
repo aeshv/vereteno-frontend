@@ -22,7 +22,7 @@ export default function App({Component, pageProps}) {
                     theme={{
                         colors: {
                             brand: [
-                                "#e5d6ff",
+                                "#edf2f5",
                                 "#d8cfff",
                                 "#cbc7f6",
                                 "#beb0f3",
@@ -33,6 +33,43 @@ export default function App({Component, pageProps}) {
                                 "#7c79e8",
                                 "#6f72e6",
                             ],
+                            brand33: [
+                                "#FFE9E9",
+                                "#FFD1D1",
+                                "#FBA0A1",
+                                "#F76D6D",
+                                "#F34141",
+                                "#F22625",
+                                "#F21616",
+                                "#D8070B",
+                                "#C10008",
+                                "#A90003",
+                            ],
+                            brand22: [
+                                '#FFEBFF',
+                                '#F5D5FC',
+                                '#E6A9F3',
+                                '#D779EB',
+                                '#CB51E4',
+                                '#C437E0',
+                                '#C029DF',
+                                '#A91CC6',
+                                '#9715B1',
+                                '#840A9C',
+                            ],
+                            brand11: [
+                                '#EFFEE7',
+                                '#E0F8D4',
+                                '#C2EFAB',
+                                '#A2E67E',
+                                '#87DE57',
+                                '#75D940',
+                                '#6BD731',
+                                '#59BE23',
+                                '#4DA91B',
+                                '#3D920C',
+                            ]
+
                         },
                         primaryColor: "brand",
                     }}

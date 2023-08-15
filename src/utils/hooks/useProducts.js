@@ -30,3 +30,16 @@ export function useProducts() {
         },
     );
 }
+
+export function useGuestCartProducts({productVendorCodeIds}) {
+    return useQuery(
+        ['guestCart'],
+        () =>
+            productApi.getProductsFromGuest({productVendorCodeIds})
+        ,
+        {
+            keepPreviousData: true,
+            refetchOnWindowFocus: false,
+        },
+    );
+}
