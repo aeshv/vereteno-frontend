@@ -21,7 +21,7 @@ export default function App({Component, pageProps}) {
                     withNormalizeCSS
                     theme={{
                         colors: {
-                            brand65: [
+                            brand: [
                                 "#edf2f5",
                                 "#d8cfff",
                                 "#cbc7f6",
@@ -33,7 +33,7 @@ export default function App({Component, pageProps}) {
                                 "#7c79e8",
                                 "#6f72e6",
                             ],
-                            brand: [
+                            brandw: [
                                 "#FFE9E9",
                                 "#FFD1D1",
                                 "#FBA0A1",
