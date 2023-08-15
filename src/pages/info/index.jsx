@@ -26,7 +26,7 @@ const useStyles = createStyles((theme) => ({
 
 const Index = () => {
 
-    const {classes} = useStyles();
+    const {classes, theme} = useStyles();
 
     return (
         <>
@@ -47,7 +47,7 @@ const Index = () => {
                     </Center>
 
                     <Text variant="gradient"
-                          gradient={{from: 'indigo', to: 'cyan', deg: 45}}
+                          gradient={{from: theme.colors.brand[4], to: theme.colors.brand[8], deg: 45}}
                           mt={'xl'}
                           fz="xl"
                           fw={700}>

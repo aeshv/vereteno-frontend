@@ -64,9 +64,11 @@ const useStyles = createStyles((theme) => ({
     },
 
     header: {
-        borderBottom: "none", width: '100%',
+        borderBottom: "none", width: '100%', display: 'flex',
+        
     }, wrapper: {
         width: '100%',
+        placeSelf: 'center'
 
     },
 
@@ -185,7 +187,7 @@ export function MegaHeader() {
         </UnstyledButton>));
 
     return (<Box className={classes.container}>
-        <Header height={70} px="md" className={classes.header}>
+        <Header height={75} px="md" className={classes.header}>
             <Flex sx={{height: '90%'}} className={classes.wrapper} gap={{base: 'sm', sm: 'lg'}}
                   justify={{sm: 'center'}} align={"center"}>
                 <Link href="/">
@@ -232,7 +234,7 @@ export function MegaHeader() {
                         </HoverCard.Dropdown>
                     </HoverCard>
                 </Group>
-                <div className={classes.hiddenMobile} style={{flexGrow: 111}}>
+                <div  style={{flexGrow: 111}}>
                     <Search/>
                 </div>
                 <Group className={classes.hiddenMobile}>

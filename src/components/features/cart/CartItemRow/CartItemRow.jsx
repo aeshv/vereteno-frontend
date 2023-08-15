@@ -13,7 +13,7 @@ const useStyles = createStyles((theme) => ({
     },
 }));
 const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
-    const {classes, cx} = useStyles();
+    const {classes, cx, theme} = useStyles();
     const currentItemInfo = item;
     const [isDeleteLoading, setIsDeleteLoading] = useState(false);
     const cartContext = useContext(CartContext)
@@ -88,8 +88,7 @@ const CartItemRow = ({item, isSelected, toggleRow, isDisabled}) => {
             <Stack spacing={'xs'}>
                 d руб.
                 <Badge variant="gradient" gradient={{
-                    from: 'indigo',
-                    to: 'cyan'
+                    from: theme.colors.brand[4], to: theme.colors.brand[8]
                 }}>Скидка {100 - currentItemInfo?.discount?.discount_coefficient * 100}%</Badge>
             </Stack>
             :
