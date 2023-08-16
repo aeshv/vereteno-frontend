@@ -21,6 +21,7 @@ export function CartTable() {
     const [selection, setSelection] = useState([]);
     const toggleRow = (newItem) => setSelection((current) => current.includes(newItem) ? current.filter((item) => item.id !== newItem.id) : [...current, newItem]);
     const toggleAll = () => setSelection((current) => (current.length === items.length ? [] : items.map((item) => item)));
+
     const rows = items.map((item) => {
         const selected = selection.includes(item);
 
