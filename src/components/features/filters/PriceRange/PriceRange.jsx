@@ -13,14 +13,14 @@ const PriceRange = () => {
     const {query} = router
 
     const onPriceChange = () => {
-
-        if (debounced === [0, 25000]) {
-            delete router.query.price
+        if (debounced[0] === 0 && debounced[1] === 25000) {
+            delete router.query.priceMin
+            delete router.query.priceMax
             router.push(router)
         } else {
-            router.query.price = debounced
+            router.query.priceMin = debounced[0]
+            router.query.priceMax = debounced[1]
             router.push(router)
-
         }
 
     };
