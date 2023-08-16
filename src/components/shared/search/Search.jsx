@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
     container: {
         width: "auto",
         flexGrow: 11,
-        border: "1.5px solid #6f73ee",
+        border: `1.5px solid ${theme.colors.brand[9]}`,
         borderRadius: "5px",
         borderTopRightRadius: "9px",
         borderBottomRightRadius: "9px",
@@ -24,7 +24,7 @@ const useStyles = createStyles((theme) => ({
         transition: "all 0.2s",
         background: "transparent",
         alignSelf: "stretch",
-        "&:hover": {background: "rgba($color: #b5b7db, $alpha: 0.2)"}
+        "&:hover": {background: `rgba($color: ${theme.colors.brand[2]}, $alpha: 0.2)`}
     },
     searchinput: {
         padding: "10px 20px",
@@ -34,8 +34,8 @@ const useStyles = createStyles((theme) => ({
     submit: {
         width: "35px",
         height: "100%",
-        background: "#6f73ee",
-        outline: "1.5px solid #6f73ee",
+        background: `${theme.colors.brand[9]}`,
+        outline: `1.5px solid ${theme.colors.brand[9]}`,
         borderRadius: "0px 5px 5px 0px",
         display: "flex",
         flexDirection: "row",
@@ -88,7 +88,7 @@ const Search = () => {
                     onChange={onSearchChange}
                     size="sm"
                     data={['шляпы', 'головные уборы', 'кепки', 'шапки', 'ушанки', 'шелковые штуки',]}
-                    
+
                 />
             </div>
             <div className={classes.submit} onClick={handleSearchButton}>

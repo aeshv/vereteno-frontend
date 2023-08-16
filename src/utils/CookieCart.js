@@ -1,25 +1,22 @@
 import {getCookie, setCookie} from "cookies-next";
+import {useState} from "react";
 
 
-export function useCookieCart() {
+export const CookieCart = {
+    pushToCart(item) {
+        const stringCart = getCookie('guestCart') || null
+        const currentCartTemp = stringCart !== null ? JSON.parse(stringCart) : []
+        setCookie('guestCart', [...currentCartTemp, item])
+        return (currentCartTemp)
+    },
 
+    clearAllCart() {
+        setCookie('guestCart', null)
+    },
 
-	function getCurrentCart  () {
-
-		return getCookie('guestCart')
-	}
-
-	function pushToCart(item) {
-		const currentCartTemp = JSON.parse(getCurrentCart())
-		setCookie('guestCart', [...currentCartTemp, item])
-		return (currentCartTemp)
-	}
-
-	function clearAllCart() {
-		setCookie('guestCart', [])
-	}
-
-	return [ getCurrentCart, pushToCart, clearAllCart,]
-
+    getParsedCart() {
+        const stringCart = getCookie('guestCart') || null
+        return stringCart !== null ? JSON.parse(stringCart) : []
+    },
 
 }

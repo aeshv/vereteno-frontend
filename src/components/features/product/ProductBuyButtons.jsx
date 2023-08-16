@@ -10,78 +10,75 @@ import {getNextMonth} from "@/utils/getNextMonth";
 import {useCookieCart} from "@/utils/CookieCart";
 import {useId} from "@mantine/hooks";
 
-const CatalogButtonStyles = createStyles(() => ({
-	button: {
-		background: "#6F73EE",
-		border: "1.5px solid #6F73EE",
-		borderRadius: "5px",
-		padding: "15px 25px",
-		width: '200px',
-		height: '53px',
-	},
+const CatalogButtonStyles = createStyles((theme) => ({
+    button: {
+        background: `${theme.colors.brand[8]}`,
+        border: `1.5px solid ${theme.colors.brand[9]}`,
+        borderRadius: "5px",
+        padding: "15px 25px",
+        width: '200px',
+        height: '53px',
+    },
 
-	buyContainer: {
-		marginTop: '1rem',
-		width: '100%',
-		display: 'flex',
-		flexDirection: 'row',
-		alignItems: 'center',
-		justifyContent: 'flex-start',
-	}
+    buyContainer: {
+        marginTop: '1rem',
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    }
 }));
 
 const ProductBuyButtons = () => {
 
-	const {product, vendorIndex, sizeControl} = useContext(ProductInfoContext)
-	const {user} = useSelector((state) => state.auth)
+    const {product, vendorIndex, sizeControl} = useContext(ProductInfoContext)
+    const {user} = useSelector((state) => state.auth)
 
-	//id выбранного пользователем вендоркода (вариации товара)
-	const currentVendorCodeId = product?.vendorCodes?.[vendorIndex.currentVendorIndex]?.productVendorCodeId
-	const {selectedSize} = sizeControl
-	const {classes} = CatalogButtonStyles();
+    //id выбранного пользователем вендоркода (вариации товара)
+    const currentVendorCodeId = product?.vendorCodes?.[vendorIndex.currentVendorIndex]?.productVendorCodeId
+    const {selectedSize} = sizeControl
+    const {classes} = CatalogButtonStyles();
 
-	const [isLoading, setIsLoading] = useState(false)
-	const [currentButtonStatus, setCurrentButtonStatus] = useState('В корзину');
+    const [isLoading, setIsLoading] = useState(false)
+    const [currentButtonStatus, setCurrentButtonStatus] = useState('В корзину');
 
-	//Работа с куками для гостей
-	const [getCurrentCart, pushToCart, clearAllCart] = useCookieCart()
+    const handlePlaceToCart = () => {
+        setIsLoading((prevState) => !prevState)
+        cartApi.addToCart({
+            productVendorCodeIds: [currentVendorCodeId],
+            quantity: [1],
+            sizeIds: [1],
+        }).then(handleSuccessAddToCard, handleErrorAddToCard)
+    }
 
-	const handlePlaceToCart = () => {
-		setIsLoading((prevState) => !prevState)
-		cartApi.addToCart({
-			productVendorCodeIds: [currentVendorCodeId],
-			quantity: [1],
-			sizeIds: [1],
-		}).then(handleSuccessAddToCard, handleErrorAddToCard)
-	}
+    const handleSuccessAddToCard = () => {
+        setIsLoading(false)
+        notifications.show({
+            title: "Успешно добавлено в корзину", message: 'Продолжите покупки или проверьте корзину', color: 'green'
+        })
+        setCurrentButtonStatus('Добавить еще')
 
-	const handleSuccessAddToCard = () => {
-		setIsLoading(false)
-		notifications.show({
-			title: "Успешно добавлено в корзину", message: 'Продолжите покупки или проверьте корзину', color: 'green'
-		})
-		setCurrentButtonStatus('Добавить еще')
+    }
 
-	}
-
-	const handleErrorAddToCard = () => {
-		setIsLoading(false)
-		notifications.show({
-			title: "Произошла ошибка", message: 'Попробуйте позже', color: 'red'
-		})
-		setCurrentButtonStatus('В корзину')
-	}
+    const handleErrorAddToCard = () => {
+        setIsLoading(false)
+        notifications.show({
+            title: "Произошла ошибка", message: 'Попробуйте позже', color: 'red'
+        })
+        setCurrentButtonStatus('В корзину')
+    }
 
 
-	if (user) return (
-		<div className={classes.buyContainer}>
-			<Button className={classes.button} loading={isLoading} leftIcon={<IconShoppingCart/>}
-							onClick={(e) => handlePlaceToCart(e)}>
-				{currentButtonStatus}
-			</Button>
-		</div>
+    if (user) return (
+        <div className={classes.buyContainer}>
+            <Button className={classes.button} loading={isLoading} leftIcon={<IconShoppingCart/>}
+                    onClick={(e) => handlePlaceToCart(e)}>
+                {currentButtonStatus}
+            </Button>
+        </div>
 
-	)
+    )
 
 }
 export default ProductBuyButtons

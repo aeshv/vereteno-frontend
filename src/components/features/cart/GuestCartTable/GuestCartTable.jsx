@@ -1,39 +1,54 @@
-import {useCookieCart} from "@/utils/CookieCart";
-import {Checkbox, Paper, ScrollArea, Table} from "@mantine/core";
-import React from "react";
+import {Center, Checkbox, Loader, Paper, ScrollArea, Table} from "@mantine/core";
+import React, {useContext, useEffect, useMemo, useState} from "react";
+import {GuestCartContext} from "@/components/shared/Contexts/GuestCartContext";
+import {useGuestCartProducts, useProducts} from "@/utils/hooks/useProducts";
+import {useId} from "@mantine/hooks";
+import CartItemRow from "@/components/features/cart/CartItemRow/CartItemRow";
+import GuestCartItemRow from "@/components/features/cart/GuestCartItemRow/GuestCartItemRow";
 
 export const GuestCartTable = () => {
-	// const [ getCurrentCart, pushToCart, clearAllCart] = useCookieCart()
-	// const items = getCurrentCart
-	// console.log('Гостевые товары',items)
+    const {cookieData} = useContext(GuestCartContext)
+    const getGuestProducts = useGuestCartProducts(
+        {productVendorCodeIds: cookieData.map((item) => item?.productVendorCodeIds)}
+    );
+    const {isLoading, isError, data, error} = getGuestProducts
 
+    const gluedData = cookieData.map((item, index) => ({guestItemId: index, ...item, ...data?.data?.products[index]}))
 
-	return (
-		<Paper>
-			{/*<ScrollArea>*/}
-			{/*	<Table verticalSpacing="sm" highlightOnHover>*/}
-			{/*		<thead>*/}
-			{/*		<tr>*/}
-			{/*			<th>*/}
-			{/*				<Checkbox*/}
-			{/*					// onChange={toggleAll}*/}
-			{/*					checked={selection.length === items.length}*/}
-			{/*					indeterminate={selection.length > 0 && selection.length !== items.length}*/}
-			{/*					transitionDuration={0}*/}
-			{/*					disabled={isOrderFormVisible}*/}
-			{/*				/>*/}
-			{/*			</th>*/}
-			{/*			<th>Название</th>*/}
-			{/*			<th>Размер</th>*/}
-			{/*			<th>Количество</th>*/}
-			{/*			<th>Цена</th>*/}
-			{/*			<th>Действия</th>*/}
-			{/*		</tr>*/}
-			{/*		</thead>*/}
-			{/*		<tbody>{rows}</tbody>*/}
-			{/*	</Table>*/}
-			{/*</ScrollArea>*/}
+    if (isError) {
+        return (<Center mt={'xl'}>Ошибка загрузки</Center>)
+    }
 
-		</Paper>
-	)
+    if (isLoading) {
+        return (<Center mt={'xl'}>
+            <Loader/>
+        </Center>)
+    }
+
+    const rows = gluedData.map((item) => {
+        return <GuestCartItemRow item={item} isSelected={false} toggleRow={() => {
+        }} key={item.id}
+                                 isDisabled={false}/>
+    });
+
+    return (
+        <Paper>
+            <ScrollArea>
+                <Table verticalSpacing="sm" highlightOnHover>
+                    <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>Название</th>
+                        <th>Размер</th>
+                        <th>Количество</th>
+                        <th>Цена</th>
+                        <th>Действия</th>
+                    </tr>
+                    </thead>
+                    <tbody>{rows}</tbody>
+                </Table>
+            </ScrollArea>
+
+        </Paper>
+    )
 }

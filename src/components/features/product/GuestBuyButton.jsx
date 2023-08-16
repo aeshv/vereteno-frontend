@@ -6,7 +6,8 @@ import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import {cartApi} from "@/api/cart";
 import {useSelector} from "react-redux";
 import {useRouter} from "next/router";
-import {useCookieCart} from "@/utils/CookieCart";
+import {CookieCart, useCookieCart} from "@/utils/CookieCart";
+import {getCookie, setCookie} from "cookies-next";
 
 const CatalogButtonStyles = createStyles(() => ({
     button: {
@@ -46,15 +47,15 @@ const GuestBuyButton = () => {
 
     const {user} = useSelector((state) => state.auth)
     const {classes} = CatalogButtonStyles();
-    const [pushToCart] = useCookieCart()
 
 
     const {product, vendorIndex, sizeControl} = useContext(ProductInfoContext)
     const currentVendorCodeId = product?.vendorCodes?.[vendorIndex.currentVendorIndex]?.productVendorCodeId
     const {selectedSize} = sizeControl
 
+
     const handlePlaceToCart = () => {
-        pushToCart({
+        CookieCart.pushToCart({
             productVendorCodeIds: currentVendorCodeId,
             quantity: 1,
             sizeIds: selectedSize,

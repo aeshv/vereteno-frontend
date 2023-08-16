@@ -1,51 +1,45 @@
-import {CartTable} from "@/components/features/cart/CartTable/CartTable";
-import React, {useEffect, useState} from "react";
-import {CartFooter} from "@/components/features/cart/CartFooter/CartFooter";
-import {CartContext} from "@/components/shared/Contexts/CartContext";
+'use client'
+
+import React, {useCallback, useEffect, useState} from "react";
 import NoDataBlock from "@/components/features/cart/NoDataCart/NoDataBlock";
 import {IconGardenCartOff} from "@tabler/icons-react";
-import {Center, Loader} from "@mantine/core";
-import {useSelector} from "react-redux";
-import {useCarts} from "@/utils/hooks/useCarts";
 import {GuestCartTable} from "@/components/features/cart/GuestCartTable/GuestCartTable";
-import {useCookieCart} from "@/utils/CookieCart";
-import CartItemRow from "@/components/features/cart/CartItemRow/CartItemRow";
+import {CookieCart, useCookieCart} from "@/utils/CookieCart";
+import {GuestCartContext} from "@/components/shared/Contexts/GuestCartContext";
+import {Button, Center, Loader} from "@mantine/core";
+import {useGuestCartProducts} from "@/utils/hooks/useProducts";
+
 
 export const GuestCartPage = () => {
-	const [getCurrentCart, pushToCart, clearAllCart] = useCookieCart()
-	const [data, setData] = useState([]);
+    const [cookieData, setCookieData] = useState([]);
 
-	console.log('Гостевые товары', data)
+    const handleCookie = () => {
+        const parsedCart = CookieCart.getParsedCart();
+        setCookieData(parsedCart);
+    }
 
-	useEffect(()=>{
-		const items = getCurrentCart()
-		setData(items)
-		
-	}, [getCurrentCart])
-	
-	// const data = getCurrentCart
-	//
-	// const [selection, setSelection] = useState([]);
-	// const toggleRow = (newItem) => setSelection((current) => current.includes(newItem) ? current.filter((item) => item.id !== newItem.id) : [...current, newItem]);
-	// const toggleAll = () => setSelection((current) => (current.length === items.length ? [] : items.map((item) => item)));
-	// const rows = items.map((item) => {
-	// 	const selected = selection.includes(item);
-	//
-	// 	return <CartItemRow item={item} isSelected={selected} toggleRow={toggleRow} key={item.id}
-	// 											isDisabled={isOrderFormVisible}/>
-	// });
+    useEffect(() => {
+        handleCookie();
+    }, []);
 
-	return (<>
-		{false >= 1 ?
-
-			<CartContext.Provider value={{data: data}}>
-				<GuestCartTable/>
-			</CartContext.Provider>
-
-			:
-
-			<NoDataBlock title={'Гостевая корзина пуста'} icon={<IconGardenCartOff size="85px"/>}/>}
+    //
+    // console.log('cookieData', cookieData, cookieData.map((item) => item?.productVendorCodeIds))
 
 
-	</>)
+    if (!!cookieData) return (
+        <>
+            <Button onClick={() => CookieCart.clearAllCart()}>Почистить куки</Button>
+            {cookieData?.length >= 1 ?
+
+                <GuestCartContext.Provider value={{cookieData: cookieData}}>
+                    <GuestCartTable/>
+                </GuestCartContext.Provider>
+
+                :
+
+                <>
+                    <NoDataBlock title={'Гостевая корзина пуста'} icon={<IconGardenCartOff size="85px"/>}/>
+                </>
+            }
+        </>)
 }

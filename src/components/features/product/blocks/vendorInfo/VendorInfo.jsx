@@ -6,7 +6,7 @@ import {SizeSelectorOrder} from "@/components/features/product/blocks/vendorInfo
 
 const VendorStyles = createStyles((theme) => ({
     card: {
-        background: theme.colors.indigo[0],
+        background: theme.colors.brand[0],
     },
 
     title: {
