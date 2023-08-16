@@ -8,6 +8,9 @@ import {useRouter} from "next/router";
 import GuestBuyButton from "@/components/features/product/GuestBuyButton";
 import {Skeleton} from "@mantine/core";
 import {VendorInfo} from "@/components/features/product/blocks/vendorInfo/VendorInfo";
+import {
+	ProductQuantityIncrementor
+} from "@/components/features/product/blocks/ProductQuantityIncrementor/ProductQuantityIncrementor";
 
 const ProductOrder = () => {
 
@@ -72,6 +75,7 @@ const ProductOrder = () => {
 
 			</div>
 
+			<ProductQuantityIncrementor/>
 			<ProductBuyButtons/>
 			<GuestBuyButton/>
 		</div>

@@ -10,8 +10,8 @@ import {useCarts} from "@/utils/hooks/useCarts";
 
 export const CartPage = () => {
 	const {user} = useSelector((state) => state.auth)
-	const getCart = useCarts();
 
+	const getCart = useCarts();
 	const {isLoading, isError, data, refetch} = getCart
 
 	if (isError && user) {

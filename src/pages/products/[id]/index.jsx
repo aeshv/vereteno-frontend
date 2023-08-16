@@ -10,17 +10,18 @@ import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import PageHead from "@/components/SEO/PageHead";
 import {ProductBreadcrumbs} from "@/components/features/product/ProductBreadcrumbs";
 import ProductVendorVariations from "@/components/features/product/ProductVendorVariations";
+import {cartApi} from "@/api/cart";
+import {useCarts} from "@/utils/hooks/useCarts";
 
 
 const SingleProduct = ({product}) => {
     const [currentVendorIndex, setCurrentVendorIndex] = useState(0);
     const [selectedSize, setSelectedSize] = useState(product?.vendorCodes?.[currentVendorIndex]?.sizes[0]?.id);
+    const [quantityToBuy, setQuantityToBuy] = useState(1);
 
     const vendorIndex = {currentVendorIndex, setCurrentVendorIndex}
     const sizeControl = {selectedSize, setSelectedSize}
-
-
-    console.log('product', product)
+    const quantityControl = {quantityToBuy, setQuantityToBuy}
 
     useEffect(()=>{
         setSelectedSize(product?.vendorCodes?.[currentVendorIndex]?.sizes[0]?.id)
@@ -28,7 +29,7 @@ const SingleProduct = ({product}) => {
 
     return (
 
-        <ProductInfoContext.Provider value={{product: {...product}, vendorIndex, sizeControl}}>
+        <ProductInfoContext.Provider value={{product: {...product}, vendorIndex, sizeControl, quantityControl}}>
             <PageHead title={product?.name || 'Загрузка'}/>
             <Paper shadow="md" radius="xl" p="xl" mb={'xl'}>
                 <div className={styles.container}>
@@ -76,7 +77,6 @@ export const getStaticProps = async ({params}) => {
     const product = await productApi.getProduct(params).then(({data}) => {
         return data
     });
-
 
     return {
         props: {

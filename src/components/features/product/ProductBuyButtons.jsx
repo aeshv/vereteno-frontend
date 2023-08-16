@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import {Button, createStyles} from "@mantine/core";
 import {IconShoppingCart} from "@tabler/icons-react";
 import {notifications} from "@mantine/notifications";
@@ -9,6 +9,7 @@ import {getCookie, setCookie} from "cookies-next";
 import {getNextMonth} from "@/utils/getNextMonth";
 import {useCookieCart} from "@/utils/CookieCart";
 import {useId} from "@mantine/hooks";
+import {useCarts} from "@/utils/hooks/useCarts";
 
 const CatalogButtonStyles = createStyles((theme) => ({
     button: {
@@ -32,7 +33,7 @@ const CatalogButtonStyles = createStyles((theme) => ({
 
 const ProductBuyButtons = () => {
 
-    const {product, vendorIndex, sizeControl} = useContext(ProductInfoContext)
+    const {product, vendorIndex, sizeControl, quantityControl} = useContext(ProductInfoContext)
     const {user} = useSelector((state) => state.auth)
 
     //id выбранного пользователем вендоркода (вариации товара)
@@ -40,14 +41,25 @@ const ProductBuyButtons = () => {
     const {selectedSize} = sizeControl
     const {classes} = CatalogButtonStyles();
 
+    //Корзина пользователя
+    const getCart = useCarts();
+    const {isLoading: isCartLoading, isError, data: cartData, refetch} = getCart
+    const isCurrentVendorCodeInCart = !!cartData?.data?.items?.find((item) => item?.productVendorCodeId === currentVendorCodeId)
     const [isLoading, setIsLoading] = useState(false)
     const [currentButtonStatus, setCurrentButtonStatus] = useState('В корзину');
+    
+    useEffect(()=>{
+        if (isCurrentVendorCodeInCart) {
+            setCurrentButtonStatus('В корзине')
+        }
+    }, [isCurrentVendorCodeInCart])
 
     const handlePlaceToCart = () => {
         setIsLoading((prevState) => !prevState)
         cartApi.addToCart({
             productVendorCodeIds: [currentVendorCodeId],
-            quantity: [1],
+            quantity: [quantityControl?.quantityToBuy || 1],
+            // TODO: FIX SIZE
             sizeIds: [1],
         }).then(handleSuccessAddToCard, handleErrorAddToCard)
     }
@@ -57,7 +69,7 @@ const ProductBuyButtons = () => {
         notifications.show({
             title: "Успешно добавлено в корзину", message: 'Продолжите покупки или проверьте корзину', color: 'green'
         })
-        setCurrentButtonStatus('Добавить еще')
+        setCurrentButtonStatus('В корзине')
 
     }
 
@@ -73,6 +85,7 @@ const ProductBuyButtons = () => {
     if (user) return (
         <div className={classes.buyContainer}>
             <Button className={classes.button} loading={isLoading} leftIcon={<IconShoppingCart/>}
+                    disabled={currentButtonStatus === 'В корзине'}
                     onClick={(e) => handlePlaceToCart(e)}>
                 {currentButtonStatus}
             </Button>

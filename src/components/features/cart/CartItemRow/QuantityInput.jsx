@@ -28,6 +28,11 @@ const useStyles = createStyles((theme) => ({
             opacity: 0.8,
             backgroundColor: 'transparent',
         },
+
+        '&:hover': {
+            borderColor: theme.colors.brand[3],
+            backgroundColor:  theme.white,
+        },
     },
 
     input: {

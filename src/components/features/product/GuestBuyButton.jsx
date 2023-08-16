@@ -49,7 +49,7 @@ const GuestBuyButton = () => {
     const {classes} = CatalogButtonStyles();
 
 
-    const {product, vendorIndex, sizeControl} = useContext(ProductInfoContext)
+    const {product, vendorIndex, sizeControl, quantityControl} = useContext(ProductInfoContext)
     const currentVendorCodeId = product?.vendorCodes?.[vendorIndex.currentVendorIndex]?.productVendorCodeId
     const {selectedSize} = sizeControl
 
@@ -57,8 +57,8 @@ const GuestBuyButton = () => {
     const handlePlaceToCart = () => {
         CookieCart.pushToCart({
             productVendorCodeIds: currentVendorCodeId,
-            quantity: 1,
-            sizeIds: selectedSize,
+            quantity: quantityControl?.quantityToBuy || 1,
+            sizeIds: 1,
         })
         notifications.show({
             title: "Успешно добавлено в корзину", message: 'Продолжите покупки или проверьте корзину', color: 'green'

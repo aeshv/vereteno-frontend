@@ -79,7 +79,7 @@ const ProductImage = () => {
                                     <Carousel.Slide key={index} onClick={() => toggleImageViewer()}>
                                         <div className={styles.image}>
                                             <Image
-                                                src={`${process.env.NEXT_PUBLIC_IMAGE}${image.path}`}
+                                                src={`${process.env.NEXT_PUBLIC_IMAGE}/${image.path}`}
                                                 alt="Изображение"
                                                 width={505}
                                                 height={505}
@@ -126,7 +126,7 @@ const ProductImage = () => {
             <Lightbox
                 open={open}
                 close={() => setOpen(false)}
-                slides={images?.map((item) => ({src: `${process.env.NEXT_PUBLIC_IMAGE}${item.path}`}))}
+                slides={images?.map((item) => ({src: `${process.env.NEXT_PUBLIC_IMAGE}/${item.path}`}))}
             />
         </>
     );

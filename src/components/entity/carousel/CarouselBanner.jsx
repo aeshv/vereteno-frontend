@@ -10,8 +10,6 @@ import {
 } from "@mantine/core";
 import {Carousel} from "@mantine/carousel";
 import styles from "./CarouselBanner.module.scss";
-import Label from "@/components/shared/label/Label";
-import {useCarts} from "@/utils/hooks/useCarts";
 import {useBanners} from "@/utils/hooks/useBanners";
 import Link from "next/link";
 
@@ -51,7 +49,7 @@ export function CarouselBanner() {
 
 	const {isLoading, isError, data, error, refetch} = getBanner
 	const bannerData = data?.data
-	console.log('bannerData', bannerData)
+
 	const slides = bannerData?.map((item, index) => (
 		<Carousel.Slide key={`${item.id}_${index}`}>
 			<div className={styles.sliderContent}>
@@ -73,16 +71,16 @@ export function CarouselBanner() {
 								</Text>
 								<Text className={styles.subtitle}>{item.content}</Text>
 
-								{/*{item.metaKeywords && (*/}
-								{/*	<Link href={item.metaKeywords}>*/}
-								{/*		<Button*/}
-								{/*			variant="gradient"*/}
-								{/*			gradient={{from: theme.colors.brand[6], to: theme.colors.brand[2]}}*/}
-								{/*		>*/}
-								{/*			{item.metaDescription || 'Перейти'}*/}
-								{/*		</Button>*/}
-								{/*	</Link>*/}
-								{/*)}*/}
+								{item.metaKeywords && (
+									<Link href={item.metaKeywords}>
+										<Button
+											variant="gradient"
+											gradient={{from: theme.colors.brand[6], to: theme.colors.brand[2]}}
+										>
+											{item.metaDescription || 'Перейти'}
+										</Button>
+									</Link>
+								)}
 							</div>
 						</Grid.Col>
 						<Grid.Col md={12} lg={6}></Grid.Col>
