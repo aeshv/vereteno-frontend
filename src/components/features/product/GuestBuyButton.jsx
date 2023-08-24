@@ -58,7 +58,7 @@ const GuestBuyButton = () => {
         CookieCart.pushToCart({
             productVendorCodeIds: currentVendorCodeId,
             quantity: quantityControl?.quantityToBuy || 1,
-            sizeIds: 1,
+            sizeIds: selectedSize,
         })
         notifications.show({
             title: "Успешно добавлено в корзину", message: 'Продолжите покупки или проверьте корзину', color: 'green'
@@ -72,7 +72,7 @@ const GuestBuyButton = () => {
             {/*</Text>*/}
             <Button className={classes.button} leftIcon={<IconShoppingCart/>}
                     onClick={(e) => handlePlaceToCart(e)}>
-                В корзину (Гость)
+                В корзину
             </Button>
         </div>)
     }
