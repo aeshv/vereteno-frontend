@@ -9,6 +9,7 @@ const PageHead = ({
         <Head>
             <title>{title} - Веретено, магазин головных уборов</title>
             <meta name="description" content={description}/>
+            <meta name="yandex-verification" content="8c42054833b5f11d" />
         </Head>
     );
 };
