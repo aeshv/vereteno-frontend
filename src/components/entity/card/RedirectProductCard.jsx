@@ -3,7 +3,7 @@ import ColorDot from "../../shared/ColorDot/ColorDot";
 import CardGallery from "./CardGallery/CardGallery";
 import Link from "next/link";
 import noimage from "../../../../public/noimage.png";
-import { createStyles } from "@mantine/core";
+import { createStyles, Text } from "@mantine/core";
 import styles from "@/components/features/product/ProductOrder.module.scss";
 
 const CardStyles = createStyles((theme) => ({
@@ -12,19 +12,28 @@ const CardStyles = createStyles((theme) => ({
     flexDirection: "column",
     position: "relative",
     width: "100%",
-    border: "solid 2px transparent",
+    border: "solid 2px #EAEBED",
     borderRadius: "8px",
     overflow: "hidden",
-    transition: "border 0.2s ease-in",
+    transition: "all 0.2s ease-in",
     height: "100%",
     minWidth: "255px",
-    "&:hover": { border: "2px solid #EAEBED" },
+    "&:hover": { boxShadow: theme.shadows.lg },
+
+    [theme.fn.smallerThan("sm")]: {
+      minHeight: "420px",
+    },
   },
   gallery: { flexGrow: 1 },
   content: {
     marginTop: "8px",
     padding: "0 8px 12px 8px",
     position: "relative",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    height: "100%",
+
     "@media screen and (max-width: 768px)": { padding: "0 2px 8px" },
   },
   title: {
@@ -34,7 +43,7 @@ const CardStyles = createStyles((theme) => ({
     display: "block",
     overflow: "hidden",
     position: "relative",
-    textAlign: "left",
+    textAlign: "center",
     textOverflow: "ellipsis",
     fontFamily: '"Jost"',
     fontStyle: "normal",
@@ -91,65 +100,33 @@ const CardStyles = createStyles((theme) => ({
   },
 }));
 
-const Card = (props) => {
-  const noimageArray = [{ src: noimage }];
-  const { classes } = CardStyles(undefined, undefined);
+const RedirectProductCard = () => {
+  const { classes, theme } = CardStyles(undefined, undefined);
 
   return (
-    <Link className={classes.card} href={props?.href}>
-      {props?.vendorCodes?.[0]?.images ? (
-        <div className={classes.gallery}>
-          <CardGallery images={props?.vendorCodes?.[0]?.images} />
-        </div>
-      ) : (
-        <div className={classes.gallery}>
-          <CardGallery images={noimageArray} />
-        </div>
-      )}
-
+    <Link className={classes.card} href={"/products"}>
       <div className={classes.content}>
         <div className={classes.row}>
-          <span className={classes.title}>{props?.title || props?.name}</span>
-        </div>
-
-        {props?.vendorCodes?.map((item, index) => (
-          <ColorDot key={index} color={item?.color?.hex} />
-        ))}
-
-        <div className={classes.row}>
-          {!props?.discount ? (
-            <>
-              <span className={classes.current}>
-                {props?.vendorCodes?.[0]?.price} руб.
-              </span>
-            </>
-          ) : (
-            <>
-              <span className={classes.current}>
-                {props?.vendorCodes?.[0]?.price} руб.
-              </span>
-              <span className={classes.old}>
-                {props?.vendorCodes?.[0]?.price *
-                  props?.vendorCodes?.[0]?.discount}{" "}
-                руб.
-              </span>
-            </>
-          )}
+          <span className={classes.title}>Найдите подходящие товары</span>
+          <span className={classes.title}>
+            <Text
+              variant="gradient"
+              gradient={{
+                from: theme.colors.brand[4],
+                to: theme.colors.brand[8],
+                deg: 45,
+              }}
+              ta="center"
+              fz="xl"
+              fw={700}
+            >
+              В каталоге
+            </Text>
+          </span>
         </div>
       </div>
     </Link>
   );
 };
 
-export default Card;
-
-{
-  /* <div className={classes.labels}>
-                        <Label type={'green'}>Новинка</Label>
-                        <Label type={'red'}>Хит</Label>
-                        <Label type={'yellow'}>Рассрочка</Label>
-                    </div> */
-}
-
-{
-}
+export default RedirectProductCard;
