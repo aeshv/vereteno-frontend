@@ -49,14 +49,14 @@ export function VendorCard({
       <Text size="md" color="dimmed">
         Материал: <b>{material}</b>
       </Text>
-      <Text size="md" color="dimmed">
-        Размеры:{" "}
-        <b>
-          {size?.map(({ size, index }) => (
-            <span key={index}>{size} </span>
-          ))}
-        </b>
-      </Text>
+      {/*<Text size="md" color="dimmed">*/}
+      {/*  Размеры:{" "}*/}
+      {/*  <b>*/}
+      {/*    {size?.map(({ size, index }) => (*/}
+      {/*      <span key={index}>{size} </span>*/}
+      {/*    ))}*/}
+      {/*  </b>*/}
+      {/*</Text>*/}
       <Text size="md" color="dimmed">
         Цвет: <b>{color?.name}</b>
       </Text>
