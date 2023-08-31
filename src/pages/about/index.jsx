@@ -20,7 +20,7 @@ const Index = () => {
 
   return (
     <>
-      <PageHead title={"О нас"} />
+      <PageHead title={"О нас - Веретено, магазин головных уборов"} />
       <Container pb={"xl"}>
         <AboutPageBanner />
         <Text mt={"md"} className={classes.text}>

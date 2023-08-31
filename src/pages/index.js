@@ -14,7 +14,7 @@ import RedirectProductCard from "@/components/entity/card/RedirectProductCard";
 export default function Home({ products, categories }) {
   return (
     <>
-      <PageHead title={"Главная"} />
+      <PageHead title={"Главная - Веретено, магазин головных уборов"} />
       <main
         style={{
           display: "flex",
