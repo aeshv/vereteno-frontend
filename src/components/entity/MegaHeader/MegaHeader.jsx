@@ -162,6 +162,11 @@ const useStyles = createStyles((theme) => ({
   logo: {
     width: "4rem",
   },
+
+  subButtonText: {
+    fontFamily: "Jost",
+    marginTop: "2px",
+  },
 }));
 
 export function MegaHeader() {
@@ -290,7 +295,12 @@ export function MegaHeader() {
               >
                 <IconShoppingCart size="20px" />
               </ActionIcon>
-              <Text size={"xs"} c={"dimmed"} sx={{ lineHeight: 1 }}>
+              <Text
+                size={"xs"}
+                c={"dimmed"}
+                className={classes.subButtonText}
+                sx={{ lineHeight: 1 }}
+              >
                 Корзина
               </Text>
             </Link>
@@ -312,7 +322,12 @@ export function MegaHeader() {
                 >
                   <IconUser size="20px" />
                 </ActionIcon>
-                <Text size={"xs"} c={"dimmed"} sx={{ lineHeight: 1 }}>
+                <Text
+                  size={"xs"}
+                  c={"dimmed"}
+                  className={classes.subButtonText}
+                  sx={{ lineHeight: 1 }}
+                >
                   Профиль
                 </Text>
               </Link>
@@ -333,7 +348,12 @@ export function MegaHeader() {
                 >
                   <IconLogin size="20px" />
                 </ActionIcon>
-                <Text size={"xs"} c={"dimmed"} sx={{ lineHeight: 1 }}>
+                <Text
+                  size={"xs"}
+                  c={"dimmed"}
+                  className={classes.subButtonText}
+                  sx={{ lineHeight: 1 }}
+                >
                   Войти
                 </Text>
               </Link>
