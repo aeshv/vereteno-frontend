@@ -30,9 +30,9 @@ export default function Home({ products, categories }) {
           cols={4}
           spacing="lg"
           breakpoints={[
-            { maxWidth: "48rem", cols: 3, spacing: "sm" },
-            { maxWidth: "36rem", cols: 2, spacing: "sm" },
-            { maxWidth: "28rem", cols: 1, spacing: "sm" },
+            { maxWidth: "64rem", cols: 3, spacing: "sm" },
+            { maxWidth: "28rem", cols: 2, spacing: "sm" },
+            { maxWidth: "22rem", cols: 1, spacing: "sm" },
           ]}
         >
           {categories
