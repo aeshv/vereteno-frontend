@@ -23,6 +23,9 @@ import {
 import { useQuery } from "react-query";
 import { CartContext } from "@/components/shared/Contexts/CartContext";
 import { QuantityInput } from "@/components/features/cart/CartItemRow/QuantityInput";
+import { CookieCart } from "@/utils/CookieCart";
+import { notifications } from "@mantine/notifications";
+import { GuestCartContext } from "@/components/shared/Contexts/GuestCartContext";
 
 const useStyles = createStyles((theme) => ({
   rowSelected: {
@@ -34,26 +37,43 @@ const useStyles = createStyles((theme) => ({
 }));
 const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
   const { classes, cx, theme } = useStyles();
-
-  const currentItemVendorCode = item?.vendorCodes.find(
+  const { handleCookie } = useContext(GuestCartContext);
+  const [isRowLoading, setIsRowLoading] = useState(false);
+  const currentItemVendorCode = item?.vendorCodes?.find(
     (vendor) => vendor.productVendorCodeId === item?.productVendorCodeIds,
   );
 
-  const currentItemSize = currentItemVendorCode.sizes.find(
+  const currentItemSize = currentItemVendorCode?.sizes.find(
     (size) => size.id === item?.sizeIds,
   );
-
-  console.log("ITEM", currentItemVendorCode, currentItemSize);
+  console.log(item);
+  const handleRemoveCurrentItem = () => {
+    setIsRowLoading(true);
+    CookieCart?.removeFromCartById(item?.id).then(
+      (message) => {
+        console.log(message);
+        handleCookie();
+        setIsRowLoading(false);
+      },
+      (message) => {
+        console.log(message);
+        setIsRowLoading(false);
+      },
+    );
+  };
 
   return (
     <tr key={item.id} className={cx({ [classes.rowSelected]: isSelected })}>
       <td>{item?.guestItemId + 1}</td>
       <td>
-        <Group spacing="sm">
+        <Stack spacing="xs">
           <Text size="sm" weight={500}>
             {item?.name}
           </Text>
-        </Group>
+          <Text size="sm" c={"dimmed"}>
+            Артикул: {currentItemVendorCode?.code}
+          </Text>
+        </Stack>
       </td>
       <td>
         <Text size="sm" weight={500}>
@@ -61,17 +81,41 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
         </Text>
       </td>
       <td>
-        <QuantityInput
-          disabled={isSelected}
-          current={item.quantity || 1}
-          handleChange={() => {}}
-        />
+        <Text size="sm" weight={500}>
+          {item.quantity || 1}
+        </Text>
+        {/*<QuantityInput*/}
+        {/*  disabled={isSelected}*/}
+        {/*  current={item.quantity || 1}*/}
+        {/*  handleChange={() => {}}*/}
+        {/*/>*/}
       </td>
       <td>
-        {item?.discount?.discount_coefficient ? (
+        {currentItemVendorCode?.discount ? (
           // Со скидкой
           <Stack spacing={"xs"}>
-            d руб.
+            <Stack spacing="xs">
+              {currentItemVendorCode?.price * item?.quantity !==
+                currentItemVendorCode?.price && (
+                <Text>
+                  1 шт. -{" "}
+                  <b>
+                    {currentItemVendorCode?.price *
+                      currentItemVendorCode?.discount}
+                  </b>{" "}
+                  руб.
+                </Text>
+              )}
+              <Text>
+                Всего -{" "}
+                <b>
+                  {currentItemVendorCode?.price *
+                    currentItemVendorCode?.discount *
+                    item?.quantity}
+                </b>{" "}
+                руб.
+              </Text>
+            </Stack>
             <Badge
               variant="gradient"
               gradient={{
@@ -79,7 +123,7 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
                 to: theme.colors.brand[8],
               }}
             >
-              Скидка {100 - item?.discount?.discount_coefficient * 100}%
+              Скидка {100 - currentItemVendorCode?.discount * 100}%
             </Badge>
           </Stack>
         ) : (
@@ -103,8 +147,8 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
           <ActionIcon
             variant="light"
             color="red"
-            loading={false}
-            onClick={() => {}}
+            loading={isRowLoading}
+            onClick={handleRemoveCurrentItem}
           >
             <IconTrash size="1rem" stroke={1.5} />
           </ActionIcon>

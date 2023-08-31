@@ -27,7 +27,7 @@ export function VendorCard({
   handleChangeVendor = () => {},
 }) {
   const { classes } = useStyles();
-  console.log("key == currentActive", index, currentActive);
+
   return (
     <Paper
       onClick={handleChangeVendor}

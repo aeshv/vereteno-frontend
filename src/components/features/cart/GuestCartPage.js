@@ -6,7 +6,7 @@ import { IconGardenCartOff } from "@tabler/icons-react";
 import { GuestCartTable } from "@/components/features/cart/GuestCartTable/GuestCartTable";
 import { CookieCart } from "@/utils/CookieCart";
 import { GuestCartContext } from "@/components/shared/Contexts/GuestCartContext";
-import { Button, Center, Loader } from "@mantine/core";
+import { Button, Center, Flex, Loader } from "@mantine/core";
 
 export const GuestCartPage = () => {
   const [cookieData, setCookieData] = useState([]);
@@ -20,17 +20,22 @@ export const GuestCartPage = () => {
     handleCookie();
   }, []);
 
-  //
-  // console.log('cookieData', cookieData, cookieData.map((item) => item?.productVendorCodeIds))
-
   if (!!cookieData)
     return (
       <>
-        <Button onClick={() => CookieCart.clearAllCart()}>
-          Почистить куки
-        </Button>
+        {/*<Flex direction={"row"} gap={"xs"} justify={"center"}>*/}
+        {/*  <Button onClick={() => CookieCart.clearAllCart()}>*/}
+        {/*    Почистить куки*/}
+        {/*  </Button>*/}
+        {/*  <Button onClick={handleCookie}>Обновить Товары</Button>*/}
+        {/*  <Button onClick={() => console.log(CookieCart.getParsedCart())}>*/}
+        {/*    Показать куки*/}
+        {/*  </Button>*/}
+        {/*</Flex>*/}
         {cookieData?.length >= 1 ? (
-          <GuestCartContext.Provider value={{ cookieData: cookieData }}>
+          <GuestCartContext.Provider
+            value={{ cookieData: cookieData, handleCookie }}
+          >
             <GuestCartTable />
           </GuestCartContext.Provider>
         ) : (

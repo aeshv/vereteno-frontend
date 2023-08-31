@@ -117,7 +117,7 @@ const Card = (props) => {
         ))}
 
         <div className={classes.row}>
-          {!props?.discount ? (
+          {!props?.vendorCodes?.[0]?.discount ? (
             <>
               <span className={classes.current}>
                 {props?.vendorCodes?.[0]?.price} руб.
@@ -126,12 +126,12 @@ const Card = (props) => {
           ) : (
             <>
               <span className={classes.current}>
-                {props?.vendorCodes?.[0]?.price} руб.
-              </span>
-              <span className={classes.old}>
                 {props?.vendorCodes?.[0]?.price *
                   props?.vendorCodes?.[0]?.discount}{" "}
                 руб.
+              </span>
+              <span className={classes.old}>
+                {props?.vendorCodes?.[0]?.price} руб.
               </span>
             </>
           )}
@@ -145,10 +145,10 @@ export default Card;
 
 {
   /* <div className={classes.labels}>
-                        <Label type={'green'}>Новинка</Label>
-                        <Label type={'red'}>Хит</Label>
-                        <Label type={'yellow'}>Рассрочка</Label>
-                    </div> */
+                                  <Label type={'green'}>Новинка</Label>
+                                  <Label type={'red'}>Хит</Label>
+                                  <Label type={'yellow'}>Рассрочка</Label>
+                              </div> */
 }
 
 {

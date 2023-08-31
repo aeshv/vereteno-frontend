@@ -1,16 +1,7 @@
-import {
-  Center,
-  Checkbox,
-  Loader,
-  Paper,
-  ScrollArea,
-  Table,
-} from "@mantine/core";
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import { Center, Loader, Paper, ScrollArea, Table } from "@mantine/core";
+import React, { useContext } from "react";
 import { GuestCartContext } from "@/components/shared/Contexts/GuestCartContext";
-import { useGuestCartProducts, useProducts } from "@/utils/hooks/useProducts";
-import { useId } from "@mantine/hooks";
-import CartItemRow from "@/components/features/cart/CartItemRow/CartItemRow";
+import { useGuestCartProducts } from "@/utils/hooks/useProducts";
 import GuestCartItemRow from "@/components/features/cart/GuestCartItemRow/GuestCartItemRow";
 
 export const GuestCartTable = () => {
@@ -19,11 +10,11 @@ export const GuestCartTable = () => {
     productVendorCodeIds: cookieData.map((item) => item?.productVendorCodeIds),
   });
   const { isLoading, isError, data, error } = getGuestProducts;
-  console.log("cookieData", cookieData);
+
   const gluedData = cookieData.map((item, index) => ({
     guestItemId: index,
-    ...item,
     ...data?.data?.products[index],
+    ...item,
   }));
 
   if (isError) {

@@ -47,8 +47,6 @@ export const ProductBreadcrumbs = () => {
     { title: product?.name, href: null },
   ];
 
-  console.log("PRODUCTTTT", product);
-
   const items = links.map((link, index) => {
     if (link.href) {
       return (
