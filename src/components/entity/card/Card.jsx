@@ -142,14 +142,3 @@ const Card = (props) => {
 };
 
 export default Card;
-
-{
-  /* <div className={classes.labels}>
-                                  <Label type={'green'}>Новинка</Label>
-                                  <Label type={'red'}>Хит</Label>
-                                  <Label type={'yellow'}>Рассрочка</Label>
-                              </div> */
-}
-
-{
-}
