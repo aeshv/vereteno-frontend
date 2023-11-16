@@ -67,7 +67,7 @@ const BlurredBlock = ({ title = "Шляпы", id, ...other }) => {
   return (
     <>
       <Box mx="auto" className={classes.box}>
-        <Link href={`/products?categories[]=${id}`}>
+        <Link href={`/products?categories=${id}`}>
           <BackgroundImage
             src={`${process.env.NEXT_PUBLIC_IMAGE}/${other.image}`}
             radius="xs"

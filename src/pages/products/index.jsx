@@ -1,13 +1,10 @@
 import HatFilter from "@/components/entity/filters/HatFilter";
 import PageHead from "@/components/SEO/PageHead";
-import React, { useEffect } from "react";
+import React from "react";
 
 import styles from "./Products.module.scss";
-import { Grid } from "@mantine/core";
-import Card from "@/components/entity/card/Card";
-import { productApi } from "@/api";
 import { ProductsGrid } from "@/components/entity/ProductsGrid/ProductsGrid";
-import { useRouter } from "next/router";
+import { SubCategories } from "@/components/entity/SubCategories/SubCategories";
 
 const Products = () => {
   return (
@@ -22,6 +19,7 @@ const Products = () => {
             <HatFilter />
           </div>
           <div className={styles.store}>
+            <SubCategories />
             <ProductsGrid />
           </div>
         </div>

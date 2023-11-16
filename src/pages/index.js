@@ -36,7 +36,7 @@ export default function Home({ products, categories }) {
           ]}
         >
           {categories
-            ?.filter((category) => category.level >= 2)
+            ?.filter((category) => category.level === 2)
             ?.map((category) => (
               <BlurredBlock
                 title={category.name}
