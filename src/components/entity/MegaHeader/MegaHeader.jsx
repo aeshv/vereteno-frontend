@@ -185,23 +185,23 @@ export function MegaHeader() {
   const firstGradeCategories =
     data?.data?.categories.filter((category) => category.level === 1) || [];
 
-  const handlePageChange = (route) => {
+  const handlePageChange = (routeId) => {
     closeDrawer();
-    if (route) {
+    if (routeId) {
       delete router.query.category;
       router.pathname = "/products";
 
-      router.query.category = route;
+      router.query.categories = routeId;
       router.push(router);
     }
   };
 
-  const catalogLinks = firstGradeCategories.map((item, index) => (
+  const catalogLinks = firstGradeCategories?.map((item, index) => (
     <UnstyledButton className={classes.subLink} key={index}>
       <Stack
         align="flex-start"
         spacing="xs"
-        onClick={() => handlePageChange(item.name)}
+        onClick={() => handlePageChange(item?.id)}
       >
         <Text size="sm" fw={500} pl={"xs"}>
           {item.name}
