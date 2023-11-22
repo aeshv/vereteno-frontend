@@ -9,6 +9,7 @@ import {
 } from "@mantine/core";
 import Image from "next/image";
 import size from "../../assets/images/how-get-head-size.svg";
+import PageHead from "@/components/SEO/PageHead";
 
 const useStyles = createStyles((theme) => ({
   text: {
@@ -36,6 +37,12 @@ const Index = () => {
 
   return (
     <>
+      <PageHead
+        title={"Как узнать размер головы - Веретено"}
+        description={
+          "Как правильно узнать размер головного убора для мужчин, женщин, детей"
+        }
+      />
       <Paper p={"xl"}>
         <Container>
           <Title size={"x-large"}>

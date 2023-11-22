@@ -25,18 +25,22 @@ const Footer = ({ footerColor = "white" }) => {
                       <MainLogo width={80} height={84} />
                     </div>
                     <div className={styles.header_right}>
-                      <span className={styles.title}>Шляпы веретено</span>
+                      <span className={styles.title}>
+                        Лаборатория головных уборов Веретено
+                      </span>
 
                       <ul className={styles.info_list}>
-                        <li className={styles.info_item}>ОГРН 1156313039134</li>
                         <li className={styles.info_item}>
-                          ИНН 6318006647, КПП 631601001
+                          ОГРН 307616104500078
                         </li>
                         <li className={styles.info_item}>
-                          р/с 40703810654400000678
+                          ИНН 7707083893, КПП 616443001
                         </li>
                         <li className={styles.info_item}>
-                          Банк: Южный банк ПАО Сбербанк России
+                          р/с 40802810052090032224
+                        </li>
+                        <li className={styles.info_item}>
+                          Банк: Юго-Западный банк ПАО Сбербанк
                         </li>
                       </ul>
                     </div>
@@ -74,6 +78,13 @@ const Footer = ({ footerColor = "white" }) => {
                         href="https://vk.com/vereteno_hats"
                       >
                         <IconBrandVk color={"#0077ff"} />
+                      </a>
+                      <a
+                        className={styles.social_icon}
+                        target="_blank"
+                        href="https://t.me/+79034331144"
+                      >
+                        <IconBrandTelegram color={"#0088cc"} />
                       </a>
                       <a
                         className={styles.social_icon}

@@ -28,15 +28,18 @@ dl,
 dd {
   margin: 0;
 }
+
 ul {
   padding: 0;
   list-style-type: none;
 }
+
 html {
   scroll-behavior: smooth;
 
   /* overflow: hidden; */
 }
+
 /* Выставляем основные настройки по-умолчанию для body */
 body {
   min-height: 100vh;
@@ -90,6 +93,7 @@ select {
     scroll-behavior: auto !important;
   }
 }
+
 /* @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;900&display=swap"); */
 
 html * {
@@ -107,6 +111,7 @@ input {
 #root {
   min-height: 100%;
 }
+
 // .element::-webkit-scrollbar {
 //     width: 0;
 // }
@@ -148,6 +153,7 @@ a.unpublished:visited {
   margin: 0 auto;
   flex-grow: 2;
   width: 100%;
+  padding-bottom: 3rem;
 }
 
 @font-face {
@@ -155,6 +161,7 @@ a.unpublished:visited {
   src: url("./Jost-Thin.woff2") format("woff2");
   font-weight: 100;
 }
+
 @font-face {
   font-family: "Jost";
   src: url("./Jost-Light.woff2") format("woff2");
@@ -166,6 +173,7 @@ a.unpublished:visited {
   src: url("./Jost-Regular.woff2") format("woff2");
   font-weight: 400;
 }
+
 @font-face {
   font-family: "Jost";
   src: url("./Jost-Medium.woff2") format("woff2");
