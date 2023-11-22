@@ -1,119 +1,95 @@
-import {Box, Center, Container, createStyles, Paper, Text, Title} from "@mantine/core";
+import {
+  Box,
+  Center,
+  Container,
+  createStyles,
+  Paper,
+  Text,
+  Title,
+} from "@mantine/core";
 import Image from "next/image";
-import size from '../../assets/images/how-get-head-size.svg'
+import size from "../../assets/images/how-get-head-size.svg";
 
 const useStyles = createStyles((theme) => ({
-    text: {
-        fontFamily: "Jost",
-        fontStyle: "normal",
-        fontWeight: 400,
-        fontSize: theme.fontSizes.md,
-        lineHeight: "20px",
-        color: theme.colors.gray[7],
-    },
+  text: {
+    fontFamily: "Jost",
+    fontStyle: "normal",
+    fontWeight: 400,
+    fontSize: theme.fontSizes.md,
+    lineHeight: "20px",
+    color: theme.colors.gray[7],
+  },
 
-    hint: {
-        fontFamily: "Jost",
-        padding: theme.spacing.md,
-        background: theme.colors.brand[5],
-        color: theme.white,
-        borderRadius: theme.radius.md,
-        marginTop: '1rem',
-        marginBottom: '1rem',
-    }
+  hint: {
+    fontFamily: "Jost",
+    padding: theme.spacing.md,
+    background: theme.colors.brand[5],
+    color: theme.white,
+    borderRadius: theme.radius.md,
+    marginTop: "1rem",
+    marginBottom: "1rem",
+  },
 }));
 
-
 const Index = () => {
+  const { classes, theme } = useStyles();
 
-    const {classes, theme} = useStyles();
+  return (
+    <>
+      <Paper p={"xl"}>
+        <Container>
+          <Title size={"x-large"}>
+            Как правильно узнать размер головного убора
+          </Title>
 
-    return (
-        <>
-            <Paper p={'xl'}>
-                <Container>
-                    <Title size={'x-large'}>Как правильно узнать размер головного убора</Title>
+          <Text mt={"md"} c="dimmed" className={classes.text}>
+            Размер головы является важным этапом при выборе головного убора. От
+            того насколько правильно вы сделаете замер зависит ваш комфорт при
+            носке. Для этого необходимо выполнить следующие действия:
+          </Text>
 
-                    <Text mt={'md'} c="dimmed">
-                        Замер головы для правильного выбора головного убора – важный этап в выборе головного убора. От
-                        того,
-                        насколько правильно был измерен размер головы, зависит не только комфорт при ношении, но и
-                        возможность
-                        использования головного убора для определенных целей.
-                    </Text>
+          <Box className={classes.hint}>
+            Для снятия мерок понадобится сантиметровая портновская лента. Если
+            ее нет, используют нерастяжимую тесьму или полоску бумаги, на
+            которых делают отметку, и затем измеряют с помощью линейки.
+          </Box>
+          <Center>
+            <Image src={size} alt={"Иллюстрация"} />
+          </Center>
 
-                    <Center>
-                        <Image src={size} alt={'Иллюстрация'}/>
-                    </Center>
+          <Text
+            variant="gradient"
+            gradient={{
+              from: theme.colors.brand[4],
+              to: theme.colors.brand[8],
+              deg: 45,
+            }}
+            mt={"xl"}
+            fz="xl"
+            fw={700}
+          >
+            Для того, чтобы правильно замерить голову, необходимо выполнить
+            следующие шаги:
+          </Text>
 
-                    <Text variant="gradient"
-                          gradient={{from: theme.colors.brand[4], to: theme.colors.brand[8], deg: 45}}
-                          mt={'xl'}
-                          fz="xl"
-                          fw={700}>
-                        Для того, чтобы правильно замерить голову, необходимо выполнить следующие шаги:
-                    </Text>
+          <Text mt={"xs"} pl={"xs"} className={classes.text}>
+            1) Измерить обхват головы. <b>Важно!</b> Измерительную ленту
+            обернуть вокруг головы так, чтобы она проходила сзади по самой
+            выступающей затылочной части,над ушами, а впереди - над бровями.
+          </Text>
 
-                    <Text mt={'xs'} pl={'xs'} className={classes.text}>
-                        1) Измерьте окружность головы. Для этого нужно обернуть измерительную ленту вокруг головы так,
-                        чтобы
-                        она
-                        проходила через макушку и была плотно прижата к голове. Лента должна проходить по самой широкой
-                        части
-                        головы.
-                    </Text>
+          <Text mt={"xs"} pl={"xs"} className={classes.text}>
+            2) Проверьте, чтобы лента плотно прилегала к голове и не имела
+            складок.
+          </Text>
+          <Text mt={"xs"} pl={"xs"} className={classes.text}>
+            3) Запишите полученный результат. Обхват головы в сантиметрах
+            является вашим размером.
+          </Text>
+        </Container>
+      </Paper>
+    </>
+  );
+};
 
-                    <Box className={classes.hint}>
-                        Для снятия мерок понадобится сантиметровая портновская лента. Если ее нет, используют
-                        нерастяжимую тесьму или полоску бумаги, на которых делают отметку, и затем измеряют с помощью
-                        линейки.
-                    </Box>
-
-                    <Text mt={'xs'} pl={'xs'} className={classes.text}>
-                        2) Запишите полученный результат. Окружность головы – это основной параметр, который необходим
-                        для
-                        выбора
-                        размера головного убора.
-                    </Text>
-                    <Text mt={'xs'} pl={'xs'} className={classes.text}>
-                        3) Проверьте, что лента плотно прилегает к голове и не имеет складок. Если лента свободно лежит
-                        на
-                        голове,
-                        то результат может быть неточным.
-                    </Text>
-                    <Text mt={'xs'} pl={'xs'} className={classes.text}>
-                        4) Обратите внимание на форму головы. Если голова имеет вытянутую или округлую форму, то это
-                        может
-                        повлиять
-                        на выбор размера головного убора. Например, для округлой формы головы лучше выбирать головной
-                        убор с
-                        небольшим объемом, а для вытянутой формы – с более объемным.
-                    </Text>
-                    <Text mt={'xs'} pl={'xs'} className={classes.text}>
-                        5) Не забудьте учесть индивидуальные особенности. Каждый человек имеет свои особенности головы,
-                        поэтому
-                        необходимо учитывать их при выборе размера головного убора. Например, если у вас высокий лоб, то
-                        лучше
-                        выбирать головные уборы с более широким козырьком или с дополнительной защитой от солнца.
-                        Используйте специальные таблицы размеров.
-                    </Text>
-                    <Text mt={'xs'} pl={'xs'} className={classes.text}>
-                        6) Не забывайте учитывать сезонность. Размер головного убора может меняться в зависимости от
-                        сезона.
-                        Например, зимой лучше выбирать более теплые и объемные головные уборы, а летом – более легкие и
-                        свободные.
-
-                    </Text>
-                    <Text mt={'xs'} pl={'xs'} className={classes.text}>
-                        7) Замерите размер головы правильно и вы сможете выбрать головной убор, который будет идеально
-                        подходить
-                        вам по размеру и форме головы, а также соответствовать вашим индивидуальным потребностям и
-                        предпочтениям.
-                    </Text>
-                </Container>
-            </Paper>
-        </>
-    )
-}
-
-export default Index
+export default Index;
