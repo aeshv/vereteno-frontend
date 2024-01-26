@@ -42,11 +42,11 @@ export const ProductBreadcrumbs = () => {
     { title: "Каталог", href: "/products" },
     {
       title: product?.category?.name,
-      href: `/products?categories[]=${product?.category?.id}`,
+      href: `/products?categories=${product?.category?.id}`,
     },
+
     { title: product?.name, href: null },
   ];
-
   const items = links.map((link, index) => {
     if (link.href) {
       return (

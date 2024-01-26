@@ -29,6 +29,13 @@
   gap: 8px;
   min-height: 400px;
   width: 100%;
+
+  @media screen and (max-width: 768px) {
+    min-height: 200px;
+  }
+  @media screen and (max-width: 368px) {
+    min-height: 140px;
+  }
 }
 
 .title {

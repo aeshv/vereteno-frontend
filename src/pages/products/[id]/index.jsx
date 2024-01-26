@@ -37,7 +37,9 @@ const SingleProduct = ({ product }) => {
         quantityControl,
       }}
     >
-      <PageHead title={product?.name || "Загрузка"} />
+      <PageHead
+        title={`${product?.name} в интернет-магазине Веретено` || "Загрузка"}
+      />
       <Paper shadow="md" radius="xl" p="xl" mb={"xl"}>
         <div className={styles.container}>
           <div className={styles.top}>
