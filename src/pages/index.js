@@ -81,8 +81,8 @@ export default function Home({ products, categories }) {
 }
 
 export async function getServerSideProps() {
-  const { products } = await productApi.getProducts().then(({ data }) => {
-    return data;
+  const products = await productApi.getProducts().then(({ data }) => {
+    return data?.productVendorCodes;
   });
 
   const { categories } = await categoryApi.getAll().then(({ data }) => {

@@ -12,9 +12,9 @@ import { ProductQuantityIncrementor } from "@/components/features/product/blocks
 
 const ProductOrder = () => {
   const ctx = useContext(ProductInfoContext);
-  const { product, vendorIndex, sizeControl } = ctx;
+  const { product, sizeControl } = ctx;
   const clipboard = useClipboard({ timeout: 1400 });
-  const productInfo = product?.vendorCodes?.[vendorIndex.currentVendorIndex];
+  const productInfo = product;
   const currentSizeAmount = useMemo(
     () =>
       productInfo?.sizes.filter(
@@ -33,8 +33,8 @@ const ProductOrder = () => {
         )}
 
         <div className={styles.backinfo}>
-          {productInfo?.code ? (
-            <div className={styles.tag}>Артикул: {productInfo?.code}</div>
+          {productInfo?.vendorCode?.code ? (
+            <div className={styles.tag}>Артикул: {productInfo?.vendorCode?.code}</div>
           ) : (
             <Skeleton height={15} width={60} mt={2} radius="xl" />
           )}

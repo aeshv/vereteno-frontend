@@ -10,13 +10,11 @@ import { ProductInfoContext } from "@/components/shared/Contexts/ProductContext"
 import PageHead from "@/components/SEO/PageHead";
 import { ProductBreadcrumbs } from "@/components/features/product/ProductBreadcrumbs";
 import ProductVendorVariations from "@/components/features/product/ProductVendorVariations";
-import { cartApi } from "@/api/cart";
-import { useCarts } from "@/utils/hooks/useCarts";
 
 const SingleProduct = ({ product }) => {
   const [currentVendorIndex, setCurrentVendorIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(
-    product?.vendorCodes?.[currentVendorIndex]?.sizes[0]?.id,
+    product?.sizes[0]?.id,
   );
   const [quantityToBuy, setQuantityToBuy] = useState(1);
 
@@ -24,9 +22,8 @@ const SingleProduct = ({ product }) => {
   const sizeControl = { selectedSize, setSelectedSize };
   const quantityControl = { quantityToBuy, setQuantityToBuy };
 
-  useEffect(() => {
-    setSelectedSize(product?.vendorCodes?.[currentVendorIndex]?.sizes[0]?.id);
-  }, [currentVendorIndex, product]);
+
+  console.log(product)
 
   return (
     <ProductInfoContext.Provider
@@ -51,7 +48,7 @@ const SingleProduct = ({ product }) => {
               <ProductOrder />
             </div>
             <div className={styles.additional}>
-              {product?.vendorCodes?.length > 1 && <ProductVendorVariations />}
+              {/*{product?.vendorCodes?.length > 1 && <ProductVendorVariations />}*/}
               <Space h={"xl"} />
               <ProductInfo />
               <Space h={"xl"} />
@@ -71,7 +68,7 @@ export default SingleProduct;
 
 export async function getStaticPaths() {
   const { products } = await productApi.getProducts().then(({ data }) => {
-    return { ...data, products: data.products };
+    return { ...data, products: data.productVendorCodes };
   });
 
   const paths = products.map((product) => ({

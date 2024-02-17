@@ -5,7 +5,7 @@ import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 
 const ProductSectionSpecs = () => {
     const {product, vendorIndex} = useContext(ProductInfoContext)
-    const productInfo = product?.vendorCodes?.[vendorIndex.currentVendorIndex]
+    const productInfo = product
 
     return (
         <div className={styles.container}>

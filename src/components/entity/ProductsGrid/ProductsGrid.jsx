@@ -22,7 +22,9 @@ export const ProductsGrid = () => {
     return <span>Ошибка: {error.message}</span>;
   }
 
-  if (data?.data?.products?.length <= 0) {
+  console.log('поиск', data)
+
+  if (data?.data?.productVendorCodes?.length <= 0) {
     return (
       <NoDataBlock
         title={"Ничего не найдено"}
@@ -34,7 +36,7 @@ export const ProductsGrid = () => {
     );
   }
 
-  if (data?.data?.products) {
+  if (data?.data?.productVendorCodes) {
     return (
       <>
         <SimpleGrid
@@ -45,7 +47,7 @@ export const ProductsGrid = () => {
             { maxWidth: "34rem", cols: 1, spacing: "sm" },
           ]}
         >
-          {data?.data?.products?.map((product) => (
+          {data?.data?.productVendorCodes?.map((product) => (
             <Card
               key={product.id}
               {...product}

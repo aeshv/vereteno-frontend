@@ -5,13 +5,11 @@ import { QuantityInput } from "@/components/features/cart/CartItemRow/QuantityIn
 import { IconShoppingCart } from "@tabler/icons-react";
 
 export const ProductQuantityIncrementor = () => {
-  const { product, vendorIndex, quantityControl, sizeControl } =
+  const { product, quantityControl, sizeControl } =
     useContext(ProductInfoContext);
   const [value, setValue] = useState(quantityControl?.quantityToBuy || "");
 
-  const currentSize = product?.vendorCodes?.[
-    vendorIndex.currentVendorIndex
-  ]?.sizes.find((item) => item.id === sizeControl?.selectedSize);
+  const currentSize = product?.sizes.find((item) => item.id === sizeControl?.selectedSize);
 
   const handleChangeSize = (e) => {
     setValue(e);

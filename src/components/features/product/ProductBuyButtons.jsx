@@ -32,13 +32,12 @@ const CatalogButtonStyles = createStyles((theme) => ({
 }));
 
 const ProductBuyButtons = () => {
-  const { product, vendorIndex, sizeControl, quantityControl } =
+  const { product, sizeControl, quantityControl } =
     useContext(ProductInfoContext);
   const { user } = useSelector((state) => state.auth);
 
   //id выбранного пользователем вендоркода (вариации товара)
-  const currentVendorCodeId =
-    product?.vendorCodes?.[vendorIndex.currentVendorIndex]?.productVendorCodeId;
+  const currentVendorCodeId = product?.vendorCode?.id;
   const { selectedSize } = sizeControl;
   const { classes } = CatalogButtonStyles();
 
@@ -69,6 +68,10 @@ const ProductBuyButtons = () => {
         productVendorCodeIds: [currentVendorCodeId],
         quantity: [quantityControl?.quantityToBuy || 1],
         // TODO: FIX SIZE
+        // TODO: FIX SIZE
+        // TODO: FIX SIZE
+        // TODO: FIX SIZE
+        // TODO: FIX SIZE
         sizeIds: [1],
       })
       .then(handleSuccessAddToCard, handleErrorAddToCard);
@@ -94,9 +97,7 @@ const ProductBuyButtons = () => {
     setCurrentButtonStatus("В корзину");
   };
 
-  const currentSize = product?.vendorCodes?.[
-    vendorIndex.currentVendorIndex
-  ]?.sizes.find((item) => item.id === selectedSize);
+  const currentSize = product?.sizes.find((item) => item.id === selectedSize);
 
   if (user && !!!currentSize?.quantity) {
     return (

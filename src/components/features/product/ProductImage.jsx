@@ -53,8 +53,8 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const ProductImage = () => {
-    const {product, vendorIndex} = useContext(ProductInfoContext)
-    const {images} = product?.vendorCodes?.[vendorIndex.currentVendorIndex] || []
+    const {product} = useContext(ProductInfoContext)
+    const {images} = product
     const {classes} = useStyles();
     const theme = useMantineTheme();
 

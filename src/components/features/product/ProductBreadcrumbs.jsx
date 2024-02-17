@@ -37,17 +37,38 @@ const BreadcrumbsStyles = createStyles((theme) => ({
 export const ProductBreadcrumbs = () => {
   const { product } = useContext(ProductInfoContext);
   const { classes } = BreadcrumbsStyles();
-  const links = [
-    { title: "Главная", href: "/" },
-    { title: "Каталог", href: "/products" },
-    {
-      title: product?.category?.name,
-      href: `/products?categories=${product?.category?.id}`,
-    },
 
-    { title: product?.name, href: null },
-  ];
-  const items = links.map((link, index) => {
+  console.log('Большой продукт', product)
+
+  function generateBreadcrumb(product, breadcrumbs = []) {
+    if (!product) {
+      return breadcrumbs;
+    }
+
+    if (product.category) {
+      breadcrumbs.unshift({
+        title: product.category.name,
+        href: `/products?categories=${product.category.id}`,
+      });
+
+      if (product.category?.parent) {
+        breadcrumbs.unshift({
+          title: product.category?.parent.name,
+          href: `/products?categories=${product.category?.parent.id}`,
+        });
+
+        return generateBreadcrumb(product.category?.parent, breadcrumbs);
+      }
+    }
+
+    breadcrumbs.unshift({ title: "Каталог", href: "/products" });
+    breadcrumbs.unshift({ title: "Главная", href: "/" });
+    return breadcrumbs;
+  }
+
+
+  console.log('Продукт, для хлеба', product)
+  const items = generateBreadcrumb(product).map((link, index) => {
     if (link.href) {
       return (
         <Link href={link.href} key={index}>

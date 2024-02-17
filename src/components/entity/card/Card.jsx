@@ -95,11 +95,12 @@ const Card = (props) => {
   const noimageArray = [{ src: noimage }];
   const { classes } = CardStyles(undefined, undefined);
 
+
   return (
     <Link className={classes.card} href={props?.href}>
-      {props?.vendorCodes?.[0]?.images ? (
+      {props?.images ? (
         <div className={classes.gallery}>
-          <CardGallery images={props?.vendorCodes?.[0]?.images} />
+          <CardGallery images={props?.images} />
         </div>
       ) : (
         <div className={classes.gallery}>
@@ -111,27 +112,24 @@ const Card = (props) => {
         <div className={classes.row}>
           <span className={classes.title}>{props?.title || props?.name}</span>
         </div>
-
-        {props?.vendorCodes?.map((item, index) => (
-          <ColorDot key={index} color={item?.color?.hex} />
-        ))}
+          <ColorDot color={props?.vendorCode?.color?.hex} />
 
         <div className={classes.row}>
-          {!props?.vendorCodes?.[0]?.discount ? (
+          {!props?.discount ? (
             <>
               <span className={classes.current}>
-                {props?.vendorCodes?.[0]?.price} руб.
+                {props?.price} руб.
               </span>
             </>
           ) : (
             <>
               <span className={classes.current}>
-                {props?.vendorCodes?.[0]?.price *
-                  props?.vendorCodes?.[0]?.discount}{" "}
+                {props?.price *
+                  props?.discount}{" "}
                 руб.
               </span>
               <span className={classes.old}>
-                {props?.vendorCodes?.[0]?.price} руб.
+                {props?.price} руб.
               </span>
             </>
           )}

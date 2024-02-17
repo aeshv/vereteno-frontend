@@ -8,7 +8,7 @@ const BuyingWith = ({ title, params = {} }) => {
 
   const { isLoading, isError, data, error } = getBannerContent;
 
-  const items = data?.data?.products?.map((product) => (
+  const items = data?.data?.productVendorCodes?.map((product) => (
     <div className={styles.scrollable} key={product.id}>
       <Card {...product} href={`/products/${product.id}`} />
     </div>
