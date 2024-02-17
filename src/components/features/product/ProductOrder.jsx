@@ -17,7 +17,7 @@ const ProductOrder = () => {
   const productInfo = product;
   const currentSizeAmount = useMemo(
     () =>
-      productInfo?.sizes.filter(
+      productInfo?.sizes?.filter(
         (item) => item?.id === sizeControl.selectedSize,
       )?.[0]?.quantity,
     [productInfo, sizeControl.selectedSize],

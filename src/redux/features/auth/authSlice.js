@@ -15,7 +15,6 @@ export const registerUser2 = createAsyncThunk('auth/register', async ({login, pa
 
     try {
         const result = await userApi.register({login, password, email})
-        console.log(result)
         notifications.show({title: "Попытка", message: 'зарегаться', color: 'green'});
         return result
     } catch (e) {

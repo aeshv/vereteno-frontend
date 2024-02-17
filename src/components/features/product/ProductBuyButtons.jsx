@@ -97,7 +97,7 @@ const ProductBuyButtons = () => {
     setCurrentButtonStatus("В корзину");
   };
 
-  const currentSize = product?.sizes.find((item) => item.id === selectedSize);
+  const currentSize = product?.sizes?.find((item) => item.id === selectedSize);
 
   if (user && !!!currentSize?.quantity) {
     return (

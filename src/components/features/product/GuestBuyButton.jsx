@@ -47,13 +47,13 @@ const GuestBuyButton = () => {
   const { user } = useSelector((state) => state.auth);
   const { classes } = CatalogButtonStyles();
 
-  const { product, vendorIndex, sizeControl, quantityControl } =
+  const { product, sizeControl, quantityControl } =
     useContext(ProductInfoContext);
 
   const { selectedSize } = sizeControl;
 
   const currentVendorCodeId =
-    product?.vendorCodes?.[vendorIndex.currentVendorIndex]?.productVendorCodeId;
+    product?.vendorCode?.id;
 
   const [cookieData, setCookieData] = useState([]);
 
@@ -66,9 +66,7 @@ const GuestBuyButton = () => {
     handleCookie();
   }, []);
 
-  const currentSize = product?.vendorCodes?.[
-    vendorIndex.currentVendorIndex
-  ]?.sizes.find((item) => item.id === sizeControl?.selectedSize);
+  const currentSize = product?.sizes?.find((item) => item.id === sizeControl?.selectedSize);
 
   let isCurrentVendorCodeInCart = !!cookieData?.find(
     (item) => item?.productVendorCodeIds === currentVendorCodeId,

@@ -43,7 +43,7 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
     (vendor) => vendor.productVendorCodeId === item?.productVendorCodeIds,
   );
 
-  const currentItemSize = currentItemVendorCode?.sizes.find(
+  const currentItemSize = currentItemVendorCode?.sizes?.find(
     (size) => size.id === item?.sizeIds,
   );
   console.log(item);

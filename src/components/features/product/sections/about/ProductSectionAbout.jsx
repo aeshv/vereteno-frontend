@@ -4,8 +4,7 @@ import {ProductInfoContext} from "@/components/shared/Contexts/ProductContext";
 import SpecRow from "@/components/shared/SpecRow/SpecRow";
 
 const ProductSectionAbout = () => {
-    const {product, vendorIndex} = useContext(ProductInfoContext)
-    const productInfo = product?.vendorCodes?.[vendorIndex.currentVendorIndex]
+    const {product} = useContext(ProductInfoContext)
 
     return (
         <>
@@ -20,7 +19,7 @@ const ProductSectionAbout = () => {
                 </div>
                 <div className={styles.additional}>
                     <div className={styles.tags}>
-                        {productInfo?.attributes?.map((spec, index) => {
+                        {product?.attributes?.map((spec, index) => {
                             if (spec.value !== 'Отсутствует') return (
                                 <div key={index} className={styles.tag}>{spec.value}</div>
                             )

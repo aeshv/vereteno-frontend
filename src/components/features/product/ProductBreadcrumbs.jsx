@@ -38,7 +38,6 @@ export const ProductBreadcrumbs = () => {
   const { product } = useContext(ProductInfoContext);
   const { classes } = BreadcrumbsStyles();
 
-  console.log('Большой продукт', product)
 
   function generateBreadcrumb(product, breadcrumbs = []) {
     if (!product) {
@@ -67,7 +66,6 @@ export const ProductBreadcrumbs = () => {
   }
 
 
-  console.log('Продукт, для хлеба', product)
   const items = generateBreadcrumb(product).map((link, index) => {
     if (link.href) {
       return (

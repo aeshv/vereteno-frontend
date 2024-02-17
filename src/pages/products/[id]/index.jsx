@@ -12,24 +12,20 @@ import { ProductBreadcrumbs } from "@/components/features/product/ProductBreadcr
 import ProductVendorVariations from "@/components/features/product/ProductVendorVariations";
 
 const SingleProduct = ({ product }) => {
-  const [currentVendorIndex, setCurrentVendorIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState(
     product?.sizes[0]?.id,
   );
   const [quantityToBuy, setQuantityToBuy] = useState(1);
 
-  const vendorIndex = { currentVendorIndex, setCurrentVendorIndex };
   const sizeControl = { selectedSize, setSelectedSize };
   const quantityControl = { quantityToBuy, setQuantityToBuy };
 
 
-  console.log(product)
 
   return (
     <ProductInfoContext.Provider
       value={{
         product: { ...product },
-        vendorIndex,
         sizeControl,
         quantityControl,
       }}

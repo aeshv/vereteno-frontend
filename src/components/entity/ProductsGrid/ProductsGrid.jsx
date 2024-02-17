@@ -22,7 +22,6 @@ export const ProductsGrid = () => {
     return <span>Ошибка: {error.message}</span>;
   }
 
-  console.log('поиск', data)
 
   if (data?.data?.productVendorCodes?.length <= 0) {
     return (

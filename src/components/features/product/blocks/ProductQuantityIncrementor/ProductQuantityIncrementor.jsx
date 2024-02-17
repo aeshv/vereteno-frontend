@@ -9,7 +9,7 @@ export const ProductQuantityIncrementor = () => {
     useContext(ProductInfoContext);
   const [value, setValue] = useState(quantityControl?.quantityToBuy || "");
 
-  const currentSize = product?.sizes.find((item) => item.id === sizeControl?.selectedSize);
+  const currentSize = product?.sizes?.find((item) => item.id === sizeControl?.selectedSize);
 
   const handleChangeSize = (e) => {
     setValue(e);

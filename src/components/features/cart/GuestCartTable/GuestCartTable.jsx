@@ -13,7 +13,7 @@ export const GuestCartTable = () => {
 
   const gluedData = cookieData.map((item, index) => ({
     guestItemId: index,
-    ...data?.data?.products[index],
+    ...data?.data?.products?.[index],
     ...item,
   }));
 

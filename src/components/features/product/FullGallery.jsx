@@ -20,7 +20,7 @@ const FullGallery = () => {
   };
 
   const onNextClick = () => {
-    const currentIndex = images.findIndex((img) => img.id === currentImage);
+    const currentIndex = images?.findIndex((img) => img.id === currentImage);
     if (currentIndex < images.length - 1) {
       setCurrentImage(images[currentIndex + 1].id);
     } else {
@@ -46,7 +46,7 @@ const FullGallery = () => {
       {showModal && (
         <div className="modal">
           <Image
-            src={images.find((img) => img.id === currentImage).src}
+            src={images?.find((img) => img.id === currentImage).src}
             alt={`Image ${currentImage}`}
           />
           <div className="modal-buttons">
