@@ -75,6 +75,7 @@ const Header = () => {
 
           <div className={styles.contactOnline}>
             <Link href={"tel:+79034331144"}>+7 (903) 433-11-44</Link>
+            <Link href={"tel:+79094331144"}>+7 (909) 433-11-44</Link>
           </div>
         </div>
       </header>

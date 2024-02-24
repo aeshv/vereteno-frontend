@@ -6,12 +6,13 @@ export const categoryApi = {
             method: "GET",
             url: "/category/",
             params: {
-                limit: 10,
+                limit: 100,
                 offset: 0,
                 ...params,
             }
         });
     },
+
     // createProduct(data) {
     //   return api({
     //     method: "POST",

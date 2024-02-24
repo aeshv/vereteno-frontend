@@ -4,9 +4,10 @@ import React from "react";
 
 import styles from "./Products.module.scss";
 import { ProductsGrid } from "@/components/entity/ProductsGrid/ProductsGrid";
-import { SubCategories } from "@/components/entity/SubCategories/SubCategories";
+import {FilterTextStyles, SubCategories} from "@/components/entity/SubCategories/SubCategories";
 
 const Products = () => {
+  const {classes, theme} = FilterTextStyles();
   return (
     <>
       <PageHead title="Все товары - Веретено, магазин головных уборов" />
@@ -15,7 +16,7 @@ const Products = () => {
         <div className={styles.promo_banner}></div>
         <div className={styles.content}>
           <div className={styles.filters}>
-            <h2 style={{ marginBottom: "0.5rem" }}>Фильтры</h2>
+            <h2 className={classes.title} style={{ marginBottom: "0.5rem" }}>Фильтры</h2>
             <HatFilter />
           </div>
           <div className={styles.store}>

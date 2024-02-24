@@ -71,6 +71,9 @@ const Footer = ({ footerColor = "white" }) => {
                     <a className={styles.phone_number} href="tel:+79034331144">
                       +7 (903) 433-11-44
                     </a>
+                    <a className={styles.phone_number} href="tel:+79094331144">
+                      +7 (909) 433-11-44
+                    </a>
                     <div className={styles.social_list}>
                       <a
                         className={styles.social_icon}
