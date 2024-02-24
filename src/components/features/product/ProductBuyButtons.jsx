@@ -37,7 +37,7 @@ const ProductBuyButtons = () => {
   const { user } = useSelector((state) => state.auth);
 
   //id выбранного пользователем вендоркода (вариации товара)
-  const currentVendorCodeId = product?.vendorCode?.id;
+  const currentVendorCodeId = product?.id;
   const { selectedSize } = sizeControl;
   const { classes } = CatalogButtonStyles();
 
@@ -49,6 +49,8 @@ const ProductBuyButtons = () => {
     data: cartData,
     refetch,
   } = getCart;
+
+  //TODO: исправить логику наличия (теперь надо искать id ПРОДУКТА, а не вендоркода)
   const isCurrentVendorCodeInCart = !!cartData?.data?.items?.find(
     (item) => item?.productVendorCodeId === currentVendorCodeId,
   );

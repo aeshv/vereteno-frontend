@@ -53,8 +53,6 @@ export const SubCategories = () => {
 			</Center>
 		);
 
-	console.log(query?.["categories"], categoryToShow, data?.data?.categories, currentCategory)
-
 	if (categoryToShow?.length)
 		return (
 			<Box>

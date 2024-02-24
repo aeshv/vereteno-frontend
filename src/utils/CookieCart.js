@@ -4,8 +4,8 @@ export const CookieCart = {
   pushToCart(item) {
     const stringCart = getCookie("guestCart") || null;
     const currentCartTemp = stringCart !== null ? JSON.parse(stringCart) : [];
-    var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
-    var uniqid = randLetter + Date.now();
+    const randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    const uniqid = randLetter + Date.now();
     setCookie("guestCart", [...currentCartTemp, { ...item, id: uniqid }]);
     return currentCartTemp;
   },
@@ -17,11 +17,11 @@ export const CookieCart = {
       const filteredCart = currentCartTemp?.filter(
         (cartItem) => cartItem?.id !== id,
       );
-      console.group("Удаление товара");
-      console.log("id для удаления", id);
-      console.log("Длина оригинала массива:", currentCartTemp);
-      console.log("Длина отфильтрованного массива:", filteredCart);
-      console.groupEnd();
+      // console.group("Удаление товара");
+      // console.log("id для удаления", id);
+      // console.log("Длина оригинала массива:", currentCartTemp);
+      // console.log("Длина отфильтрованного массива:", filteredCart);
+      // console.groupEnd();
       setCookie("guestCart", filteredCart);
 
       filteredCart?.length !== currentCartTemp?.length

@@ -1,30 +1,16 @@
 import React, { useContext, useState } from "react";
 import {
   ActionIcon,
-  Avatar,
   Badge,
-  Checkbox,
   createStyles,
   Group,
-  Menu,
   Stack,
   Text,
 } from "@mantine/core";
-import { cartApi } from "@/api/cart";
-import { productApi } from "@/api";
 import {
-  IconDots,
-  IconMessages,
-  IconNote,
-  IconPencil,
-  IconReportAnalytics,
   IconTrash,
 } from "@tabler/icons-react";
-import { useQuery } from "react-query";
-import { CartContext } from "@/components/shared/Contexts/CartContext";
-import { QuantityInput } from "@/components/features/cart/CartItemRow/QuantityInput";
 import { CookieCart } from "@/utils/CookieCart";
-import { notifications } from "@mantine/notifications";
 import { GuestCartContext } from "@/components/shared/Contexts/GuestCartContext";
 
 const useStyles = createStyles((theme) => ({
@@ -39,14 +25,12 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
   const { classes, cx, theme } = useStyles();
   const { handleCookie } = useContext(GuestCartContext);
   const [isRowLoading, setIsRowLoading] = useState(false);
-  const currentItemVendorCode = item?.vendorCodes?.find(
-    (vendor) => vendor.productVendorCodeId === item?.productVendorCodeIds,
-  );
+  const currentItemVendorCode = item?.vendorCode;
 
   const currentItemSize = currentItemVendorCode?.sizes?.find(
     (size) => size.id === item?.sizeIds,
   );
-  console.log(item);
+
   const handleRemoveCurrentItem = () => {
     setIsRowLoading(true);
     CookieCart?.removeFromCartById(item?.id).then(
@@ -95,13 +79,13 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
           // Со скидкой
           <Stack spacing={"xs"}>
             <Stack spacing="xs">
-              {currentItemVendorCode?.price * item?.quantity !==
-                currentItemVendorCode?.price && (
+              {item?.price * item?.quantity !==
+                item?.price && (
                 <Text>
                   1 шт. -{" "}
                   <b>
-                    {currentItemVendorCode?.price *
-                      currentItemVendorCode?.discount}
+                    {item?.price *
+                      item?.discount}
                   </b>{" "}
                   руб.
                 </Text>
@@ -109,8 +93,8 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
               <Text>
                 Всего -{" "}
                 <b>
-                  {currentItemVendorCode?.price *
-                    currentItemVendorCode?.discount *
+                  {item?.price *
+                    item?.discount *
                     item?.quantity}
                 </b>{" "}
                 руб.
@@ -123,20 +107,20 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
                 to: theme.colors.brand[8],
               }}
             >
-              Скидка {100 - currentItemVendorCode?.discount * 100}%
+              Скидка {100 - item?.discount * 100}%
             </Badge>
           </Stack>
         ) : (
           // Без скидки
           <Stack spacing="xs">
-            {currentItemVendorCode?.price * item?.quantity !==
-              currentItemVendorCode?.price && (
+            {item?.price * item?.quantity !==
+              item?.price && (
               <Text>
-                1 шт. - <b>{currentItemVendorCode?.price}</b> руб.
+                1 шт. - <b>{item?.price}</b> руб.
               </Text>
             )}
             <Text>
-              Всего - <b>{currentItemVendorCode?.price * item?.quantity}</b>{" "}
+              Всего - <b>{item?.price * item?.quantity}</b>{" "}
               руб.
             </Text>
           </Stack>

@@ -13,12 +13,12 @@ export const GuestCartTable = () => {
 
   const gluedData = cookieData.map((item, index) => ({
     guestItemId: index,
-    ...data?.data?.products?.[index],
+    ...data?.data?.productVendorCodes?.[index],
     ...item,
   }));
 
   if (isError) {
-    return <Center mt={"xl"}>Ошибка загрузки</Center>;
+    return <Center mt={"xl"}>Ошибка загрузки <br/> {error}</Center>;
   }
 
   if (isLoading) {
