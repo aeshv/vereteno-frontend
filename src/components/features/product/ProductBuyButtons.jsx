@@ -5,10 +5,6 @@ import { notifications } from "@mantine/notifications";
 import { ProductInfoContext } from "@/components/shared/Contexts/ProductContext";
 import { cartApi } from "@/api/cart";
 import { useSelector } from "react-redux";
-import { getCookie, setCookie } from "cookies-next";
-import { getNextMonth } from "@/utils/getNextMonth";
-import { useCookieCart } from "@/utils/CookieCart";
-import { useId } from "@mantine/hooks";
 import { useCarts } from "@/utils/hooks/useCarts";
 
 const CatalogButtonStyles = createStyles((theme) => ({
@@ -45,15 +41,15 @@ const ProductBuyButtons = () => {
   const getCart = useCarts();
   const {
     isLoading: isCartLoading,
-    isError,
     data: cartData,
-    refetch,
   } = getCart;
 
   //TODO: исправить логику наличия (теперь надо искать id ПРОДУКТА, а не вендоркода)
   const isCurrentVendorCodeInCart = !!cartData?.data?.items?.find(
     (item) => item?.productVendorCodeId === currentVendorCodeId,
   );
+
+
   const [isLoading, setIsLoading] = useState(false);
   const [currentButtonStatus, setCurrentButtonStatus] = useState("В корзину");
 
@@ -62,19 +58,13 @@ const ProductBuyButtons = () => {
       setCurrentButtonStatus("В корзине");
     }
   }, [isCurrentVendorCodeInCart]);
-
   const handlePlaceToCart = () => {
     setIsLoading((prevState) => !prevState);
     cartApi
       .addToCart({
         productVendorCodeIds: [currentVendorCodeId],
         quantity: [quantityControl?.quantityToBuy || 1],
-        // TODO: FIX SIZE
-        // TODO: FIX SIZE
-        // TODO: FIX SIZE
-        // TODO: FIX SIZE
-        // TODO: FIX SIZE
-        sizeIds: [1],
+        sizeIds: [selectedSize],
       })
       .then(handleSuccessAddToCard, handleErrorAddToCard);
   };

@@ -1,12 +1,11 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import NoDataBlock from "@/components/features/cart/NoDataCart/NoDataBlock";
 import { IconGardenCartOff } from "@tabler/icons-react";
 import { GuestCartTable } from "@/components/features/cart/GuestCartTable/GuestCartTable";
 import { CookieCart } from "@/utils/CookieCart";
 import { GuestCartContext } from "@/components/shared/Contexts/GuestCartContext";
-import { Button, Center, Flex, Loader } from "@mantine/core";
 
 export const GuestCartPage = () => {
   const [cookieData, setCookieData] = useState([]);

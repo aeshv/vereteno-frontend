@@ -4,10 +4,11 @@
   "private": true,
   "author": "Alexey Vlasov and Elizabeth Shevchenko from aeshv.ru",
   "scripts": {
-      "dev": "next dev",
-      "build": "next build",
-      "start": "next start",
-      "lint": "next lint"
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "next-sitemap",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -27,6 +28,7 @@
     "eslint-config-next": "13.2.0",
     "formik": "^2.2.9",
     "next": "13.2.0",
+    "next-sitemap": "^4.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",

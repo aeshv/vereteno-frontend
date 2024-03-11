@@ -27,7 +27,7 @@ const GuestCartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
   const [isRowLoading, setIsRowLoading] = useState(false);
   const currentItemVendorCode = item?.vendorCode;
 
-  const currentItemSize = currentItemVendorCode?.sizes?.find(
+  const currentItemSize = item?.sizes?.find(
     (size) => size.id === item?.sizeIds,
   );
 
