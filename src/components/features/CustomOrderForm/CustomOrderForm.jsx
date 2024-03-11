@@ -31,6 +31,7 @@ export const CustomOrderForm = () => {
 			notifications.show({
 				title: "Успешно отправлено", message: 'С вами свяжутся в течение рабочего дня', color: 'green'
 			})
+			form.reset()
 		}
 		const errorEdit = (message = 'Попробуйте позже') => {
 			notifications.show({

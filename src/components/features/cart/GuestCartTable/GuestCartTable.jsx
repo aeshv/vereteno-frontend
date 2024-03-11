@@ -9,16 +9,16 @@ export const GuestCartTable = () => {
   const getGuestProducts = useGuestCartProducts({
     productVendorCodeIds: cookieData.map((item) => item?.productVendorCodeIds),
   });
-  const { isLoading, isError, data, error } = getGuestProducts;
+  const { isLoading, isError, data } = getGuestProducts;
 
-  const gluedData = cookieData.map((item, index) => ({
+  const gluedData = cookieData?.map((item, index) => ({
     guestItemId: index,
     ...data?.data?.productVendorCodes?.[index],
     ...item,
-  }));
+  })) || [];
 
   if (isError) {
-    return <Center mt={"xl"}>Ошибка загрузки <br/> {error}</Center>;
+    return <Center mt={"xl"}>Ошибка загрузки <br/></Center>;
   }
 
   if (isLoading) {
