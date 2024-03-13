@@ -15,6 +15,7 @@ import { Carousel } from "@mantine/carousel";
 import styles from "./CarouselBanner.module.scss";
 import { useBanners } from "@/utils/hooks/useBanners";
 import Link from "next/link";
+import { useViewportSize } from "@mantine/hooks";
 
 const useStyles = createStyles((theme) => ({
   price: {
@@ -49,7 +50,7 @@ const useStyles = createStyles((theme) => ({
 export function CarouselBanner() {
   const { classes, theme } = useStyles();
   const getBanner = useBanners();
-
+  const { width } = useViewportSize();
   const { isLoading, isError, data, error, refetch } = getBanner;
   const bannerData = data?.data;
 
@@ -58,7 +59,7 @@ export function CarouselBanner() {
       <div className={styles.sliderContent}>
         <Image
           src={process.env.NEXT_PUBLIC_IMAGE + "/" + item?.image}
-          height={420}
+          height={width <= 768 ? 300 : 420}
           className={styles.image}
           alt={item.subtitle}
           fit={"contain"}
@@ -117,7 +118,7 @@ export function CarouselBanner() {
       <Carousel
         withIndicators
         loop
-        height={421}
+        height={width <= 768 ? "100%" : 421}
         classNames={{
           root: classes.carousel,
           controls: classes.carouselControls,

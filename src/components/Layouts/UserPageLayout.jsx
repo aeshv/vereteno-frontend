@@ -5,8 +5,6 @@ import { Flex } from "@mantine/core";
 import { PersonalInfoExpanded } from "@/components/widget/PersonalInfoExpanded/PersonalInfoExpanded";
 import PageHead from "@/components/SEO/PageHead";
 import { MegaHeader } from "@/components/entity/MegaHeader/MegaHeader";
-import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
 import { MobilePersonalInfo } from "@/components/widget/PersonalInfoExpanded/MobilePersonalInfo";
 import { useViewportSize } from "@mantine/hooks";
 
