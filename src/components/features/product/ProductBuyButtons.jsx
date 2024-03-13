@@ -39,25 +39,21 @@ const ProductBuyButtons = () => {
 
   //Корзина пользователя
   const getCart = useCarts();
-  const {
-    isLoading: isCartLoading,
-    data: cartData,
-  } = getCart;
+  const { isLoading: isCartLoading, data: cartData } = getCart;
 
-  //TODO: исправить логику наличия (теперь надо искать id ПРОДУКТА, а не вендоркода)
-  const isCurrentVendorCodeInCart = !!cartData?.data?.items?.find(
-    (item) => item?.productVendorCodeId === currentVendorCodeId,
-  );
-
+  //Текущий размер товара
+  const currentSize = product?.sizes?.find((item) => item.id === selectedSize);
 
   const [isLoading, setIsLoading] = useState(false);
   const [currentButtonStatus, setCurrentButtonStatus] = useState("В корзину");
 
   useEffect(() => {
-    if (isCurrentVendorCodeInCart) {
-      setCurrentButtonStatus("В корзине");
-    }
-  }, [isCurrentVendorCodeInCart]);
+    const isCurrentSizeInCart = !!cartData?.data?.items.find(
+      (item) => item.size?.id === selectedSize,
+    );
+    setCurrentButtonStatus(isCurrentSizeInCart ? "В корзине" : "В корзину");
+  }, [cartData?.data?.items, selectedSize]);
+
   const handlePlaceToCart = () => {
     setIsLoading((prevState) => !prevState);
     cartApi
@@ -89,8 +85,6 @@ const ProductBuyButtons = () => {
     setCurrentButtonStatus("В корзину");
   };
 
-  const currentSize = product?.sizes?.find((item) => item.id === selectedSize);
-
   if (user && !!!currentSize?.quantity) {
     return (
       <div className={classes.buyContainer}>
@@ -110,7 +104,7 @@ const ProductBuyButtons = () => {
       <div className={classes.buyContainer}>
         <Button
           className={classes.button}
-          loading={isLoading}
+          loading={isLoading || isCartLoading}
           leftIcon={<IconShoppingCart />}
           disabled={currentButtonStatus === "В корзине"}
           onClick={(e) => handlePlaceToCart(e)}
