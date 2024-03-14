@@ -11,14 +11,24 @@ export const GuestCartTable = () => {
   });
   const { isLoading, isError, data } = getGuestProducts;
 
-  const gluedData = cookieData?.map((item, index) => ({
-    guestItemId: index,
-    ...data?.data?.productVendorCodes?.[index],
-    ...item,
-  })) || [];
+  //Склеивание кук пользователя со всеми найденными товарами
+  //С бека приходят только уникальные позиции, а не все по списку. Приходится
+  //сортировать по уникальным позициям
+  const gluedData =
+    cookieData?.map((item, index) => ({
+      guestItemId: index,
+      ...data?.data?.productVendorCodes?.find(
+        (serverItem) => serverItem?.id === item?.productVendorCodeIds,
+      ),
+      ...item,
+    })) || [];
 
   if (isError) {
-    return <Center mt={"xl"}>Ошибка загрузки <br/></Center>;
+    return (
+      <Center mt={"xl"}>
+        Ошибка загрузки <br />
+      </Center>
+    );
   }
 
   if (isLoading) {
