@@ -39,7 +39,6 @@ const CartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const cartContext = useContext(CartContext);
   const { refetchCartFunction } = cartContext;
-  console.log(item);
   const handleDeleteItemFromCart = () => {
     let id = item.id;
 

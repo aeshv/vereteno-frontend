@@ -85,13 +85,7 @@ const GuestBuyButton = () => {
     });
     handleCookie();
   };
-  console.log(
-    currentVendorCodeId,
-    product,
-    sizeControl,
-    quantityControl,
-    cookieData,
-  );
+
   if (!user && !!!currentSize?.quantity) {
     return (
       <div className={classes.buyContainer}>
