@@ -45,7 +45,7 @@ export const FormReviewToProduct = () => {
     const successEdit = () => {
       notifications.show({
         title: "Успешно отправлено",
-        message: "С вами свяжутся в течение рабочего дня",
+        message: "Ваш отзыв скоро появится на странице",
         color: "green",
       });
       form.reset();
