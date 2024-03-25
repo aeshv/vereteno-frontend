@@ -7,8 +7,6 @@ import {
   UnstyledButton,
   Text,
   SimpleGrid,
-  ThemeIcon,
-  Anchor,
   Divider,
   Center,
   Box,
@@ -17,7 +15,6 @@ import {
   Collapse,
   ScrollArea,
   rem,
-  Autocomplete,
   Loader,
   ActionIcon,
   Flex,
@@ -26,15 +23,7 @@ import {
 
 import { useDisclosure } from "@mantine/hooks";
 import {
-  IconNotification,
-  IconCode,
-  IconBook,
-  IconChartPie3,
-  IconFingerprint,
-  IconCoin,
   IconChevronDown,
-  IconSearch,
-  IconShirt,
   IconShoppingCart,
   IconLogin,
   IconUser,
@@ -43,10 +32,8 @@ import {
 import Link from "next/link";
 import Search from "@/components/shared/search/Search";
 import React from "react";
-import Icon from "@/components/shared/icon/Icon";
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { useOrders } from "@/utils/hooks/useOrders";
 import { useCategories } from "@/utils/hooks/useCategories";
 import MainLogo from "@/assets/icons/MainLogo";
 

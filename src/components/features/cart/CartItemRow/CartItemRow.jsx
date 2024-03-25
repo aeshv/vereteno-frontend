@@ -6,21 +6,11 @@ import {
   Checkbox,
   createStyles,
   Group,
-  Menu,
   Stack,
   Text,
 } from "@mantine/core";
 import { cartApi } from "@/api/cart";
-import { productApi } from "@/api";
-import {
-  IconDots,
-  IconMessages,
-  IconNote,
-  IconPencil,
-  IconReportAnalytics,
-  IconTrash,
-} from "@tabler/icons-react";
-import { useQuery } from "react-query";
+import { IconTrash } from "@tabler/icons-react";
 import { CartContext } from "@/components/shared/Contexts/CartContext";
 import { QuantityInput } from "@/components/features/cart/CartItemRow/QuantityInput";
 import Link from "next/link";
@@ -39,6 +29,9 @@ const CartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
   const [isDeleteLoading, setIsDeleteLoading] = useState(false);
   const cartContext = useContext(CartContext);
   const { refetchCartFunction } = cartContext;
+
+  console.log(currentItemInfo);
+
   const handleDeleteItemFromCart = () => {
     let id = item.id;
 
@@ -107,6 +100,7 @@ const CartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
         <QuantityInput
           disabled={isSelected}
           current={item.quantity || 1}
+          max={currentItemInfo?.inStockQuantity?.quantity}
           handleChange={handleChangeItemAmount}
         />
       </td>
