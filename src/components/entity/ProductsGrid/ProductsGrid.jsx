@@ -1,20 +1,20 @@
-import {Box, Center, Grid, Loader, Pagination, SimpleGrid} from "@mantine/core";
+import { Box, Center, Grid, Loader, Pagination, SimpleGrid } from "@mantine/core";
 import Card from "@/components/entity/card/Card";
 import React from "react";
-import {useProducts} from "@/utils/hooks/useProducts";
-import {ProductsPagination} from "@/components/entity/ProductsGrid/ProductsPagination";
+import { useProducts } from "@/utils/hooks/useProducts";
+import { ProductsPagination } from "@/components/entity/ProductsGrid/ProductsPagination";
 import NoDataBlock from "@/components/features/cart/NoDataCart/NoDataBlock";
-import {FilterTextStyles} from "@/components/entity/SubCategories/SubCategories";
+import { FilterTextStyles } from "@/components/entity/SubCategories/SubCategories";
 
 export const ProductsGrid = () => {
 	const getProducts = useProducts();
-	const {classes, theme} = FilterTextStyles();
-	const {isLoading, isError, data, error} = getProducts;
+	const { classes, theme } = FilterTextStyles();
+	const { isLoading, isError, data, error } = getProducts;
 
 	if (isLoading) {
 		return (
 			<Center mt={"xl"}>
-				<Loader color="gray" size="xl"/>
+				<Loader color="gray" size="xl" />
 			</Center>
 		);
 	}
@@ -40,7 +40,7 @@ export const ProductsGrid = () => {
 		return (
 			<>
 				<Box>
-					<Box style={{marginBottom: "0.5rem"}}>
+					<Box style={{ marginBottom: "0.5rem" }}>
 						<h2 className={classes.title}>Найденные товары: </h2>
 					</Box>
 
@@ -48,8 +48,8 @@ export const ProductsGrid = () => {
 						cols={3}
 						spacing="lg"
 						breakpoints={[
-							{maxWidth: "68rem", cols: 2, spacing: "md"},
-							{maxWidth: "34rem", cols: 1, spacing: "sm"},
+							{ maxWidth: "68rem", cols: 2, spacing: "md" },
+							{ maxWidth: "34rem", cols: 1, spacing: "sm" },
 						]}
 					>
 						{data?.data?.productVendorCodes?.map((product) => (
@@ -60,7 +60,7 @@ export const ProductsGrid = () => {
 							/>
 						))}
 					</SimpleGrid>
-					<ProductsPagination total={data?.data?.totalCount || 1}/>
+					<ProductsPagination total={data?.data?.totalCount || 1} />
 				</Box>
 			</>
 		);

@@ -60,6 +60,7 @@ export default function Home({ products, categories }) {
             { maxWidth: "36rem", cols: 1, spacing: "sm", px: "lg" },
           ]}
         >
+          {console.log(products)}
           {products?.map((product) => (
             <Card
               {...product}
@@ -81,7 +82,7 @@ export default function Home({ products, categories }) {
 }
 
 export async function getServerSideProps() {
-  const products = await productApi.getProducts().then(({ data }) => {
+  const products = await productApi.getProducts({limit: 7}).then(({ data }) => {
     return data?.productVendorCodes;
   });
 

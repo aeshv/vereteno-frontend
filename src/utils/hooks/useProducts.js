@@ -17,6 +17,7 @@ export function checkProperties(obj) {
 export function useProducts() {
     const router = useRouter()
     const {query} = router
+    console.log('query:', query)
 
 
     return useQuery(
