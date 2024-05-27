@@ -30,8 +30,6 @@ const CartItemRow = ({ item, isSelected, toggleRow, isDisabled }) => {
   const cartContext = useContext(CartContext);
   const { refetchCartFunction } = cartContext;
 
-  console.log(currentItemInfo);
-
   const handleDeleteItemFromCart = () => {
     let id = item.id;
 
