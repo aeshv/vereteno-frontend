@@ -1,9 +1,7 @@
 import React from "react";
-import { Formik, Form, Field } from "formik";
 import styles from "./HatFilter.module.scss";
 import PriceRange from "@/components/features/filters/PriceRange/PriceRange";
 import { Button, Collapse } from "@mantine/core";
-import { GenderRadio } from "@/components/features/filters/GenderRadio/GenderRadio";
 import { ColorSelect } from "@/components/features/filters/ColorSelect/ColorSelect";
 import { MaterialSelect } from "@/components/features/filters/MaterialSelect/MaterialSelect";
 import { SizeRadio } from "@/components/features/filters/SizeRadio/SizeRadio";
@@ -11,7 +9,7 @@ import { AttributesSelect } from "@/components/features/filters/AttributesSelect
 import { CategorySelect } from "@/components/features/filters/CategorySelect/CategorySelect";
 import { useMediaQuery } from "@mantine/hooks";
 
-const HatFilter = ({ onSubmit }) => {
+const HatFilter = () => {
   const [opened, setOpened] = React.useState(false);
 
   // Используем хук для определения, является ли экран мобильным

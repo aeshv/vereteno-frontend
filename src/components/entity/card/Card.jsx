@@ -4,9 +4,8 @@ import CardGallery from "./CardGallery/CardGallery";
 import Link from "next/link";
 import noimage from "../../../../public/noimage.png";
 import { createStyles } from "@mantine/core";
-import styles from "@/components/features/product/ProductOrder.module.scss";
 
-const CardStyles = createStyles((theme) => ({
+const useStyles = createStyles((theme) => ({
   card: {
     display: "flex",
     flexDirection: "column",
@@ -33,20 +32,15 @@ const CardStyles = createStyles((theme) => ({
     lineHeight: ["20px", "26px"],
     display: "block",
     overflow: "hidden",
-    position: "relative",
     textAlign: "left",
     textOverflow: "ellipsis",
     fontFamily: '"Jost"',
-    fontStyle: "normal",
     color: "#282739",
   },
   price: {
-    fontSize: ["18px", "18px"],
-    fontWeight: [400, 400],
-    lineHeight: ["24px", "20px"],
-    display: "inline-block",
+    fontSize: "18px",
+    lineHeight: "24px",
     verticalAlign: "middle",
-    fontStyle: "normal",
     color: "#5d6c7b",
   },
   row: {
@@ -55,34 +49,30 @@ const CardStyles = createStyles((theme) => ({
     position: "relative",
     whiteSpace: "nowrap",
     gap: "6px",
+    display: "flex",
+    alignItems: "center",
   },
   labels: {
     position: "absolute",
     zIndex: 9,
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
     gap: "16px",
   },
   colors: {
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
     padding: "4px 0",
   },
   old: {
     fontFamily: '"Jost"',
-    fontStyle: "normal",
     fontWeight: 400,
     fontSize: "12px",
     lineHeight: "24px",
-    textDecorationLine: "line-through",
+    textDecoration: "line-through",
     color: "#5d6c7b",
     marginLeft: "8px",
   },
   current: {
     fontFamily: '"Jost"',
-    fontStyle: "normal",
     fontWeight: 600,
     fontSize: "18px",
     lineHeight: "24px",
@@ -91,48 +81,25 @@ const CardStyles = createStyles((theme) => ({
   },
 }));
 
-const Card = (props) => {
-  const noimageArray = [{ src: noimage }];
-  const { classes } = CardStyles(undefined, undefined);
+const Card = ({ href, images, title, name, vendorCode, price, discount }) => {
+  const { classes } = useStyles();
+  const displayImages = images?.length ? images : [{ src: noimage }];
 
+  const finalPrice = discount ? price * discount : price;
 
   return (
-    <Link className={classes.card} href={props?.href}>
-      {props?.images ? (
-        <div className={classes.gallery}>
-          <CardGallery images={props?.images} />
-        </div>
-      ) : (
-        <div className={classes.gallery}>
-          <CardGallery images={noimageArray} />
-        </div>
-      )}
-
+    <Link className={classes.card} href={href}>
+      <div className={classes.gallery}>
+        <CardGallery images={displayImages} />
+      </div>
       <div className={classes.content}>
         <div className={classes.row}>
-          <span className={classes.title}>{props?.title || props?.name}</span>
+          <span className={classes.title}>{title || name}</span>
         </div>
-          <ColorDot color={props?.vendorCode?.color?.hex} />
-
+        <ColorDot color={vendorCode?.color?.hex} />
         <div className={classes.row}>
-          {!props?.discount ? (
-            <>
-              <span className={classes.current}>
-                {props?.price} руб.
-              </span>
-            </>
-          ) : (
-            <>
-              <span className={classes.current}>
-                {props?.price *
-                  props?.discount}{" "}
-                руб.
-              </span>
-              <span className={classes.old}>
-                {props?.price} руб.
-              </span>
-            </>
-          )}
+          <span className={classes.current}>{finalPrice} руб.</span>
+          {discount && <span className={classes.old}>{price} руб.</span>}
         </div>
       </div>
     </Link>
