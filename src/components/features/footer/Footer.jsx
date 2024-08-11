@@ -42,6 +42,9 @@ const Footer = ({ footerColor = "white" }) => {
                         <li className={styles.info_item}>
                           Банк: Юго-Западный банк ПАО Сбербанк
                         </li>
+                        <li className={styles.info_item}>
+                          Не является публичной офертой
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -85,7 +88,7 @@ const Footer = ({ footerColor = "white" }) => {
                       <a
                         className={styles.social_icon}
                         target="_blank"
-                        href="https://t.me/+79034331144"
+                        href="https://t.me/veretenofashionclub"
                       >
                         <IconBrandTelegram color={"#0088cc"} />
                       </a>

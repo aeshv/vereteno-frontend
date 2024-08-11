@@ -12,7 +12,7 @@ import {
 import React from "react";
 import PageHead from "@/components/SEO/PageHead";
 
-const useStyles = createStyles((theme) => ({
+export const FilterTextStyles = createStyles((theme) => ({
   title: {
     fontFamily: '"Jost"',
     fontWeight: 500,
@@ -34,7 +34,7 @@ const useStyles = createStyles((theme) => ({
 export const SubCategories = () => {
   const router = useRouter();
   const { query } = router;
-  const { classes } = useStyles();
+  const { classes } = FilterTextStyles();
   const { isLoading, data } = useCategories();
 
   const categories = data?.data?.categories || [];
